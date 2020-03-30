@@ -6763,7 +6763,8 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-  background-color: #343a40 !important;
+  background-color: #343a40 !important; /* Brent */
+  background-color: transparent !important; /* Brent */
 }
 
 a.bg-dark:hover, a.bg-dark:focus,
