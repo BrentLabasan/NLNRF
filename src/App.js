@@ -259,7 +259,7 @@ export class MapContainer extends Component {
           </Col>
 
           <Col xs={2}>
-
+                <h4>Latest Submissions</h4>
           </Col>
         </Row>
 
