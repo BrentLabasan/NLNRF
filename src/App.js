@@ -47,14 +47,72 @@ export class MapContainer extends Component {
           <span className='slogan'>NOT LEFT. NOT RIGHT. FORWARD.</span>
         </h1>
 
-        <br/>
+        <br />
 
         <Row>
-          <Col xs={2}>
+          <Col xs={1}>
             <Form inline>
               <Button variant="success">SUBMIT A LOCATION</Button>
             </Form>
           </Col>
+
+          <Col xs={6}>
+            <Navbar expand="lg" bg="dark" variant="dark">
+
+              <Navbar.Brand>LANDMARKS</Navbar.Brand>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+
+                <Nav className="mr-auto">
+                  {/* <Nav.Link href="#home">Home</Nav.Link>
+      <Nav.Link href="#link">Link</Nav.Link> */}
+
+                  <NavDropdown title="Amazon SLU Campus" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                  </NavDropdown>
+
+                  <NavDropdown title="Seattle Center / Space Needle" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                  </NavDropdown>
+
+                  <NavDropdown title="Pike Place" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                  </NavDropdown>
+
+                  <NavDropdown title="University of Washington" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                  </NavDropdown>
+
+                </Nav>
+                {/* <Form inline>
+      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+      <Button variant="outline-success">Search</Button>
+    </Form> */}
+              </Navbar.Collapse>
+
+              <Navbar.Collapse id="basic-navbar-nav"></Navbar.Collapse>
+
+            </Navbar>
+          </Col>
+
+
+
           <Col xs={5}>
             <Navbar expand="lg" bg="dark" variant="dark">
 
@@ -102,52 +160,8 @@ export class MapContainer extends Component {
 
             </Navbar>
           </Col>
-          <Col xs={5}>
-            <Navbar expand="lg" bg="dark" variant="dark">
 
-              <Navbar.Brand>LANDMARKS</Navbar.Brand>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
 
-                <Nav className="mr-auto">
-                  {/* <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#link">Link</Nav.Link> */}
-
-                  <NavDropdown title="Downtown" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                  </NavDropdown>
-
-                  <NavDropdown title="Capitol Hill" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                  </NavDropdown>
-
-                  <NavDropdown title="First Hill" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                  </NavDropdown>
-
-                </Nav>
-                {/* <Form inline>
-      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button variant="outline-success">Search</Button>
-    </Form> */}
-              </Navbar.Collapse>
-
-              <Navbar.Collapse id="basic-navbar-nav"></Navbar.Collapse>
-
-            </Navbar>
-          </Col>
         </Row>
 
 
