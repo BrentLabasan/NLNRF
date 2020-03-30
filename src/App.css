@@ -46,3 +46,9 @@
 .nav-item .nav-link {
   color: white;
 }
+
+#explanation {
+  display: inline-block;
+  margin: 40px 0 0 0;
+}
+

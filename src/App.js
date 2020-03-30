@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Col } from 'react-bootstrap';
 
+const hrWidth = '25%';
+
 const apiKey = 'AIzaSyCWIg0OhhYc1_DEXwPOXcBypSNgumuB5t4';
 
 const containerStyle = {
   position: 'relative',
   width: '100%',
-  height: '100%'
+  height: '800px',
+  textAlign: 'center',
+  display: 'inline-flex',
+  justifyContent: 'center'
 }
 
 const mapStyles = {
@@ -44,10 +49,13 @@ export class MapContainer extends Component {
         <h1 id="heroLogo">
           NLNRF
           &nbsp;
-          <span className='slogan'>NOT LEFT. NOT RIGHT. FORWARD.</span>
+          <span className='slogan'>NOT LEFT. NOT RIGHT. FORWARD &gt;</span>
         </h1>
 
         <br />
+
+        {/* <hr class="style3" style={{width: hrWidth }} ></hr> */}
+
 
         <Row>
           <Col xs={1}>
@@ -99,7 +107,7 @@ export class MapContainer extends Component {
                     <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                   </NavDropdown>
 
-                  
+
                   <NavDropdown title="Seattle University" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -107,7 +115,7 @@ export class MapContainer extends Component {
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                   </NavDropdown>
-                  
+
                   <NavDropdown title="Community Colleges" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -166,7 +174,7 @@ export class MapContainer extends Component {
                     <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                   </NavDropdown>
 
-                  
+
                   <NavDropdown title="Pioneer Square" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -175,7 +183,7 @@ export class MapContainer extends Component {
                     <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                   </NavDropdown>
 
-                  
+
                   <NavDropdown title="West Seattle" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -184,7 +192,7 @@ export class MapContainer extends Component {
                     <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                   </NavDropdown>
 
-                  
+
                   <NavDropdown title="Chinatown" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -193,7 +201,7 @@ export class MapContainer extends Component {
                     <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                   </NavDropdown>
 
-                  
+
                   <NavDropdown title="Fremont" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -218,7 +226,7 @@ export class MapContainer extends Component {
         </Row>
 
 
-<br/>
+        <br />
 
         <div style={containerStyle}>
           <Map
@@ -245,6 +253,44 @@ export class MapContainer extends Component {
             </InfoWindow>
           </Map>
         </div>
+
+        <br /><br />
+
+        <hr class="style3" style={{width: hrWidth }} ></hr>
+
+        <br /><br />
+
+        <footer>
+        <Row>
+          <Col xs={4}>
+            <h3>What is NLNRF?</h3>
+            <p>NLNRF is an acronym for "Not left. Not right. Forward." It's a great slogan for uniting people to tackle the problems Andrew Yang is focused on solving world problems such as mass job displace due to automation, the ever-widening income inequality gap, and climate change.</p>
+          </Col>
+          <Col xs={4}>
+            <h3>How can I help spread the NLNRF message?</h3>
+            <p>
+              <ol>
+                <li>Chalk, sticker, sharpie, graffiti the slogan "Not left. Not right. Forward." on surfaces where as much people will see! Use the map above to figure out where high trafficed or underrepresented locations are.</li>
+                <li>Post your work to this site, NLNRF.com! There's a green Submit button above, or you could also click this button <Button variant="success">SUBMIT A LOCATION</Button> </li>
+                <li>Reach out to new people and encourage them to spread the NLNRF message!</li>
+              </ol>
+            </p>
+          </Col>
+          <Col xs={4}>
+            <h3>Tell me more about Andrew Yang.</h3>
+            <p>Andrew Yang is a former Democratic presidential candidate (2020) and CNN political commentator,  focused on solving world problems such as mass job displace due to automation, the ever-widening income inequality gap, and climate change.</p>
+          </Col>
+        </Row>
+
+        <section id="byline">
+          <h6>
+          NLNRF was designed and developed by <a href="BrentVLabasan.com" target="_blank">Brent Labasan X&gt;</a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          If you would like to help Brent work on NLNRF.com, contact him at BrentLabasan@gmail.com or @BrentLabasan
+          </h6>
+        </section>
+
+        </footer>
 
 
       </div>
