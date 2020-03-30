@@ -47,7 +47,7 @@ export class MapContainer extends Component {
     return (
       <div className="App">
         <h1 id="heroLogo">
-          NLNRF
+          NLNRF<span style={{fontSize: '18px', marginLeft: '-15px'}} >.com</span>
           &nbsp;
           <span className='slogan'>NOT LEFT. NOT RIGHT. FORWARD &gt;</span>
         </h1>
