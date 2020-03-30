@@ -33,6 +33,13 @@ code {
   font-size: 58px;
   color: #F4F1F1;
 }
+
+#heroLogo .slogan {
+  font-family: 'Roboto', cursive;
+  font-size: 20px;
+  color: #F4F1F1;
+}
+
 /* 
 #homeMap {
   display: inline-block;
