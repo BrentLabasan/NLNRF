@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Col } from 'react-bootstrap';
 
+
 const hrWidth = '25%';
 
 const apiKey = 'AIzaSyCWIg0OhhYc1_DEXwPOXcBypSNgumuB5t4';
@@ -24,8 +25,18 @@ export class MapContainer extends Component {
   state = {
     showingInfoWindow: false,  //Hides or the shows the infoWindow
     activeMarker: {},          //Shows the active marker upon click
-    selectedPlace: {}          //Shows the infoWindow to the selected place upon a marker
+    selectedPlace: {},          //Shows the infoWindow to the selected place upon a marker
+
+    locations: [],
+
+    pendingLocationDescription: '',
+    pendingLatitude: null,
+    pendingLongitude: null
   };
+
+  componentDidMount() {
+  
+  }
 
   onMarkerClick = (props, marker, e) =>
     this.setState({
@@ -264,7 +275,14 @@ export class MapContainer extends Component {
           </Col>
         </Row>
 
-
+        <section className="add-item">
+  <form>
+    <input type="text" name="pendingLocationDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationDescription} />
+    <input type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
+    <input type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} />
+    <button>Add Item</button>
+  </form>
+</section>
 
         <br /><br />
 

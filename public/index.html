@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+
+
   <link href="https://fonts.googleapis.com/css?family=Chango&display=swap" rel="stylesheet">
     <meta charset="utf-8" />
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -39,6 +41,31 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCNuNDmyFCh76Wtznx7Wvp2O6WlSCZ_gYE",
+    authDomain: "nlnrf-dev.firebaseapp.com",
+    databaseURL: "https://nlnrf-dev.firebaseio.com",
+    projectId: "nlnrf-dev",
+    storageBucket: "nlnrf-dev.appspot.com",
+    messagingSenderId: "697157600851",
+    appId: "1:697157600851:web:dbc0422025a65c40c868a6",
+    measurementId: "G-PT563E34CP"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+    
 </body>
 
 </html>
