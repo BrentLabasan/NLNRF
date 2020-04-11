@@ -4,6 +4,8 @@ import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Co
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 
+let db;
+
 const hrWidth = '25%';
 
 const apiKey = 'AIzaSyCWIg0OhhYc1_DEXwPOXcBypSNgumuB5t4';
@@ -52,7 +54,7 @@ export class MapContainer extends Component {
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
 
-    var db = firebase.firestore();
+    db = firebase.firestore();
 
     db.collection("locations")
       // .where("state", "==", "CA")
@@ -106,13 +108,21 @@ export class MapContainer extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const itemsRef = firebase.database().ref('items');
-    const item = {
-      locationNameDescription: this.state.pendingLocationNameDescription,
-      latitude: this.state.pendingLatitude,
-      longitude: this.state.pendingLongitude
-    }
-    itemsRef.push(item);
+
+    // Add a new document with a generated id.
+    db.collection("locations").add({
+      nameDescr: this.state.pendingLocationNameDescription,
+      geopoint: new firebase.firestore.GeoPoint(this.state.pendingLatitude, this.state.pendingLongitude)
+    })
+      .then(function (docRef) {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      });
+
+
+
     this.setState({
       pendingLocationNameDescription: '',
       pendingLatitude: '',
@@ -329,10 +339,10 @@ export class MapContainer extends Component {
                 onClick={this.mapClicked}
               >
 
-                { locations }
+                {locations}
 
 
-{/* <Marker
+                {/* <Marker
     title={'The marker`s title will appear as a tooltip.'}
     name={'SOMA'}
     position={{lat: 37.778519, lng: -122.405640}} />
