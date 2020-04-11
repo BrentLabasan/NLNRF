@@ -43,6 +43,13 @@ export class MapContainer extends Component {
     }
   };
 
+  mapClicked(mapProps, map, clickEvent) {
+    console.log(mapProps);
+    console.log(map);
+    console.log(clickEvent);
+    console.log(clickEvent.Za.x, clickEvent.Za.y);
+  }
+
   render() {
     return (
       <div className="App">
@@ -239,6 +246,7 @@ export class MapContainer extends Component {
                   lat: 47.6180376,
                   lng: -122.3256017
                 }}
+                onClick={this.mapClicked}
               >
                 <Marker
                   onClick={this.onMarkerClick}
