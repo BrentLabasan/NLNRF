@@ -54,11 +54,15 @@ export class MapContainer extends Component {
     }
   };
 
-  mapClicked(mapProps, map, clickEvent) {
+  mapClicked = (mapProps, map, clickEvent) => {
     console.log(mapProps);
     console.log(map);
     console.log(clickEvent);
     console.log(clickEvent.Za.x, clickEvent.Za.y);
+    this.setState({
+      pendingLatitude: clickEvent.Za.x,
+      pendingLongitude:  clickEvent.Za.y
+    });
   }
 
   render() {
@@ -280,7 +284,7 @@ export class MapContainer extends Component {
     <input type="text" name="pendingLocationDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationDescription} />
     <input type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
     <input type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} />
-    <button>Add Item</button>
+    <button>Submit Location</button>
   </form>
 </section>
 
