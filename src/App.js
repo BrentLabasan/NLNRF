@@ -55,14 +55,18 @@ export class MapContainer extends Component {
     var db = firebase.firestore();
 
     db.collection("locations")
-    // .where("state", "==", "CA")
-    .onSnapshot(function(querySnapshot) {
+      // .where("state", "==", "CA")
+      .onSnapshot((querySnapshot) => {
         var locations = [];
-        querySnapshot.forEach(function(loc) {
-            locations.push(loc.data().geopoint.latitude);
+        querySnapshot.forEach(function (loc) {
+          // locations.push(loc.data().geopoint.latitude);
+          locations.push(loc.data());
         });
         console.log("Current cities in CA: ", locations.join(", "));
-    });
+        this.setState({
+          locations: locations
+        });
+      });
 
   }
 
@@ -83,13 +87,14 @@ export class MapContainer extends Component {
   };
 
   mapClicked = (mapProps, map, clickEvent) => {
-    console.log(mapProps);
-    console.log(map);
+    // console.log(mapProps);
+    // console.log(map);
     console.log(clickEvent);
-    console.log(clickEvent.Za.x, clickEvent.Za.y);
+    // console.log(clickEvent.Za.x, clickEvent.Za.y);
+    console.log(clickEvent.latLng.lat(), clickEvent.latLng.lng());
     this.setState({
-      pendingLatitude: clickEvent.Za.x,
-      pendingLongitude: clickEvent.Za.y
+      pendingLatitude: clickEvent.latLng.lat(),
+      pendingLongitude: clickEvent.latLng.lng()
     });
   }
 
@@ -116,6 +121,16 @@ export class MapContainer extends Component {
   }
 
   render() {
+    let locations = this.state.locations.map((loc) => {
+      return (
+        <Marker
+          key={loc.geopoint.latitude + "_" + loc.geopoint.longitude}
+          title={'The marker`s title will appear as a tooltip.'}
+          name={'SOMA'}
+          position={{ lat: loc.geopoint.latitude, lng: loc.geopoint.longitude }} />
+      );
+    });
+
     return (
       <div className="App">
         <h1 id="heroLogo">
@@ -305,7 +320,7 @@ export class MapContainer extends Component {
             <div style={containerStyle}>
               <Map
                 google={this.props.google}
-                zoom={19}
+                zoom={14}
                 style={mapStyles}
                 initialCenter={{
                   lat: 47.6180376,
@@ -313,11 +328,26 @@ export class MapContainer extends Component {
                 }}
                 onClick={this.mapClicked}
               >
-                <Marker
-                  onClick={this.onMarkerClick}
-                  name={'Kenyatta International Convention Centre'}
-                  animation={this.props.google.maps.Animation.DROP}
-                />
+
+                { locations }
+
+
+{/* <Marker
+    title={'The marker`s title will appear as a tooltip.'}
+    name={'SOMA'}
+    position={{lat: 37.778519, lng: -122.405640}} />
+  <Marker
+    name={'Dolores park'}
+    position={{lat: 37.759703, lng: -122.428093}} />
+  <Marker />
+  <Marker
+    name={'Your position'}
+    position={{lat: 37.762391, lng: -122.439192}}
+    icon={{
+      url: "/path/to/custom_icon.png",
+      anchor: new this.props.google.maps.Point(32,32),
+      scaledSize: new this.props.google.maps.Size(64,64)
+    }} /> */}
 
               </Map>
             </div>
