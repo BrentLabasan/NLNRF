@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Col } from 'react-bootstrap';
-
+import firebase from 'firebase';
 
 const hrWidth = '25%';
 
 const apiKey = 'AIzaSyCWIg0OhhYc1_DEXwPOXcBypSNgumuB5t4';
+
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCNuNDmyFCh76Wtznx7Wvp2O6WlSCZ_gYE",
+    authDomain: "nlnrf-dev.firebaseapp.com",
+    databaseURL: "https://nlnrf-dev.firebaseio.com",
+    projectId: "nlnrf-dev",
+    storageBucket: "nlnrf-dev.appspot.com",
+    messagingSenderId: "697157600851",
+    appId: "1:697157600851:web:dbc0422025a65c40c868a6",
+    measurementId: "G-PT563E34CP"
+  };
 
 const containerStyle = {
   position: 'relative',
@@ -29,13 +41,15 @@ export class MapContainer extends Component {
 
     locations: [],
 
-    pendingLocationDescription: '',
+    pendingLocationNameDescription: '',
     pendingLatitude: null,
     pendingLongitude: null
   };
 
   componentDidMount() {
-  
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
   }
 
   onMarkerClick = (props, marker, e) =>
@@ -68,6 +82,22 @@ export class MapContainer extends Component {
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
+    });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const itemsRef = firebase.database().ref('items');
+    const item = {
+      locationNameDescription: this.state.pendingLocationNameDescription,
+      latitude: this.state.pendingLatitude,
+      longitude: this.state.pendingLongitude
+    }
+    itemsRef.push(item);
+    this.setState({
+      pendingLocationNameDescription:'',
+      pendingLatitude: '',
+      pendingLongitude: ''
     });
   }
 
@@ -286,7 +316,7 @@ export class MapContainer extends Component {
         </Row>
 
         <section className="add-item">
-  <form>
+        <form onSubmit={this.handleSubmit}>
     <input type="text" name="pendingLocationDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationDescription} />
     <input type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
     <input type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} />
