@@ -371,7 +371,7 @@ export class MapContainer extends Component {
 
         <section className="add-item">
           <form onSubmit={this.handleSubmit}>
-            <input type="text" name="pendingLocationDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationDescription} />
+            <input type="text" name="pendingLocationNameDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationNameDescription} />
             <input type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
             <input type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} />
             <button>Submit Location</button>
