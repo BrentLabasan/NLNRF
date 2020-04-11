@@ -251,16 +251,9 @@ export class MapContainer extends Component {
                 <Marker
                   onClick={this.onMarkerClick}
                   name={'Kenyatta International Convention Centre'}
+                  animation={this.props.google.maps.Animation.DROP}
                 />
-                <InfoWindow
-                  marker={this.state.activeMarker}
-                  visible={this.state.showingInfoWindow}
-                  onClose={this.onClose}
-                >
-                  <div>
-                    <h4>{this.state.selectedPlace.name}</h4>
-                  </div>
-                </InfoWindow>
+
               </Map>
             </div>
 
