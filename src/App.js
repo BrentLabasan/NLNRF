@@ -431,7 +431,19 @@ export class MapContainer extends Component {
             <h4>DATETIME</h4>
             <p>
               {/* { moment(new Date()).format() } */}
-              { this.state.selectedLocation?.dateTime && moment( this.state.selectedLocation?.dateTime ).format() }
+              {/* { this.state.selectedLocation?.dateTime && moment( this.state.selectedLocation?.dateTime ).format() } */}
+              { this.state.selectedLocation?.dateTime && moment( this.state.selectedLocation?.dateTime ).fromNow() }
+            </p>
+
+            <h4>VISUAL TYPE</h4>
+            <p>
+                TODO chalk, bumper sticker, sharpie, mural, etc...
+            </p>
+
+            
+            <h4>CHANCE THAT VISUALIZATION IS STILL RUNNING</h4>
+            <p>
+                TODO scale from 0% - 100%
             </p>
           </Col>
         </Row>
