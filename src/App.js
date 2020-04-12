@@ -140,7 +140,6 @@ export class MapContainer extends Component {
   }
 
   handleSubmit = (e) => {
-    debugger;
     e.preventDefault();
 
     // Add a new document with a generated id.
@@ -413,7 +412,8 @@ export class MapContainer extends Component {
         <section className="add-item">
 
 
-          <Form onSubmit={this.handleSubmit} inline={false}>
+          {/* <Form onSubmit={this.handleSubmit} inline={false}> */}
+          <Form inline={false}>
             <Container fluid={true}>
               <Row>
                 <Col>
@@ -458,7 +458,10 @@ export class MapContainer extends Component {
                 </Col>
 
                 <Col>
-                  <Button variant="success" size="lg">SUBMIT LOCATION</Button>
+                {/* <button>Submit Location</button> */}
+
+                  {/* why doesn't this work? */}
+                  <Button onClick={this.handleSubmit} variant="success" size="lg">SUBMIT LOCATION</Button>
                 </Col>
 
 
