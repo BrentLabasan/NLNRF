@@ -415,8 +415,13 @@ export class MapContainer extends Component {
           {/* <Form onSubmit={this.handleSubmit} inline={false}> */}
           <Form inline={false}>
             <Container fluid={true}>
+
               <Row>
-                <Col>
+              <Col xs="auto">
+                STEP<br/>
+              1
+              </Col>
+                <Col xs={2}>
                   <Form.Group controlId="formBasicEmail">
                     <Form.Label>LATITUDE / LONGITUDE</Form.Label>
                     <Form.Control type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude + ', ' + this.state.pendingLongitude} />
@@ -426,7 +431,11 @@ export class MapContainer extends Component {
     </Form.Text>
                   </Form.Group>
                 </Col>
-                <Col>
+                <Col  xs="auto">
+                STEP<br/>
+              2
+              </Col>
+                <Col  xs={2}>
                   <Form.Group controlId="formBasicEmail">
                     <Form.Label>VISUAL TYPE</Form.Label>
                     <DropdownButton id="dropdown-basic-button" title="Visual Type" variant="primary">
@@ -442,8 +451,12 @@ export class MapContainer extends Component {
     </Form.Text>
                   </Form.Group>
                 </Col>
+                <Col  xs="auto">
+                STEP<br/>
+              3
+              </Col>
                 
-                <Col>
+                <Col  xs={2}>
                   <Form.Group controlId="formBasicEmail">
                     <Form.Label>LOCATION NAME / DESCRIPTION</Form.Label>
                     <Form.Control type="text" name="pendingLocationNameDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationNameDescription} />
@@ -456,12 +469,19 @@ export class MapContainer extends Component {
                   <input type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
                   <input type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} /> */}
                 </Col>
-
-                <Col>
+                <Col  xs="auto">
+                STEP<br/>
+              4
+              </Col>
+                <Col  xs={1}>
+                <Form.Group controlId="formBasicEmail">
+                <Form.Label>&nbsp;</Form.Label>
+                <br/>
                 {/* <button>Submit Location</button> */}
 
                   {/* why doesn't this work? */}
                   <Button onClick={this.handleSubmit} variant="success" size="lg">SUBMIT LOCATION</Button>
+                  </Form.Group>
                 </Col>
 
 
