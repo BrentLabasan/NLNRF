@@ -412,25 +412,40 @@ export class MapContainer extends Component {
         <section className="add-item">
 
 
+          <Form onSubmit={this.handleSubmit} inline={true}>
+  <Container fluid={true}>
+            <Row>
 
-<Form onSubmit={this.handleSubmit} inline={true}>
-          <Form.Group   >
-            <Form.Control type="text" name="pendingLocationNameDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationNameDescription} />
-            <Form.Control type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
-            <Form.Control type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} />
-            {/* 
-            <input type="text" name="pendingLocationNameDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationNameDescription} />
-            <input type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
-            <input type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} /> */}
 
-            <DropdownButton id="dropdown-basic-button" title="Visual Type" variant="outline-primary">
-              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-            </DropdownButton>
+              <Col>
+                <Form.Control type="text" name="pendingLocationNameDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationNameDescription} />
 
-            <Button variant="success" size="lg">SUBMIT LOCATION</Button>
-          </Form.Group>
+                {/* 
+                  <input type="text" name="pendingLocationNameDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationNameDescription} />
+                  <input type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
+                  <input type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} /> */}
+              </Col>
+              <Col>
+              <Form.Control type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
+                <Form.Control type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} />
+              </Col>
+              <Col>
+                <DropdownButton id="dropdown-basic-button" title="Visual Type" variant="outline-primary">
+                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                </DropdownButton>
+              </Col>
+
+              <Col>  
+              <Button variant="success" size="lg">SUBMIT LOCATION</Button>
+              </Col>
+
+
+
+            </Row>
+            </Container>
+
           </Form>
 
         </section>
