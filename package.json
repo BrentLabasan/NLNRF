@@ -2,7 +2,7 @@
   "name": "nlnrf",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://brentlabasan.github.io/nlnrf",
+  "homepage": "https://brentlabasan.github.io/NLNRF",
   "dependencies": {
     "@google/maps": "^1.1.0",
     "@testing-library/jest-dom": "^4.2.4",
@@ -38,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
   }
 }
