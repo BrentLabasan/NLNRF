@@ -140,6 +140,7 @@ export class MapContainer extends Component {
   }
 
   handleSubmit = (e) => {
+    debugger;
     e.preventDefault();
 
     // Add a new document with a generated id.
