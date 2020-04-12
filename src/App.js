@@ -105,17 +105,17 @@ export class MapContainer extends Component {
 
 
 
-    } else { 
+    } else {
       x.innerHTML = "Geolocation is not supported by this browser.";
     }
   }
-  
+
   showPosition = (position) => {
     var x = document.getElementById("demo");
 
-    x.innerHTML = "Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude;
-debugger;
+    x.innerHTML = "Latitude: " + position.coords.latitude +
+      "<br>Longitude: " + position.coords.longitude;
+    debugger;
     this.setState({
       currentMapCenterLat: position.coords.latitude,
       currentMapCenterLong: position.coords.longitude
@@ -409,11 +409,19 @@ debugger;
           </Col>
         </Row>
 
+        <br /><br />
+
         <section className="add-item">
-          <form onSubmit={this.handleSubmit}>
+
+<Form inline={true}>
+          <Form.Group onSubmit={this.handleSubmit}  >
+            <Form.Control type="text" name="pendingLocationNameDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationNameDescription} />
+            <Form.Control type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
+            <Form.Control type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} />
+            {/* 
             <input type="text" name="pendingLocationNameDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationNameDescription} />
             <input type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
-            <input type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} />
+            <input type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} /> */}
 
             <DropdownButton id="dropdown-basic-button" title="Visual Type">
               <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
@@ -422,16 +430,18 @@ debugger;
             </DropdownButton>
 
             <button>Submit Location</button>
-          </form>
+          </Form.Group>
+          </Form>
+
         </section>
 
         <br /><br />
 
         {/* <p>🗺️ CENTER MAP TO YOUR LOCATION</p> */}
 
-<button onClick={this.getLocation}>🗺️ CENTER MAP TO YOUR LOCATION</button>
+        <button onClick={this.getLocation}>🗺️ CENTER MAP TO YOUR LOCATION</button>
 
-<p id="demo"></p>
+        <p id="demo"></p>
 
         <br /><br />
 
