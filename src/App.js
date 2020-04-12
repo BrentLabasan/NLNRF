@@ -48,7 +48,10 @@ export class MapContainer extends Component {
     pendingLatitude: '',
     pendingLongitude: '',
 
-    usersCurrentLatLong: null
+    usersCurrentLatLong: null,
+
+    currentMapCenterLat: 47.61785407164923,
+    currentMapCenterLong: -122.31657144387441
   };
 
   componentDidMount() {
@@ -353,11 +356,11 @@ export class MapContainer extends Component {
             <div style={containerStyle}>
               <Map
                 google={this.props.google}
-                zoom={14}
+                zoom={13}
                 style={mapStyles}
                 initialCenter={{
-                  lat: 47.6180376,
-                  lng: -122.3256017
+                  lat: this.state.currentMapCenterLat,
+                  lng: this.state.currentMapCenterLong
                 }}
                 onClick={this.mapClicked}
               >
