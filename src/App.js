@@ -102,6 +102,9 @@ export class MapContainer extends Component {
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.showPosition);
+
+
+
     } else { 
       x.innerHTML = "Geolocation is not supported by this browser.";
     }
@@ -112,6 +115,11 @@ export class MapContainer extends Component {
 
     x.innerHTML = "Latitude: " + position.coords.latitude + 
     "<br>Longitude: " + position.coords.longitude;
+debugger;
+    this.setState({
+      currentMapCenterLat: position.coords.latitude,
+      currentMapCenterLong: position.coords.longitude
+    });
   }
 
   mapClicked = (mapProps, map, clickEvent) => {
@@ -157,6 +165,8 @@ export class MapContainer extends Component {
   }
 
   render() {
+    debugger;
+
     let locations = this.state.locations.map((loc) => {
       return (
         <Marker
@@ -359,6 +369,10 @@ export class MapContainer extends Component {
                 zoom={13}
                 style={mapStyles}
                 initialCenter={{
+                  lat: this.state.currentMapCenterLat,
+                  lng: this.state.currentMapCenterLong
+                }}
+                center={{
                   lat: this.state.currentMapCenterLat,
                   lng: this.state.currentMapCenterLong
                 }}
