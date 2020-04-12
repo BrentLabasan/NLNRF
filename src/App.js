@@ -445,6 +445,7 @@ export class MapContainer extends Component {
                       <Dropdown.Item href="#/action-3">sticker</Dropdown.Item>
                       <Dropdown.Item href="#/action-3">poster</Dropdown.Item>
                       <Dropdown.Item href="#/action-3">mural</Dropdown.Item>
+                      <Dropdown.Item href="#/action-3">other</Dropdown.Item>
                     </DropdownButton>
                     <Form.Text className="text-muted">
                       Select which category best describes your medium.
@@ -518,7 +519,7 @@ export class MapContainer extends Component {
               <p>
                 <ol>
                   <li>Chalk, sticker, sharpie, graffiti the slogan "Not left. Not right. Forward." on surfaces where as much people will see! Use the map above to figure out where high trafficed or underrepresented locations are.</li>
-                  <li>Post your work to this site, NLNRF.com! There's a green Submit button above, or you could also click this button <Button variant="success">SUBMIT A LOCATION</Button> </li>
+                  <li>Post your work to this site, NLNRF.com!</li>
                   <li>Reach out to new people and encourage them to spread the NLNRF message!</li>
                 </ol>
               </p>
