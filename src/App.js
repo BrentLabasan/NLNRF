@@ -207,7 +207,7 @@ export class MapContainer extends Component {
               // Set the "capital" field of the city 'DC'
               return tempRef.update({
                 id: docRef.id,
-                mediUrl: url
+                mediaUrl: url
               })
                 .then(() => {
                   console.log("Document successfully updated with the media URL :)");
