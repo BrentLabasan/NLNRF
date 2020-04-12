@@ -453,6 +453,7 @@ export class MapContainer extends Component {
                   <Form.Group controlId="formBasicEmail">
                     <Form.Label>VISUAL TYPE</Form.Label>
                     <DropdownButton id="dropdown-basic-button" title="Visual Type" variant="primary">
+                      <Dropdown.Item href="#/action-1">business card</Dropdown.Item>
                       <Dropdown.Item href="#/action-1">chalk</Dropdown.Item>
                       <Dropdown.Item href="#/action-2">sharpie</Dropdown.Item>
                       <Dropdown.Item href="#/action-3">paint / permanent marker</Dropdown.Item>
