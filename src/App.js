@@ -413,8 +413,8 @@ export class MapContainer extends Component {
 
         <section className="add-item">
 
-<Form inline={true}>
-          <Form.Group onSubmit={this.handleSubmit}  >
+<Form onSubmit={this.handleSubmit} inline={true}>
+          <Form.Group   >
             <Form.Control type="text" name="pendingLocationNameDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationNameDescription} />
             <Form.Control type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
             <Form.Control type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} />
