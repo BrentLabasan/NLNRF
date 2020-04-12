@@ -52,6 +52,8 @@ export class MapContainer extends Component {
   };
 
   componentDidMount() {
+    let targetX = document.getElementById("demo");
+
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
@@ -74,35 +76,7 @@ export class MapContainer extends Component {
 
   }
 
-  geoFindMe = () => {
 
-    const status = document.querySelector('#status');
-    const mapLink = document.querySelector('#map-link');
-
-    mapLink.href = '';
-    mapLink.textContent = '';
-
-    function success(position) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-
-      status.textContent = '';
-      mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-      mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
-    }
-
-    function error() {
-      status.textContent = 'Unable to retrieve your location';
-    }
-
-    if (!navigator.geolocation) {
-      status.textContent = 'Geolocation is not supported by your browser';
-    } else {
-      status.textContent = 'Locating…';
-      navigator.geolocation.getCurrentPosition(success, error);
-    }
-
-  }
 
   onMarkerClick = (props, marker, e) =>
     this.setState({
@@ -119,6 +93,23 @@ export class MapContainer extends Component {
       });
     }
   };
+
+  getLocation = () => {
+    var x = document.getElementById("demo");
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.showPosition);
+    } else { 
+      x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  }
+  
+  showPosition = (position) => {
+    var x = document.getElementById("demo");
+
+    x.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;
+  }
 
   mapClicked = (mapProps, map, clickEvent) => {
     // console.log(mapProps);
@@ -419,9 +410,11 @@ export class MapContainer extends Component {
 
         <br /><br />
 
-        <button id="find-me">Show my location</button><br />
-        <p id="status"></p>
-        <a id="map-link" target="_blank"></a>
+        {/* <p>🗺️ CENTER MAP TO YOUR LOCATION</p> */}
+
+<button onClick={this.getLocation}>🗺️ CENTER MAP TO YOUR LOCATION</button>
+
+<p id="demo"></p>
 
         <br /><br />
 
