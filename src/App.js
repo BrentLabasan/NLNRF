@@ -161,6 +161,12 @@ export class MapContainer extends Component {
       .then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
 
+        this.setState({
+          pendingLocationNameDescription: '',
+          pendingLatitude: '',
+          pendingLongitude: ''
+        });
+
         if (document.getElementById('fileSelector').files[0]) {
           let file = document.getElementById('fileSelector').files[0];
 
@@ -169,6 +175,8 @@ export class MapContainer extends Component {
 
           pendingMediaRef.put(file).then((snapshot) => {
             console.log(`Media uploaded successfully :) GUID: ${guid}`);
+
+            document.getElementById('fileSelector').value = null;
           });
         }
 
@@ -178,13 +186,6 @@ export class MapContainer extends Component {
         console.error("Error adding document: ", error);
       });
 
-
-
-    this.setState({
-      pendingLocationNameDescription: '',
-      pendingLatitude: '',
-      pendingLongitude: ''
-    });
   }
 
   onMarkerClick = (props, marker, e) => {
