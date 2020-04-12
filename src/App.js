@@ -156,9 +156,10 @@ export class MapContainer extends Component {
     db.collection("locations").add({
       nameDescr: this.state.pendingLocationNameDescription,
       geopoint: new firebase.firestore.GeoPoint(this.state.pendingLatitude, this.state.pendingLongitude),
-      dateTime: moment().format()
+      dateTime: moment().format(),
+      mediUrl: null
     })
-      .then(function (docRef) {
+      .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
 
         this.setState({
@@ -175,12 +176,54 @@ export class MapContainer extends Component {
 
           pendingMediaRef.put(file).then((snapshot) => {
             console.log(`Media uploaded successfully :) GUID: ${guid}`);
+            console.log(snapshot);
 
             document.getElementById('fileSelector').value = null;
+
+            storageRef.child('locations/' + guid).getDownloadURL().then((url) => {
+              // `url` is the download URL for 'images/stars.jpg'
+
+              /*
+              // This can be downloaded directly:
+              var xhr = new XMLHttpRequest();
+              xhr.responseType = 'blob';
+              xhr.onload = function(event) {
+                var blob = xhr.response;
+              };
+              xhr.open('GET', url);
+              xhr.send();
+              */
+
+              // Or inserted into an <img> element:
+              // var img = document.getElementById('myimg');
+              // img.src = url;
+
+
+
+              var tempRef = db.collection("locations").doc(docRef.id);
+
+              // Set the "capital" field of the city 'DC'
+              return tempRef.update({
+                mediUrl: url
+              })
+                .then(() => {
+                  console.log("Document successfully updated with the media URL :)");
+                })
+                .catch((error) => {
+                  // The document probably doesn't exist.
+                  console.error("Error updating document: ", error);
+                });
+
+
+            }).catch((error) => {
+              // Handle any errors
+            });
+
+
           });
         }
 
-        
+
       })
       .catch(function (error) {
         console.error("Error adding document: ", error);
@@ -440,27 +483,32 @@ export class MapContainer extends Component {
           </Col>
 
           <Col xs={2}>
+
+            <div>
+              { this.state.selectedLocation?.mediaUrl && <img src={ this.state.selectedLocation.mediaUrl } style={{ maxWidth: '300px'}} /> }
+            </div>
+
             <h4>LOCATION</h4>
             <p>
-              { this.state.selectedLocation?.nameDescr }
+              {this.state.selectedLocation?.nameDescr}
             </p>
 
             <h4>DATETIME</h4>
             <p>
               {/* { moment(new Date()).format() } */}
               {/* { this.state.selectedLocation?.dateTime && moment( this.state.selectedLocation?.dateTime ).format() } */}
-              { this.state.selectedLocation?.dateTime && moment( this.state.selectedLocation?.dateTime ).fromNow() }
+              {this.state.selectedLocation?.dateTime && moment(this.state.selectedLocation?.dateTime).fromNow()}
             </p>
 
             <h4>VISUAL TYPE</h4>
             <p>
-                TODO chalk, bumper sticker, sharpie, mural, etc...
+              TODO chalk, bumper sticker, sharpie, mural, etc...
             </p>
 
-            
+
             <h4>CHANCE THAT VISUALIZATION IS STILL RUNNING</h4>
             <p>
-                TODO scale from 0% - 100%
+              TODO scale from 0% - 100%
             </p>
           </Col>
         </Row>
@@ -539,7 +587,7 @@ export class MapContainer extends Component {
                     <Form.Label>PIC / VIDEO</Form.Label>
 
                     <input type="file" id="fileSelector"></input>
-                    
+
                   </Form.Group>
                 </Col>
 
