@@ -412,22 +412,33 @@ export class MapContainer extends Component {
         <section className="add-item">
 
 
-          <Form onSubmit={this.handleSubmit} inline={true}>
+          <Form onSubmit={this.handleSubmit} inline={false}>
   <Container fluid={true}>
             <Row>
 
 
               <Col>
+              <Form.Group controlId="formBasicEmail">
+              <Form.Label>LOCATION NAME / DESCRIPTION</Form.Label>
                 <Form.Control type="text" name="pendingLocationNameDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationNameDescription} />
-
+                <Form.Text className="text-muted">
+     example: Space Needle, Pike Place Market, Fremont Troll
+    </Form.Text>
+                </Form.Group>
                 {/* 
                   <input type="text" name="pendingLocationNameDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationNameDescription} />
                   <input type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
                   <input type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} /> */}
               </Col>
               <Col>
-              <Form.Control type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
-                <Form.Control type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} />
+              <Form.Group controlId="formBasicEmail">
+              <Form.Label>LATITUDE / LONGITUDE</Form.Label>
+              <Form.Control type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude + ', ' + this.state.pendingLongitude} />
+                {/* <Form.Control type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} /> */}
+                <Form.Text className="text-muted">
+     Click on the map to automatically fill in the lat/long coordinates.
+    </Form.Text>
+                </Form.Group>
               </Col>
               <Col>
                 <DropdownButton id="dropdown-basic-button" title="Visual Type" variant="outline-primary">
