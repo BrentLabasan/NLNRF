@@ -4,7 +4,7 @@ import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Co
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 
-let db;
+let db, storage, storageRef;
 
 const hrWidth = '25%';
 
@@ -62,6 +62,10 @@ export class MapContainer extends Component {
     firebase.analytics();
 
     db = firebase.firestore();
+
+    // Get a reference to the storage service, which is used to create references in your storage bucket
+    storage = firebase.storage();
+    storageRef = storage.ref();
 
     db.collection("locations")
       // .where("state", "==", "CA")
@@ -166,10 +170,10 @@ export class MapContainer extends Component {
   render() {
 
     const triangleCoords = [
-      {lat: 47.61542405962572, lng: -122.32002042939143},
-      {lat: 47.618692978147344, lng: -122.32002042939143},
-      {lat: 47.61875083327175, lng: -122.31817506958919},
-      {lat: 47.61527941249176, lng: -122.3183038156219}
+      { lat: 47.61542405962572, lng: -122.32002042939143 },
+      { lat: 47.618692978147344, lng: -122.32002042939143 },
+      { lat: 47.61875083327175, lng: -122.31817506958919 },
+      { lat: 47.61527941249176, lng: -122.3183038156219 }
     ];
 
     let locations = this.state.locations.map((loc) => {
@@ -386,12 +390,12 @@ export class MapContainer extends Component {
 
                 {locations}
                 <Polygon
-          paths={triangleCoords}
-          strokeColor="#0000FF"
-          strokeOpacity={0.8}
-          strokeWeight={2}
-          fillColor="#0000FF"
-          fillOpacity={0.35} />
+                  paths={triangleCoords}
+                  strokeColor="#0000FF"
+                  strokeOpacity={0.8}
+                  strokeWeight={2}
+                  fillColor="#0000FF"
+                  fillOpacity={0.35} />
 
 
                 {/* <Marker
@@ -431,9 +435,9 @@ export class MapContainer extends Component {
             <Container fluid={true}>
 
               <Row>
-              <Col xs="auto">
-                STEP<br/>
-              1
+                <Col xs="auto">
+                  STEP<br />
+                  1
               </Col>
                 <Col xs={2}>
                   <Form.Group controlId="formBasicEmail">
@@ -445,11 +449,11 @@ export class MapContainer extends Component {
     </Form.Text>
                   </Form.Group>
                 </Col>
-                <Col  xs="auto">
-                STEP<br/>
-              2
+                <Col xs="auto">
+                  STEP<br />
+                  2
               </Col>
-                <Col  xs={2}>
+                <Col xs={2}>
                   <Form.Group controlId="formBasicEmail">
                     <Form.Label>VISUAL TYPE</Form.Label>
                     <DropdownButton id="dropdown-basic-button" title="Visual Type" variant="primary">
@@ -467,12 +471,12 @@ export class MapContainer extends Component {
     </Form.Text>
                   </Form.Group>
                 </Col>
-                <Col  xs="auto">
-                STEP<br/>
-              3
+                <Col xs="auto">
+                  STEP<br />
+                  3
               </Col>
-                
-                <Col  xs={2}>
+
+                <Col xs={2}>
                   <Form.Group controlId="formBasicEmail">
                     <Form.Label>LOCATION NAME / DESCRIPTION</Form.Label>
                     <Form.Control type="text" name="pendingLocationNameDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationNameDescription} />
@@ -485,18 +489,18 @@ export class MapContainer extends Component {
                   <input type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
                   <input type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} /> */}
                 </Col>
-                <Col  xs="auto">
-                STEP<br/>
-              4
+                <Col xs="auto">
+                  STEP<br />
+                  4
               </Col>
-                <Col  xs={1}>
-                <Form.Group controlId="formBasicEmail">
-                <Form.Label>&nbsp;</Form.Label>
-                <br/>
-                {/* <button>Submit Location</button> */}
+                <Col xs={1}>
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Label>&nbsp;</Form.Label>
+                    <br />
+                    {/* <button>Submit Location</button> */}
 
-                  {/* why doesn't this work? */}
-                  <Button onClick={this.handleSubmit} variant="success" size="lg">SUBMIT LOCATION</Button>
+                    {/* why doesn't this work? */}
+                    <Button onClick={this.handleSubmit} variant="success" size="lg">SUBMIT LOCATION</Button>
                   </Form.Group>
                 </Col>
 
