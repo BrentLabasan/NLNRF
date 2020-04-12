@@ -3,6 +3,7 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker, Polygon } from 'google-maps-
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Col, Dropdown, DropdownButton } from 'react-bootstrap';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
+import moment from 'moment';
 
 let db, storage, storageRef;
 
@@ -151,7 +152,8 @@ export class MapContainer extends Component {
     // Add a new document with a generated id.
     db.collection("locations").add({
       nameDescr: this.state.pendingLocationNameDescription,
-      geopoint: new firebase.firestore.GeoPoint(this.state.pendingLatitude, this.state.pendingLongitude)
+      geopoint: new firebase.firestore.GeoPoint(this.state.pendingLatitude, this.state.pendingLongitude),
+      dateTime: moment().format()
     })
       .then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
@@ -194,13 +196,13 @@ export class MapContainer extends Component {
       return (
         <Marker
           key={loc.geopoint.latitude + "_" + loc.geopoint.longitude}
-          title={loc.nameDescr }
+          title={loc.nameDescr}
           name={'SOMA'}
-          position={{ lat: loc.geopoint.latitude, lng: loc.geopoint.longitude }} 
+          position={{ lat: loc.geopoint.latitude, lng: loc.geopoint.longitude }}
           onClick={this.onMarkerClick}
 
           locationInfo={loc}
-          />
+        />
       );
     });
 
@@ -423,7 +425,13 @@ export class MapContainer extends Component {
           <Col xs={2}>
             <h4>LOCATION</h4>
             <p>
-              {this.state.selectedLocation && this.state.selectedLocation.nameDescr}
+              { this.state.selectedLocation?.nameDescr }
+            </p>
+
+            <h4>DATETIME</h4>
+            <p>
+              {/* { moment(new Date()).format() } */}
+              { this.state.selectedLocation?.dateTime && moment( this.state.selectedLocation?.dateTime ).format() }
             </p>
           </Col>
         </Row>
