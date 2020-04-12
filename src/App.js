@@ -51,7 +51,9 @@ export class MapContainer extends Component {
     usersCurrentLatLong: null,
 
     currentMapCenterLat: 47.61785407164923,
-    currentMapCenterLong: -122.31657144387441
+    currentMapCenterLong: -122.31657144387441,
+
+    selectedLocation: null
   };
 
   componentDidMount() {
@@ -167,6 +169,18 @@ export class MapContainer extends Component {
     });
   }
 
+  onMarkerClick = (props, marker, e) => {
+    console.log(props);
+    console.log(marker);
+    console.log(e);
+
+    console.log(props.locationInfo);
+
+    this.setState({
+      selectedLocation: props.locationInfo
+    });
+  }
+
   render() {
 
     const triangleCoords = [
@@ -180,9 +194,13 @@ export class MapContainer extends Component {
       return (
         <Marker
           key={loc.geopoint.latitude + "_" + loc.geopoint.longitude}
-          title={'The marker`s title will appear as a tooltip.'}
+          title={loc.nameDescr }
           name={'SOMA'}
-          position={{ lat: loc.geopoint.latitude, lng: loc.geopoint.longitude }} />
+          position={{ lat: loc.geopoint.latitude, lng: loc.geopoint.longitude }} 
+          onClick={this.onMarkerClick}
+
+          locationInfo={loc}
+          />
       );
     });
 
@@ -397,31 +415,16 @@ export class MapContainer extends Component {
                   fillColor="#0000FF"
                   fillOpacity={0.35} />
 
-
-                {/* <Marker
-    title={'The marker`s title will appear as a tooltip.'}
-    name={'SOMA'}
-    position={{lat: 37.778519, lng: -122.405640}} />
-  <Marker
-    name={'Dolores park'}
-    position={{lat: 37.759703, lng: -122.428093}} />
-  <Marker />
-  <Marker
-    name={'Your position'}
-    position={{lat: 37.762391, lng: -122.439192}}
-    icon={{
-      url: "/path/to/custom_icon.png",
-      anchor: new this.props.google.maps.Point(32,32),
-      scaledSize: new this.props.google.maps.Size(64,64)
-    }} /> */}
-
               </Map>
             </div>
 
           </Col>
 
           <Col xs={2}>
-            <h4>Latest Submissions</h4>
+            <h4>LOCATION</h4>
+            <p>
+              {this.state.selectedLocation && this.state.selectedLocation.nameDescr}
+            </p>
           </Col>
         </Row>
 
