@@ -115,7 +115,6 @@ export class MapContainer extends Component {
 
     x.innerHTML = "Latitude: " + position.coords.latitude +
       "<br>Longitude: " + position.coords.longitude;
-    debugger;
     this.setState({
       currentMapCenterLat: position.coords.latitude,
       currentMapCenterLong: position.coords.longitude
@@ -165,7 +164,6 @@ export class MapContainer extends Component {
   }
 
   render() {
-    debugger;
 
     let locations = this.state.locations.map((loc) => {
       return (
@@ -413,6 +411,8 @@ export class MapContainer extends Component {
 
         <section className="add-item">
 
+
+
 <Form onSubmit={this.handleSubmit} inline={true}>
           <Form.Group   >
             <Form.Control type="text" name="pendingLocationNameDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationNameDescription} />
@@ -423,13 +423,13 @@ export class MapContainer extends Component {
             <input type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
             <input type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} /> */}
 
-            <DropdownButton id="dropdown-basic-button" title="Visual Type">
+            <DropdownButton id="dropdown-basic-button" title="Visual Type" variant="outline-primary">
               <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
               <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
               <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
             </DropdownButton>
 
-            <button>Submit Location</button>
+            <Button variant="success" size="lg">SUBMIT LOCATION</Button>
           </Form.Group>
           </Form>
 
