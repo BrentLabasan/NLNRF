@@ -57,7 +57,9 @@ export class MapContainer extends Component {
     currentMapCenterLat: 47.61785407164923,
     currentMapCenterLong: -122.31657144387441,
 
-    selectedLocation: null
+    selectedLocation: null,
+
+    featuredLocationId: null
   };
 
   componentDidMount() {
@@ -157,7 +159,7 @@ export class MapContainer extends Component {
       nameDescr: this.state.pendingLocationNameDescription,
       geopoint: new firebase.firestore.GeoPoint(this.state.pendingLatitude, this.state.pendingLongitude),
       dateTime: moment().format(),
-      mediUrl: null
+      mediaUrl: null
     })
       .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
@@ -204,6 +206,7 @@ export class MapContainer extends Component {
 
               // Set the "capital" field of the city 'DC'
               return tempRef.update({
+                id: docRef.id,
                 mediUrl: url
               })
                 .then(() => {
@@ -253,6 +256,9 @@ export class MapContainer extends Component {
     ];
 
     let locations = this.state.locations.map((loc) => {
+
+      const animationStyle = loc.id === this.state.featuredLocationId ? this.props.google.maps.Animation.DROP : false;
+
       return (
         <Marker
           key={loc.geopoint.latitude + "_" + loc.geopoint.longitude}
@@ -262,6 +268,10 @@ export class MapContainer extends Component {
           onClick={this.onMarkerClick}
 
           locationInfo={loc}
+
+          // animation={false}
+          // animation={this.props.google.maps.Animation.DROP}
+          animatioin={ animationStyle }
         />
       );
     });
