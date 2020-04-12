@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Col } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Col, Dropdown, DropdownButton } from 'react-bootstrap';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 
@@ -46,7 +46,9 @@ export class MapContainer extends Component {
 
     pendingLocationNameDescription: '',
     pendingLatitude: '',
-    pendingLongitude: ''
+    pendingLongitude: '',
+
+    usersCurrentLatLong: null
   };
 
   componentDidMount() {
@@ -69,6 +71,36 @@ export class MapContainer extends Component {
           locations: locations
         });
       });
+
+  }
+
+  geoFindMe = () => {
+
+    const status = document.querySelector('#status');
+    const mapLink = document.querySelector('#map-link');
+
+    mapLink.href = '';
+    mapLink.textContent = '';
+
+    function success(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+
+      status.textContent = '';
+      mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+      mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+    }
+
+    function error() {
+      status.textContent = 'Unable to retrieve your location';
+    }
+
+    if (!navigator.geolocation) {
+      status.textContent = 'Geolocation is not supported by your browser';
+    } else {
+      status.textContent = 'Locating…';
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
 
   }
 
@@ -155,11 +187,11 @@ export class MapContainer extends Component {
 
 
         <Row>
-          <Col xs={1}>
+          {/* <Col xs={1}>
             <Form inline>
               <Button variant="success">SUBMIT A LOCATION</Button>
             </Form>
-          </Col>
+          </Col> */}
 
           <Col xs={6}>
             <Navbar expand="lg" bg="dark" variant="dark">
@@ -235,7 +267,7 @@ export class MapContainer extends Component {
 
 
 
-          <Col xs={5}>
+          <Col xs={6}>
             <Navbar expand="lg" bg="dark" variant="dark">
 
 
@@ -374,9 +406,22 @@ export class MapContainer extends Component {
             <input type="text" name="pendingLocationNameDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationNameDescription} />
             <input type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
             <input type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} />
+
+            <DropdownButton id="dropdown-basic-button" title="Visual Type">
+              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+            </DropdownButton>
+
             <button>Submit Location</button>
           </form>
         </section>
+
+        <br /><br />
+
+        <button id="find-me">Show my location</button><br />
+        <p id="status"></p>
+        <a id="map-link" target="_blank"></a>
 
         <br /><br />
 
