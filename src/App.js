@@ -4,6 +4,7 @@ import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Co
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 import moment from 'moment';
+import { v4 as uuidv4 } from 'uuid';
 
 let db, storage, storageRef;
 
@@ -48,6 +49,8 @@ export class MapContainer extends Component {
     pendingLocationNameDescription: '',
     pendingLatitude: '',
     pendingLongitude: '',
+
+    pendingPicVid: null,
 
     usersCurrentLatLong: null,
 
@@ -157,6 +160,19 @@ export class MapContainer extends Component {
     })
       .then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
+
+        if (document.getElementById('fileSelector').files[0]) {
+          let file = document.getElementById('fileSelector').files[0];
+
+          const guid = uuidv4();
+          var pendingMediaRef = storageRef.child('locations/' + guid);
+
+          pendingMediaRef.put(file).then((snapshot) => {
+            console.log(`Media uploaded successfully :) GUID: ${guid}`);
+          });
+        }
+
+        
       })
       .catch(function (error) {
         console.error("Error adding document: ", error);
@@ -512,9 +528,23 @@ export class MapContainer extends Component {
                   <input type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
                   <input type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} /> */}
                 </Col>
+
                 <Col xs="auto">
                   STEP<br />
                   4
+              </Col>
+                <Col xs={1}>
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Label>PIC / VIDEO</Form.Label>
+
+                    <input type="file" id="fileSelector"></input>
+                    
+                  </Form.Group>
+                </Col>
+
+                <Col xs="auto">
+                  STEP<br />
+                  5
               </Col>
                 <Col xs={1}>
                   <Form.Group controlId="formBasicEmail">
@@ -526,7 +556,6 @@ export class MapContainer extends Component {
                     <Button onClick={this.handleSubmit} variant="success" size="lg">SUBMIT LOCATION</Button>
                   </Form.Group>
                 </Col>
-
 
 
               </Row>
