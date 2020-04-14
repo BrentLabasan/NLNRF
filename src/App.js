@@ -658,8 +658,9 @@ export class MapContainer extends Component {
               <p>
                 <ol>
                   <li>Chalk, sticker, sharpie, graffiti the slogan "Not left. Not right. Forward." on surfaces where as much people will see! Use the map above to figure out where high trafficed or underrepresented locations are.</li>
-                  <li>Post your work to this site, NLNRF.com!</li>
+                  <li>And then post your work to this site!</li>
                   <li>Reach out to new people and encourage them to spread the NLNRF message!</li>
+                  <li>If you're a programmer/developer, check out the To-Do List below, communicate an choose a task to work on, and then submit a pull request. <a href="https://github.com/BrentLabasan/NLNRF" target="_blank">GitHub</a></li>
                 </ol>
               </p>
             </Col>
@@ -718,7 +719,7 @@ export class MapContainer extends Component {
             <h6>
               NLNRF was designed and developed by <a href="BrentVLabasan.com" target="_blank">Brent Labasan X&gt;</a>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              If you would like to help Brent work on NLNRF.com, contact him at BrentLabasan@gmail.com or @BrentLabasan
+              If you would like to help Brent work on NLNRF.com, contact him at BrentLabasan@gmail.com or @BrentLabasan <a href="https://github.com/BrentLabasan/NLNRF" target="_blank">GitHub</a>
           </h6>
           </section>
 
