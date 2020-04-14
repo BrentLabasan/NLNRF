@@ -660,7 +660,7 @@ export class MapContainer extends Component {
                   <li>Chalk, sticker, sharpie, graffiti the slogan "Not left. Not right. Forward." on surfaces where as much people will see! Use the map above to figure out where high trafficed or underrepresented locations are.</li>
                   <li>And then post your work to this site!</li>
                   <li>Reach out to new people and encourage them to spread the NLNRF message!</li>
-                  <li>If you're a programmer/developer, check out the To-Do List below, communicate an choose a task to work on, and then submit a pull request. <a href="https://github.com/BrentLabasan/NLNRF" target="_blank">GitHub</a></li>
+                  <li>If you're a programmer/developer, check out the To-Do List below, communicate an choose a task to work on, pair program with Brent if necessary, and then submit a pull request. <a href="https://github.com/BrentLabasan/NLNRF" target="_blank">GitHub</a></li>
                 </ol>
               </p>
             </Col>
