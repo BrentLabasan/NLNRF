@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker, Polygon } from 'google-maps-react';
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Col, Dropdown, DropdownButton } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Col, Dropdown, DropdownButton, ToggleButtonGroup,ToggleButton, Badge  } from 'react-bootstrap';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 import moment from 'moment';
@@ -249,6 +249,7 @@ export class MapContainer extends Component {
   }
 
   render() {
+    console.log("App.js render()");
 
     const triangleCoords = [
       { lat: 47.61542405962572, lng: -122.32002042939143 },
@@ -298,7 +299,7 @@ export class MapContainer extends Component {
             </Form>
           </Col> */}
 
-          <Col xs={6}>
+          <Col xs={6} xl={12}>
             <Navbar expand="lg" bg="dark" variant="dark">
 
               <Navbar.Brand>LANDMARKS</Navbar.Brand>
@@ -372,7 +373,7 @@ export class MapContainer extends Component {
 
 
 
-          <Col xs={6}>
+          <Col xs={6} xl={12}>
             <Navbar expand="lg" bg="dark" variant="dark">
 
 
@@ -463,7 +464,7 @@ export class MapContainer extends Component {
         <br />
 
         <Row>
-          <Col xs={10}>
+          <Col xs={7}>
             <div style={containerStyle}>
               <Map
                 google={this.props.google}
@@ -494,7 +495,13 @@ export class MapContainer extends Component {
 
           </Col>
 
-          <Col xs={2}>
+          <Col xs={5}>
+            <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
+              <ToggleButton value={1}>LATEST</ToggleButton>
+              <ToggleButton value={2}>MOST UPVOTED</ToggleButton>
+            </ToggleButtonGroup>
+
+            <br /><br />
 
             <div>
               {this.state.selectedLocation?.mediaUrl && <img src={this.state.selectedLocation.mediaUrl} style={{ maxWidth: '300px' }} />}
@@ -660,6 +667,51 @@ export class MapContainer extends Component {
               <h3>Tell me more about Andrew Yang.</h3>
               <p>Andrew Yang is a former Democratic presidential candidate (2020) and CNN political commentator,  focused on solving world problems such as mass job displace due to automation, the ever-widening income inequality gap, and climate change.</p>
             </Col>
+          </Row>
+
+          <Row>
+            <Col>
+              <h4>To-Do List</h4>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col xs={3}>
+              <h5>Functional</h5>
+              <ul>
+                <li>create mobile-friendly layout <Badge variant="light">NOT STARTED</Badge> <Badge variant="danger">HIGHEST PRIORITY</Badge> </li>
+                {/* <li></li> */}
+                {/* <li></li> */}
+              </ul>
+            </Col>
+
+            <Col xs={3}>
+              <h5>Social</h5>
+              <ul>
+                <li>implement user account system <Badge variant="light">NOT STARTED</Badge></li>
+                <li>users can favorite their favorite NLNRF locations <Badge variant="light">NOT STARTED</Badge></li>
+                <li>users can upvote an NLNRF location <Badge variant="light">NOT STARTED</Badge></li>
+              </ul>
+            </Col>
+
+            <Col xs={3}>
+              <h5>Cosmetic</h5>
+              <ul>
+                <li>Is the blue color scheme good? <Badge variant="light">NOT STARTED</Badge></li>
+                {/* <li></li>
+                <li></li> */}
+              </ul>
+            </Col>
+
+            <Col xs={3}>
+              <h5>Underneath The Hood</h5>
+              <ul>
+                <li>The app is one big component. Separate the components into separate, especially because even simple actions like clicking on the map or typing one letter for the location description causes map and NLNRF locations to re-render. <Badge variant="light">NOT STARTED</Badge></li>
+                {/* <li></li>
+                <li></li> */}
+              </ul>
+            </Col>
+
           </Row>
 
           <section id="byline">
