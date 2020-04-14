@@ -263,3 +263,31 @@ form .col-auto {
   font-weight: bold;
   text-align: right;
 }
+
+#logos {
+  text-align: center;
+  display: none;
+}
+
+#logos img {
+  margin: 0 40px 0 0;
+  
+}
+
+#logos .FabricatorMusic {
+  font-family: 'Monoton', cursive;
+  font-size: 36px;
+  color: white;
+  margin: 0 20px 0 0;
+}
+
+#logos .FabricatorMusic a {
+  color: white;
+
+}
+
+#logos .FabricatorMusic a:hover {
+  color: white;
+  /* text-decoration: underline; */
+  font-weight: bold;
+}

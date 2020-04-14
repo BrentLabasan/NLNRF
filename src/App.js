@@ -5,6 +5,8 @@ import * as firebase from 'firebase';
 import 'firebase/firestore';
 import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
+import CrossUnite from './media/xu.png';
+import PoopAndNeedles from './media/poopandneedles.png';
 
 let db, storage, storageRef;
 
@@ -271,7 +273,7 @@ export class MapContainer extends Component {
 
           // animation={false}
           // animation={this.props.google.maps.Animation.DROP}
-          animatioin={ animationStyle }
+          animatioin={animationStyle}
         />
       );
     });
@@ -495,7 +497,7 @@ export class MapContainer extends Component {
           <Col xs={2}>
 
             <div>
-              { this.state.selectedLocation?.mediaUrl && <img src={ this.state.selectedLocation.mediaUrl } style={{ maxWidth: '300px'}} /> }
+              {this.state.selectedLocation?.mediaUrl && <img src={this.state.selectedLocation.mediaUrl} style={{ maxWidth: '300px' }} />}
             </div>
 
             <h4>LOCATION</h4>
@@ -666,6 +668,20 @@ export class MapContainer extends Component {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               If you would like to help Brent work on NLNRF.com, contact him at BrentLabasan@gmail.com or @BrentLabasan
           </h6>
+          </section>
+
+          <br /><br />
+
+          <section id="logos">
+            <img src={CrossUnite} className="" alt="" style={{ maxHeight: '50px' }} />
+
+            <a href="https://FabricatorMusic.com" className="FabricatorMusic" target="_blank">
+              <span className="FabricatorMusic">Fabricator Music</span>
+            </a>
+
+            <img src={PoopAndNeedles} className="" alt="" style={{ maxHeight: '50px' }} />
+
+
           </section>
 
         </footer>
