@@ -72,8 +72,8 @@ export class MapContainer extends Component {
     mobiCurrentSection: 'add'
   };
 
-  handleMobiCurrSectionChange = () => {
-
+  handleMobiCurrSectionChange = (event, value) => {
+    this.setState({mobiCurrentSection: value})
   }
 
   componentDidMount() {
