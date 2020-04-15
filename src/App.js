@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker, Polygon } from 'google-maps-react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Col, Dropdown, DropdownButton, ToggleButtonGroup, ToggleButton, Badge } from 'react-bootstrap';
+import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
 import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
+import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
+
+import GoogleMap from './GoogleMap';
 
 import CrossUnite from './media/xu.png';
 import PoopAndNeedles from './media/poopandneedles.png';
@@ -63,8 +67,14 @@ export class MapContainer extends Component {
 
     selectedLocation: null,
 
-    featuredLocationId: null
+    featuredLocationId: null,
+
+    mobiCurrentSection: 'add'
   };
+
+  handleMobiCurrSectionChange = () => {
+
+  }
 
   componentDidMount() {
     let targetX = document.getElementById("demo");
@@ -288,6 +298,8 @@ export class MapContainer extends Component {
           &nbsp;
           <span className='slogan'>NOT LEFT. NOT RIGHT. FORWARD &gt;</span>
         </h1>
+
+        <GoogleMap />
 
         <br />
 
@@ -740,6 +752,13 @@ export class MapContainer extends Component {
           </section>
 
         </footer>
+
+        <BottomNavigation value={this.state.mobiCurrentSection} onChange={this.handleMobiCurrSectionChange} className={ null }>
+          <BottomNavigationAction label="Add" value="add" icon={<ThreeDRotation />} />
+          <BottomNavigationAction label="Latest" value="latest" icon={<ThreeDRotation />} />
+          <BottomNavigationAction label="Favorites" value="favorites" icon={<ThreeDRotation />} />
+          <BottomNavigationAction label="Account" value="account" icon={<ThreeDRotation />} />
+        </BottomNavigation>
 
 
       </div>
