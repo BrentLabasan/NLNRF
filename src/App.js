@@ -681,7 +681,7 @@ export class MapContainer extends Component {
               <h5>Functional</h5>
               <ul>
                 <li>create mobile-friendly layout <Badge variant="light">NOT STARTED</Badge> <Badge variant="danger">HIGHEST PRIORITY</Badge> </li>
-                {/* <li></li> */}
+                <li>submit imgur, YouTube, Instagram media</li>
                 {/* <li></li> */}
               </ul>
             </Col>
