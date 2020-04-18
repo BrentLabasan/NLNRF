@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker, Polygon } from 'google-maps-react';
 import * as constants from './constants';
+import pulsing from './media/pulsing3.gif';
+import wut from './media/wut.gif';
 var _ = require('lodash');
 
 export class GoogleMap extends Component {
@@ -20,7 +22,7 @@ export class GoogleMap extends Component {
     //   activeMarker: marker,
     //   showingInfoWindow: true
     // });
-// debugger;
+    // debugger;
     this.props.handleMapMarkerClick(props, marker, e);
   }
 
@@ -66,7 +68,7 @@ export class GoogleMap extends Component {
         />
       );
     });
-    debugger;
+
     return (
       <div>
 
@@ -89,15 +91,28 @@ export class GoogleMap extends Component {
           }}
           onClick={this.mapClicked}
         >
-
+           
           {locations}
-          <Polygon
+
+          { this.props.isPulseVisible && <Marker
+            name={'Your position'}
+            position={{ lat: this.props.pulseGeopoint.latitude, lng: this.props.pulseGeopoint.longitude }}
+            icon={{
+              // url: 'https://loading.io/icon/i3ca9h',
+              url: pulsing, // works
+              // url: wut, // works
+              anchor: new this.props.google.maps.Point(64, 64),
+              scaledSize: new this.props.google.maps.Size(128, 128)
+            }}
+          /> }
+
+          {/* <Polygon
             paths={constants.TEST_COORDS}
             strokeColor="#0000FF"
             strokeOpacity={0.8}
             strokeWeight={2}
             fillColor="#0000FF"
-            fillOpacity={0.35} />
+            fillOpacity={0.35} /> */}
 
         </Map>
 

@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker, Polygon } from 'google-maps-react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Container, Row, Col, Dropdown, DropdownButton, ToggleButtonGroup, ToggleButton, Badge } from 'react-bootstrap';
-import { BottomNavigation, BottomNavigationAction, ButtonGroup, Button } from '@material-ui/core';
+import { Grid, BottomNavigation, BottomNavigationAction, ButtonGroup, Button } from '@material-ui/core';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
 import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
-import { AddLocation, Favorite, AccountCircle, Photo } from '@material-ui/icons';
+import { LocationOn, AddLocation, Favorite, AccountCircle, Photo } from '@material-ui/icons';
 import * as constants from './constants';
 import LocationSubmitter from './LocationSubmitter';
 import LocationDetails from './LocationDetails';
+import LatestSubmissions from './LatestSubmissions';
+import PopularSubmissions from './PopularSubmissions';
+import Masonry from './Masonry';
 
 import GoogleMap from './GoogleMap';
 
@@ -63,12 +66,43 @@ export class MapContainer extends Component {
 
     mobiCurrentSection: 'add',
 
-    areaMenuActive: 'landmarks'
+    areaMenuActive: 'landmarks',
+
+    multiActive: 'location',
+
+    isPulseVisible: false,
+
+    pulseLat: null,
+    pulseLong: null,
+
+    pulseGeopoint: null
   };
+
+  setIsPulseVisible = (bool, geopoint) => {
+    debugger;
+    this.setState({
+      isPulseVisible: bool,
+      pulseGeopoint: geopoint
+    })
+  }
+
+  // setPulseLagLong = (geopoint) => {
+  //   debugger;
+  //   this.setState({
+  //     pulseGeopoint: geopoint
+  //   })
+  // }
+
 
   handleAreaMenuChange = (selection) => {
     this.setState({
       areaMenuActive: selection
+    });
+  }
+
+  handleMultiChange = (selection) => {
+    this.setState({
+      multiActive: selection
     });
   }
 
@@ -91,7 +125,7 @@ export class MapContainer extends Component {
   }
 
   handleMapMarkerClick = (props, marker, e) => {
-    debugger;
+
     console.log(props);
     console.log(marker);
     console.log(e);
@@ -253,17 +287,55 @@ export class MapContainer extends Component {
   }
 
 
+  multiGenerator = () => {
+    switch (this.state.multiActive) {
+      case 'latest':
+        return <LatestSubmissions setPulseLangLong={this.setPulseLangLong} setIsPulseVisible={this.setIsPulseVisible} locations={this.state.locations} />
+        break;
+      case 'popular':
+        return <PopularSubmissions locations={this.state.locations} />
+        break;
+      case 'gallery':
+        return <Masonry locations={this.state.locations} />
+        break;
+      case 'location':
+        if (this.state.selectedLocation) {
+          return <LocationDetails selectedLocation={this.state.selectedLocation} />
+        } else {
+          return <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>;
+        }
+        return
+        break;
+      // default:
+      // code block
+    }
+
+    // if (!this.state.selectedLocation) {
+    //   return <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>;
+    // }
+  }
+
+  setPulseVisibility = () => {
+
+  }
+
+
 
   render() {
     console.log("App.js render()");
 
+
+
     return (
       <div className="App">
-        <h1 id="heroLogo">
-          NLNRF<span style={{ fontSize: '18px', marginLeft: '-15px' }} >.com</span>
-          &nbsp;
+        <header>
+          <h1 id="heroLogo">
+            NLNRF<span style={{ fontSize: '18px', marginLeft: '-15px' }} >.com</span>
+            &nbsp;
           <span className='slogan'>NOT LEFT. NOT RIGHT. FORWARD &gt;</span>
-        </h1>
+          </h1>
+        </header>
+
 
 
 
@@ -273,27 +345,20 @@ export class MapContainer extends Component {
 
 
         <Row>
-          {/* <Col xs={1}>
-            <Form inline>
-              <Button variant="success">SUBMIT A LOCATION</Button>
-            </Form>
-          </Col> */}
 
-          <ButtonGroup variant="contained" aria-label="contained primary button group" disableElevation>
+          {/* <ButtonGroup variant="contained" aria-label="contained primary button group" disableElevation>
             <Button onClick={() => { this.handleAreaMenuChange('landmarks') }} color={this.state.areaMenuActive === 'landmarks' ? 'primary' : 'default'} disableElevation>LANDMARKS</Button>
             <Button onClick={() => { this.handleAreaMenuChange('neighborhoods') }} color={this.state.areaMenuActive === 'neighborhoods' ? 'primary' : 'default'} disableElevation>NEIGHBORHOODS</Button>
-          </ButtonGroup>
+          </ButtonGroup> */}
 
+          {/* 
           {this.state.areaMenuActive === 'landmarks' && <Col>
             <Navbar expand="lg" bg="" variant="">
 
-              {/* <Navbar.Brand>LANDMARKS</Navbar.Brand> */}
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
 
                 <Nav className="mr-auto">
-                  {/* <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#link">Link</Nav.Link> */}
 
                   <NavDropdown title="Amazon SLU Campus" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -345,30 +410,22 @@ export class MapContainer extends Component {
                   </NavDropdown>
 
                 </Nav>
-                {/* <Form inline>
-      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button variant="outline-success">Search</Button>
-    </Form> */}
               </Navbar.Collapse>
 
               <Navbar.Collapse id="basic-navbar-nav"></Navbar.Collapse>
 
             </Navbar>
           </Col>}
+ */}
 
-
-
+          {/* 
           {this.state.areaMenuActive === 'neighborhoods' && <Col>
             <Navbar expand="lg" bg="" variant="">
 
-
-              {/* <Navbar.Brand>NEIGHBORHOODS</Navbar.Brand> */}
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
 
                 <Nav className="mr-auto">
-                  {/* <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#link">Link</Nav.Link> */}
 
                   <NavDropdown title="Downtown" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -431,10 +488,7 @@ export class MapContainer extends Component {
                   </NavDropdown>
 
                 </Nav>
-                {/* <Form inline>
-      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button variant="outline-success">Search</Button>
-    </Form> */}
+
               </Navbar.Collapse>
 
               <Navbar.Collapse id="basic-navbar-nav"></Navbar.Collapse>
@@ -442,50 +496,50 @@ export class MapContainer extends Component {
             </Navbar>
           </Col>
           }
+ */}
 
         </Row>
 
 
-        <br />
+        <Grid container spacing={3}>
 
-        <Row>
-          <Col xs={7}>
+          <Grid item xs={6}>
             <div style={containerStyle}>
 
               {/* TODO */}
 
               {/* <Map
-                google={this.props.google}
-                zoom={13}
-                style={mapStyles}
-                initialCenter={{
-                  lat: this.state.currentMapCenterLat,
-                  lng: this.state.currentMapCenterLong
-                }}
-                center={{
-                  lat: this.state.currentMapCenterLat,
-                  lng: this.state.currentMapCenterLong
-                }}
-                onClick={this.mapClicked}
-              >
+  google={this.props.google}
+  zoom={13}
+  style={mapStyles}
+  initialCenter={{
+    lat: this.state.currentMapCenterLat,
+    lng: this.state.currentMapCenterLong
+  }}
+  center={{
+    lat: this.state.currentMapCenterLat,
+    lng: this.state.currentMapCenterLong
+  }}
+  onClick={this.mapClicked}
+>
 
-                {locations}
+  {locations}
 
-              </Map> */}
+</Map> */}
 
               <GoogleMap
                 locations={this.state.locations}
                 handlePendingLatLongChange={this.handlePendingLatLongChange}
                 handleMapMarkerClick={this.handleMapMarkerClick}
-                currentMapCenter={{lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong}}
+                currentMapCenter={{ lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong }}
+                isPulseVisible={this.state.isPulseVisible}
+                pulseGeopoint={this.state.pulseGeopoint}
               />
 
             </div>
 
-          </Col>
-
-          <Col xs={5}>
-
+          </Grid>
+          <Grid item xs={6}>
             {/* <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
               <ToggleButton value={1}>LATEST</ToggleButton>
               <ToggleButton value={2}>MOST UPVOTED</ToggleButton>
@@ -493,11 +547,29 @@ export class MapContainer extends Component {
 
             <br /><br />
 
-            <h3>LOCATION DETAILS</h3>
-            {this.state.selectedLocation && <LocationDetails selectedLocation={this.state.selectedLocation} />}
+            <div style={{ textAlign: 'center' }}>
+              <ButtonGroup variant="contained" aria-label="contained primary button group" disableElevation>
+                <Button onClick={() => { this.handleMultiChange('location') }} color={this.state.multiActive === 'location' ? 'primary' : 'default'} disableElevation><LocationOn style={{ fontSize: null }} /></Button>
+                <Button onClick={() => { this.handleMultiChange('latest') }} color={this.state.multiActive === 'latest' ? 'primary' : 'default'} disableElevation>LATEST</Button>
+                <Button onClick={() => { this.handleMultiChange('popular') }} color={this.state.multiActive === 'popular' ? 'primary' : 'default'} disableElevation>POPULAR</Button>
+                <Button onClick={() => { this.handleMultiChange('gallery') }} color={this.state.multiActive === 'gallery' ? 'primary' : 'default'} disableElevation>GALLERY</Button>
+              </ButtonGroup>
+            </div>
 
-          </Col>
-        </Row>
+            <br /><br />
+
+            {/* {!this.state.selectedLocation && <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>} */}
+            {this.multiGenerator()}
+
+            {/* {this.state.selectedLocation && this.state.multiActive === 'location' && <LocationDetails selectedLocation={this.state.selectedLocation} />}
+            {this.state.multiActive === 'latest' && <LatestSubmissions locations={this.state.locations} />}
+            {this.state.multiActive === 'popular' && <PopularSubmissions locations={this.state.locations} />}
+            {this.state.multiActive === 'gallery' && <Masonry locations={this.state.locations} />} */}
+
+          </Grid>
+
+        </Grid>
+
 
         <br /> <br />
 
@@ -594,7 +666,7 @@ export class MapContainer extends Component {
 
           </Form>
         */}
-
+          <h2><LocationOn style={{ fontSize: 80 }} />ADD LOCATION</h2>
           <LocationSubmitter
             db={db}
             storageRef={storageRef}

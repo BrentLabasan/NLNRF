@@ -44,10 +44,10 @@ export default function LocationSubmitter(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
+    debugger;
     // Add a new document with a generated id.
     props.db.collection("locations").add({
-      nameDescr: locationNameDescription,
+      nameDescr: props.pendingLocationNameDescription,
       geopoint: new firebase.firestore.GeoPoint(props.pendingLatitude, props.pendingLongitude),
       dateTime: moment().format(),
       mediaUrl: null
@@ -135,6 +135,10 @@ export default function LocationSubmitter(props) {
     props.handlePendingLocationNameDescription(e.target.value);
   }
 
+  function inputLatLongVal() {
+    return props.pendingLatitude ? ( props.pendingLatitude + ', ' + props.pendingLongitude ) : '*';
+  }
+
   return (
 
     <Form inline={false}>
@@ -148,7 +152,7 @@ export default function LocationSubmitter(props) {
           <Col xs={2}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>LATITUDE / LONGITUDE</Form.Label>
-              <Form.Control type="text" name="pendingLatitude" placeholder="latitude" value={props.pendingLatitude + ', ' + props.pendingLongitude} />
+              <Form.Control type="text" name="pendingLatitude" placeholder="latitude" value={inputLatLongVal()} />
               <Form.Text className="text-muted">
                 Click on the map to automatically fill in the lat/long coordinates.
 </Form.Text>
@@ -198,9 +202,12 @@ export default function LocationSubmitter(props) {
       </Col>
           <Col xs={1}>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>PIC / VIDEO</Form.Label>
+              <Form.Label>IMAGE</Form.Label>
 
               <input type="file" id="fileSelector"></input>
+              <Form.Text className="text-muted">
+                Only images are currently supported. Video, YouTube links, and Instagram links will be added soon!
+</Form.Text>
 
             </Form.Group>
           </Col>
