@@ -135,6 +135,10 @@ export default function LocationSubmitter(props) {
     props.handlePendingLocationNameDescription(e.target.value);
   }
 
+  function inputLatLongVal() {
+    return props.pendingLatitude ? ( props.pendingLatitude + ', ' + props.pendingLongitude ) : '*';
+  }
+
   return (
 
     <Form inline={false}>
@@ -148,7 +152,7 @@ export default function LocationSubmitter(props) {
           <Col xs={2}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>LATITUDE / LONGITUDE</Form.Label>
-              <Form.Control type="text" name="pendingLatitude" placeholder="latitude" value={props.pendingLatitude + ', ' + props.pendingLongitude} />
+              <Form.Control type="text" name="pendingLatitude" placeholder="latitude" value={inputLatLongVal()} />
               <Form.Text className="text-muted">
                 Click on the map to automatically fill in the lat/long coordinates.
 </Form.Text>
