@@ -275,15 +275,15 @@ export class MapContainer extends Component {
             </Form>
           </Col> */}
 
-<ButtonGroup variant="contained" aria-label="contained primary button group" disableElevation>
-  <Button onClick={()=> {this.handleAreaMenuChange('landmarks')}} color={this.state.areaMenuActive === 'landmarks' ? 'primary' : 'default'} disableElevation>LANDMARKS</Button>
-  <Button onClick={()=> {this.handleAreaMenuChange('neighborhoods')}} color={this.state.areaMenuActive === 'neighborhoods' ? 'primary' : 'default'} disableElevation>NEIGHBORHOODS</Button>
-</ButtonGroup>
+          <ButtonGroup variant="contained" aria-label="contained primary button group" disableElevation>
+            <Button onClick={() => { this.handleAreaMenuChange('landmarks') }} color={this.state.areaMenuActive === 'landmarks' ? 'primary' : 'default'} disableElevation>LANDMARKS</Button>
+            <Button onClick={() => { this.handleAreaMenuChange('neighborhoods') }} color={this.state.areaMenuActive === 'neighborhoods' ? 'primary' : 'default'} disableElevation>NEIGHBORHOODS</Button>
+          </ButtonGroup>
 
-          {this.state.areaMenuActive === 'landmarks' && <Col xs={6} xl={12}>
+          {this.state.areaMenuActive === 'landmarks' && <Col>
             <Navbar expand="lg" bg="dark" variant="dark">
 
-              <Navbar.Brand>LANDMARKS</Navbar.Brand>
+              {/* <Navbar.Brand>LANDMARKS</Navbar.Brand> */}
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
 
@@ -350,15 +350,15 @@ export class MapContainer extends Component {
               <Navbar.Collapse id="basic-navbar-nav"></Navbar.Collapse>
 
             </Navbar>
-          </Col> }
+          </Col>}
 
 
 
-          {this.state.areaMenuActive === 'neighborhoods' && <Col xs={6} xl={12}>
+          {this.state.areaMenuActive === 'neighborhoods' && <Col>
             <Navbar expand="lg" bg="dark" variant="dark">
 
 
-              <Navbar.Brand>NEIGHBORHOODS</Navbar.Brand>
+              {/* <Navbar.Brand>NEIGHBORHOODS</Navbar.Brand> */}
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
 
@@ -437,7 +437,7 @@ export class MapContainer extends Component {
 
             </Navbar>
           </Col>
-}
+          }
 
         </Row>
 
