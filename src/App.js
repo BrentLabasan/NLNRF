@@ -263,10 +263,18 @@ export class MapContainer extends Component {
 
   }
 
+  multiGenerator = () => {
+    if (!this.state.selectedLocation) {
+      return <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>;
+    }
+  }
+
 
 
   render() {
     console.log("App.js render()");
+
+    
 
     return (
       <div className="App">
@@ -498,12 +506,13 @@ export class MapContainer extends Component {
 
             <br/><br/>
 
-            {!this.state.selectedLocation && <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>}
-            
+            {/* {!this.state.selectedLocation && <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>} */}
+            {this.multiGenerator()}
+
             {this.state.selectedLocation && this.state.multiActive === 'location' && <LocationDetails selectedLocation={this.state.selectedLocation} />}
-            {this.state.multiActive === 'latest' && <LatestSubmissions selectedLocation={this.state.selectedLocation} />}
-            {this.state.multiActive === 'popular' && <PopularSubmissions selectedLocation={this.state.selectedLocation} />}
-            {this.state.multiActive === 'gallery' && <Masonry selectedLocation={this.state.selectedLocation} />}
+            {this.state.multiActive === 'latest' && <LatestSubmissions locations={this.state.locations} />}
+            {this.state.multiActive === 'popular' && <PopularSubmissions locations={this.state.locations} />}
+            {this.state.multiActive === 'gallery' && <Masonry locations={this.state.locations} />}
 
           </Grid>
 
