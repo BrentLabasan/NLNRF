@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker, Polygon } from 'google-maps-react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Container, Row, Col, Dropdown, DropdownButton, ToggleButtonGroup, ToggleButton, Badge } from 'react-bootstrap';
-import { BottomNavigation, BottomNavigationAction, ButtonGroup, Button } from '@material-ui/core';
+import { Grid, BottomNavigation, BottomNavigationAction, ButtonGroup, Button } from '@material-ui/core';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 import moment from 'moment';
@@ -276,11 +276,6 @@ export class MapContainer extends Component {
 
 
         <Row>
-          {/* <Col xs={1}>
-            <Form inline>
-              <Button variant="success">SUBMIT A LOCATION</Button>
-            </Form>
-          </Col> */}
 
           {/* <ButtonGroup variant="contained" aria-label="contained primary button group" disableElevation>
             <Button onClick={() => { this.handleAreaMenuChange('landmarks') }} color={this.state.areaMenuActive === 'landmarks' ? 'primary' : 'default'} disableElevation>LANDMARKS</Button>
@@ -436,6 +431,58 @@ export class MapContainer extends Component {
 
         </Row>
 
+
+        <Grid container spacing={3}>
+
+          <Grid item xs={6}>
+          <div style={containerStyle}>
+
+{/* TODO */}
+
+{/* <Map
+  google={this.props.google}
+  zoom={13}
+  style={mapStyles}
+  initialCenter={{
+    lat: this.state.currentMapCenterLat,
+    lng: this.state.currentMapCenterLong
+  }}
+  center={{
+    lat: this.state.currentMapCenterLat,
+    lng: this.state.currentMapCenterLong
+  }}
+  onClick={this.mapClicked}
+>
+
+  {locations}
+
+</Map> */}
+
+<GoogleMap
+  locations={this.state.locations}
+  handlePendingLatLongChange={this.handlePendingLatLongChange}
+  handleMapMarkerClick={this.handleMapMarkerClick}
+  currentMapCenter={{ lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong }}
+/>
+
+</div>
+
+          </Grid>
+          <Grid item xs={6}>
+                        {/* <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
+              <ToggleButton value={1}>LATEST</ToggleButton>
+              <ToggleButton value={2}>MOST UPVOTED</ToggleButton>
+            </ToggleButtonGroup> */}
+
+<br /><br />
+
+
+{!this.state.selectedLocation && <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>}
+{this.state.selectedLocation && <LocationDetails selectedLocation={this.state.selectedLocation} />}
+
+          </Grid>
+
+        </Grid>
 
         <br />
 
