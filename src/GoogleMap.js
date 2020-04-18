@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker, Polygon } from 'google-maps-react';
 import * as constants from './constants';
+var _ = require('lodash');
 
 export class GoogleMap extends Component {
 
@@ -35,11 +36,16 @@ export class GoogleMap extends Component {
     this.props.handlePendingLatLongChange(clickEvent.latLng.lat(), clickEvent.latLng.lng());
   }
 
-  render() {
+  shouldComponentUpdate(nextProps, nextState) {
+    return !_.isEqual(this.props.locations, nextProps.locations);
+    // return nextProps.isFavourite != this.props.isFavourite;
+}
 
+  render() {
+    console.log('GoogleMap.js render()');
     let locations = this.props.locations.map((loc) => {
 
-      const animationStyle = loc.id === this.state.featuredLocationId ? this.props.google.maps.Animation.DROP : false;
+      // const animationStyle = loc.id === this.state.featuredLocationId ? this.props.google.maps.Animation.DROP : false;
 
       return (
         <Marker
@@ -53,7 +59,7 @@ export class GoogleMap extends Component {
 
           // animation={false}
           // animation={this.props.google.maps.Animation.DROP}
-          animation={animationStyle}
+          animation={false}
         />
       );
     });
