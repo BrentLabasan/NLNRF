@@ -6,13 +6,13 @@ export default function LatestSubmissions(props) {
     const [count, setCount] = useState(0);
 
     const listStyle = {
-listStyleType: 'none',
-color: 'white',
-fontWeight: 'bold'
+        listStyleType: 'none',
+        color: 'white',
+        fontWeight: 'bold'
     };
 
     const style = {
-        padding: '10px',
+        padding: '10px 20px 10px 20px',
         border: '1px solid grey',
         backgroundColor: 'grey',
         borderRadius: '10px',
@@ -22,7 +22,7 @@ fontWeight: 'bold'
 
     function compare(a, b) {
         // debugger;
-        console.log('HMMM', moment(a.dateTime).format(),  moment(b.dateTime).format());
+        console.log('HMMM', moment(a.dateTime).format(), moment(b.dateTime).format());
         console.log('return value', a.dateTime > b.dateTime ? 1 : -1);
         return a.dateTime < b.dateTime ? 1 : -1;
     }
@@ -32,13 +32,17 @@ fontWeight: 'bold'
     let sorted = props.locations.slice(0, 7).sort(compare);
     const latestSubmissions = sorted.map((loc) => {
         // debugger;
-        return <li style={style}>
+        return <li style={style} onMouseOver={liHover}>
             {loc.nameDescr}
             <br />
             {moment(loc.dateTime).fromNow()}
 
         </li>
     });
+
+    function liHover() {
+        console.log('a');
+    }
 
 
     return (
