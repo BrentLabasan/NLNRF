@@ -7,7 +7,7 @@ import 'firebase/firestore';
 import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
 import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
-import { AddLocation, Favorite, AccountCircle, Photo } from '@material-ui/icons';
+import { LocationOn, AddLocation, Favorite, AccountCircle, Photo } from '@material-ui/icons';
 import * as constants from './constants';
 import LocationSubmitter from './LocationSubmitter';
 import LocationDetails from './LocationDetails';
@@ -482,7 +482,7 @@ export class MapContainer extends Component {
             <br /><br />
 
 
-            {!this.state.selectedLocation && <h3>Click on a marker to show its details.</h3>}
+            {!this.state.selectedLocation && <div style={{display: 'inline-flex', width: '100%', height: '100%', alignItems:'center', justifyContent: 'center'}}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>}
             {this.state.selectedLocation && <LocationDetails selectedLocation={this.state.selectedLocation} />}
 
           </Col>
