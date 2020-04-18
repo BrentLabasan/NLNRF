@@ -481,45 +481,15 @@ export class MapContainer extends Component {
 
           <Col xs={5}>
 
-            <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
+            {/* <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
               <ToggleButton value={1}>LATEST</ToggleButton>
               <ToggleButton value={2}>MOST UPVOTED</ToggleButton>
-            </ToggleButtonGroup>
+            </ToggleButtonGroup> */}
 
             <br /><br />
 
-
+            <h3>LOCATION DETAILS</h3>
             <LocationDetails selectedLocation={this.state.selectedLocation} />
-
-
-            {/* <div>
-              {this.state.selectedLocation?.mediaUrl && <img src={this.state.selectedLocation.mediaUrl} style={{ maxWidth: '300px' }} />}
-            </div>
-
-            <h4>LOCATION</h4>
-            <p>
-              {this.state.selectedLocation?.nameDescr}
-            </p>
-
-            <h4>DATETIME</h4>
-            <p>
-
-            {this.state.selectedLocation?.dateTime && moment(this.state.selectedLocation?.dateTime).fromNow()}
-            </p>
-
-          <h4>VISUAL TYPE</h4>
-          <p>
-            TODO chalk, bumper sticker, sharpie, mural, etc...
-            </p>
-
-
-          <h4>CHANCE THAT VISUALIZATION IS STILL RUNNING</h4>
-          <p>
-            TODO scale from 0% - 100%
-            </p> */}
-
-
-
 
           </Col>
         </Row>

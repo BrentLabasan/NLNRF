@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { FormControl, InputLabel, Input, OutlinedInput } from '@material-ui/core';
 import moment from 'moment';
 
 
 export default function LocationDetails(props) {
+
 
     return (
         <div>
@@ -15,23 +17,31 @@ export default function LocationDetails(props) {
                 {props.selectedLocation?.nameDescr}
             </p>
 
-            <h4>DATETIME</h4>
+            {/* <h4>DATETIME</h4> */}
             <p>
                 {/* { moment(new Date()).format() } */}
                 {/* { props.selectedLocation?.dateTime && moment( props.selectedLocation?.dateTime ).format() } */}
-                {props.selectedLocation?.dateTime && moment(props.selectedLocation?.dateTime).fromNow()}
-            </p>
 
-            <h4>VISUAL TYPE</h4>
+                {/* {props.selectedLocation?.dateTime && moment(props.selectedLocation?.dateTime).fromNow()} */}
+                {props.selectedLocation?.dateTime &&                 <FormControl>
+                    <InputLabel htmlFor="component-outlined">Date & Time</InputLabel>
+                    <Input id="component-outlined" value={moment(props.selectedLocation?.dateTime).fromNow()} label="Name" />
+                </FormControl>}
+            </p>
+{/* 
+            <h4>VISUAL TYPE</h4> */}
             <p>
-                TODO chalk, bumper sticker, sharpie, mural, etc...
+                <FormControl>
+                    <InputLabel htmlFor="component-outlined">Visual Type</InputLabel>
+                    <Input id="component-outlined" value={'VALUE'} label="VisualType" />
+                </FormControl>
             </p>
 
 
-            <h4>CHANCE THAT VISUALIZATION IS STILL RUNNING</h4>
+            {/* <h4>CHANCE THAT VISUALIZATION IS STILL RUNNING</h4>
             <p>
                 TODO scale from 0% - 100%
-  </p>
+  </p> */}
 
         </div>
     );

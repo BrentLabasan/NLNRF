@@ -20,7 +20,7 @@ export class GoogleMap extends Component {
     //   activeMarker: marker,
     //   showingInfoWindow: true
     // });
-    debugger;
+
     this.props.handleMapMarkerClick(props, marker, e);
   }
 
