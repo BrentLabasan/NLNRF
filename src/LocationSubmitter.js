@@ -129,6 +129,12 @@ export default function LocationSubmitter(props) {
 
   }
 
+  function changePendingLocationNameDescription(e) {
+    e.preventDefault();
+
+    props.handlePendingLocationNameDescription(e.target.value);
+  }
+
   return (
 
     <Form inline={false}>
@@ -178,7 +184,7 @@ export default function LocationSubmitter(props) {
           <Col xs={2}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>LOCATION NAME / DESCRIPTION</Form.Label>
-              <Form.Control type="text" name="pendingLocationNameDescription" {...locationNameDescription} value={props.pendingLocationNameDescription} placeholder="location name / description" />
+              <Form.Control type="text" name="pendingLocationNameDescription" onChange={changePendingLocationNameDescription} value={props.pendingLocationNameDescription} placeholder="location name / description" />
               <Form.Text className="text-muted">
                 example: Space Needle, Pike Place Market, Fremont Troll
 </Form.Text>

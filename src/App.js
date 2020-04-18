@@ -71,7 +71,6 @@ export class MapContainer extends Component {
   }
 
   handlePendingLocationNameDescription = (locationNameDescription) => {
-    debugger;
     this.setState({
       pendingLocationNameDescription: locationNameDescription
     });
@@ -622,7 +621,7 @@ export class MapContainer extends Component {
             pendingLatitude={this.state.pendingLatitude}
             pendingLongitude={this.state.pendingLongitude}
             pendingLocationNameDescription={this.state.pendingLocationNameDescription}
-            
+
             handlePendingLatLongChange={this.handlePendingLatLongChange}
             handlePendingLocationNameDescription={this.handlePendingLocationNameDescription}
           />
