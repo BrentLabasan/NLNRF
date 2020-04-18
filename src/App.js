@@ -259,11 +259,14 @@ export class MapContainer extends Component {
 
     return (
       <div className="App">
-        <h1 id="heroLogo">
-          NLNRF<span style={{ fontSize: '18px', marginLeft: '-15px' }} >.com</span>
-          &nbsp;
+        <header>
+          <h1 id="heroLogo">
+            NLNRF<span style={{ fontSize: '18px', marginLeft: '-15px' }} >.com</span>
+            &nbsp;
           <span className='slogan'>NOT LEFT. NOT RIGHT. FORWARD &gt;</span>
-        </h1>
+          </h1>
+        </header>
+
 
 
 
@@ -284,7 +287,7 @@ export class MapContainer extends Component {
             <Button onClick={() => { this.handleAreaMenuChange('neighborhoods') }} color={this.state.areaMenuActive === 'neighborhoods' ? 'primary' : 'default'} disableElevation>NEIGHBORHOODS</Button>
           </ButtonGroup> */}
 
-{/* 
+          {/* 
           {this.state.areaMenuActive === 'landmarks' && <Col>
             <Navbar expand="lg" bg="" variant="">
 
@@ -351,7 +354,7 @@ export class MapContainer extends Component {
           </Col>}
  */}
 
-{/* 
+          {/* 
           {this.state.areaMenuActive === 'neighborhoods' && <Col>
             <Navbar expand="lg" bg="" variant="">
 
@@ -465,7 +468,7 @@ export class MapContainer extends Component {
                 locations={this.state.locations}
                 handlePendingLatLongChange={this.handlePendingLatLongChange}
                 handleMapMarkerClick={this.handleMapMarkerClick}
-                currentMapCenter={{lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong}}
+                currentMapCenter={{ lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong }}
               />
 
             </div>
@@ -482,7 +485,7 @@ export class MapContainer extends Component {
             <br /><br />
 
 
-            {!this.state.selectedLocation && <div style={{display: 'inline-flex', width: '100%', height: '100%', alignItems:'center', justifyContent: 'center'}}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>}
+            {!this.state.selectedLocation && <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>}
             {this.state.selectedLocation && <LocationDetails selectedLocation={this.state.selectedLocation} />}
 
           </Col>
