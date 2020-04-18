@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker, Polygon } from 'google-maps-react';
 import * as constants from './constants';
 import pulsing from './media/pulsing2.gif';
+import wut from './media/wut.gif';
 var _ = require('lodash');
 
 export class GoogleMap extends Component {
@@ -97,8 +98,9 @@ export class GoogleMap extends Component {
             name={'Your position'}
             position={{ lat: 47.63567070919163, lng: -122.33610194881635 }}
             icon={{
-              // url: '/media/pulsing2.gif',
-              url: 'https://i.pinimg.com/originals/98/b2/7d/98b27d2338f2d1648740c4a5d5cd9254.gif',
+              // url: 'https://loading.io/icon/i3ca9h',
+              // url: pulsing, // works
+              url: wut, // works
               anchor: new this.props.google.maps.Point(32, 32),
               scaledSize: new this.props.google.maps.Size(128, 128)
             }}
