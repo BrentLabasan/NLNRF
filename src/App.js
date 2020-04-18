@@ -435,11 +435,11 @@ export class MapContainer extends Component {
         <Grid container spacing={3}>
 
           <Grid item xs={6}>
-          <div style={containerStyle}>
+            <div style={containerStyle}>
 
-{/* TODO */}
+              {/* TODO */}
 
-{/* <Map
+              {/* <Map
   google={this.props.google}
   zoom={13}
   style={mapStyles}
@@ -458,27 +458,37 @@ export class MapContainer extends Component {
 
 </Map> */}
 
-<GoogleMap
-  locations={this.state.locations}
-  handlePendingLatLongChange={this.handlePendingLatLongChange}
-  handleMapMarkerClick={this.handleMapMarkerClick}
-  currentMapCenter={{ lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong }}
-/>
+              <GoogleMap
+                locations={this.state.locations}
+                handlePendingLatLongChange={this.handlePendingLatLongChange}
+                handleMapMarkerClick={this.handleMapMarkerClick}
+                currentMapCenter={{ lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong }}
+              />
 
-</div>
+            </div>
 
           </Grid>
           <Grid item xs={6}>
-                        {/* <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
+            {/* <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
               <ToggleButton value={1}>LATEST</ToggleButton>
               <ToggleButton value={2}>MOST UPVOTED</ToggleButton>
             </ToggleButtonGroup> */}
 
-<br /><br />
+            <br /><br />
 
+            <div style={{ textAlign: 'center' }}>
+              <ButtonGroup variant="contained" aria-label="contained primary button group" disableElevation>
+                <Button onClick={() => { this.handleAreaMenuChange('landmarks') }} color={this.state.areaMenuActive === 'landmarks' ? 'primary' : 'default'} disableElevation><LocationOn style={{ fontSize: null }} /></Button>
+                <Button onClick={() => { this.handleAreaMenuChange('neighborhoods') }} color={this.state.areaMenuActive === 'neighborhoods' ? 'primary' : 'default'} disableElevation>LATEST</Button>
+                <Button onClick={() => { this.handleAreaMenuChange('neighborhoods') }} color={this.state.areaMenuActive === 'neighborhoods' ? 'primary' : 'default'} disableElevation>POPULAR</Button>
+                <Button onClick={() => { this.handleAreaMenuChange('neighborhoods') }} color={this.state.areaMenuActive === 'neighborhoods' ? 'primary' : 'default'} disableElevation>GALLERY</Button>
+              </ButtonGroup>
+            </div>
+            
+            <br/><br/>
 
-{!this.state.selectedLocation && <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>}
-{this.state.selectedLocation && <LocationDetails selectedLocation={this.state.selectedLocation} />}
+            {!this.state.selectedLocation && <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>}
+            {this.state.selectedLocation && <LocationDetails selectedLocation={this.state.selectedLocation} />}
 
           </Grid>
 
@@ -580,7 +590,7 @@ export class MapContainer extends Component {
 
           </Form>
         */}
-  <h2><LocationOn style={{ fontSize: 80 }} />ADD LOCATION</h2>
+          <h2><LocationOn style={{ fontSize: 80 }} />ADD LOCATION</h2>
           <LocationSubmitter
             db={db}
             storageRef={storageRef}
