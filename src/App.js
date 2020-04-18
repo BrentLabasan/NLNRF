@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
 import { AddLocation, Favorite, AccountCircle, Photo } from '@material-ui/icons';
 import * as constants from './constants';
+import LocationSubmitter from './LocationSubmitter';
 
 import GoogleMap from './GoogleMap';
 
@@ -25,9 +26,9 @@ const containerStyle = {
   position: 'relative',
   width: '100%',
   height: '800px',
-  textAlign: 'center',
-  display: 'inline-flex',
-  justifyContent: 'center'
+  // textAlign: 'center',
+  // display: 'inline-flex',
+  // justifyContent: 'center'
 }
 
 const mapStyles = {
@@ -61,8 +62,17 @@ export class MapContainer extends Component {
     mobiCurrentSection: 'add'
   };
 
+  handlePendingLatLongChange = (lat, long) => {
+    debugger;
+
+    this.setState({
+      pendingLatitude: lat,
+      pendingLongitude: long
+    });
+  }
+
   handleMobiCurrSectionChange = (event, value) => {
-    this.setState({mobiCurrentSection: value})
+    this.setState({ mobiCurrentSection: value })
   }
 
   componentDidMount() {
@@ -93,15 +103,6 @@ export class MapContainer extends Component {
       });
 
   }
-
-
-
-  onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
 
   onClose = props => {
     if (this.state.showingInfoWindow) {
@@ -136,23 +137,9 @@ export class MapContainer extends Component {
     });
   }
 
-  mapClicked = (mapProps, map, clickEvent) => {
-    // console.log(mapProps);
-    // console.log(map);
-    console.log(clickEvent);
-    // console.log(clickEvent.Za.x, clickEvent.Za.y);
-    console.log(clickEvent.latLng.lat(), clickEvent.latLng.lng());
-    this.setState({
-      pendingLatitude: clickEvent.latLng.lat(),
-      pendingLongitude: clickEvent.latLng.lng()
-    });
-  }
 
-  handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
+
+
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -281,7 +268,7 @@ export class MapContainer extends Component {
           <span className='slogan'>NOT LEFT. NOT RIGHT. FORWARD &gt;</span>
         </h1>
 
-        
+
 
         <br />
 
@@ -484,7 +471,7 @@ export class MapContainer extends Component {
 
               </Map> */}
 
-<GoogleMap locations={this.state.locations} />
+              <GoogleMap locations={this.state.locations} handlePendingLatLongChange={this.handlePendingLatLongChange} />
 
             </div>
 
@@ -533,6 +520,8 @@ export class MapContainer extends Component {
 
 
           {/* <Form onSubmit={this.handleSubmit} inline={false}> */}
+          
+          {/*
           <Form inline={false}>
             <Container fluid={true}>
 
@@ -545,7 +534,6 @@ export class MapContainer extends Component {
                   <Form.Group controlId="formBasicEmail">
                     <Form.Label>LATITUDE / LONGITUDE</Form.Label>
                     <Form.Control type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude + ', ' + this.state.pendingLongitude} />
-                    {/* <Form.Control type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} /> */}
                     <Form.Text className="text-muted">
                       Click on the map to automatically fill in the lat/long coordinates.
     </Form.Text>
@@ -586,10 +574,6 @@ export class MapContainer extends Component {
                       example: Space Needle, Pike Place Market, Fremont Troll
     </Form.Text>
                   </Form.Group>
-                  {/* 
-                  <input type="text" name="pendingLocationNameDescription" placeholder="location name / description" onChange={this.handleChange} value={this.state.pendingLocationNameDescription} />
-                  <input type="text" name="pendingLatitude" placeholder="latitude" onChange={this.handleChange} value={this.state.pendingLatitude} />
-                  <input type="text" name="pendingLongitude" placeholder="longitude" onChange={this.handleChange} value={this.state.pendingLongitude} /> */}
                 </Col>
 
                 <Col xs="auto">
@@ -613,9 +597,8 @@ export class MapContainer extends Component {
                   <Form.Group controlId="formBasicEmail">
                     <Form.Label>&nbsp;</Form.Label>
                     <br />
-                    {/* <button>Submit Location</button> */}
 
-                    {/* why doesn't this work? */}
+
                     <Button onClick={this.handleSubmit} variant="success" size="lg">SUBMIT LOCATION</Button>
                   </Form.Group>
                 </Col>
@@ -625,6 +608,9 @@ export class MapContainer extends Component {
             </Container>
 
           </Form>
+        */}
+
+        <LocationSubmitter db={db} storageRef={storageRef} pendingLatitude={this.state.pendingLatitude} pendingLongitude={this.state.pendingLongitude} />
 
         </section>
 
@@ -734,7 +720,7 @@ export class MapContainer extends Component {
 
         </footer>
 
-        <BottomNavigation value={this.state.mobiCurrentSection} onChange={this.handleMobiCurrSectionChange} className={ null }>
+        <BottomNavigation value={this.state.mobiCurrentSection} onChange={this.handleMobiCurrSectionChange} className={null}>
           <BottomNavigationAction label="Add Location" value="add" icon={<AddLocation />} />
           <BottomNavigationAction label="Latest" value="latest" icon={<Photo />} />
           <BottomNavigationAction label="Favorites" value="favorites" icon={<Favorite />} />

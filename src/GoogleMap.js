@@ -13,6 +13,28 @@ export class GoogleMap extends Component {
     currentMapCenterLong: -122.31657144387441,
   };
 
+  onMarkerClick = (props, marker, e) =>
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+
+  mapClicked = (mapProps, map, clickEvent) => {
+    // console.log(mapProps);
+    // console.log(map);
+    console.log(clickEvent);
+    // console.log(clickEvent.Za.x, clickEvent.Za.y);
+    console.log(clickEvent.latLng.lat(), clickEvent.latLng.lng());
+
+    // this.setState({
+    //   pendingLatitude: clickEvent.latLng.lat(),
+    //   pendingLongitude: clickEvent.latLng.lng()
+    // });
+
+    this.props.handlePendingLatLongChange(clickEvent.latLng.lat(), clickEvent.latLng.lng());
+  }
+
   render() {
 
     let locations = this.props.locations.map((loc) => {
@@ -38,7 +60,7 @@ export class GoogleMap extends Component {
 
     return (
       <div>
-  
+
         <Map
           google={this.props.google}
           zoom={13}
@@ -58,7 +80,7 @@ export class GoogleMap extends Component {
           }}
           onClick={this.mapClicked}
         >
-  
+
           {locations}
           <Polygon
             paths={constants.TEST_COORDS}
@@ -67,9 +89,9 @@ export class GoogleMap extends Component {
             strokeWeight={2}
             fillColor="#0000FF"
             fillOpacity={0.35} />
-  
+
         </Map>
-  
+
       </div>
     );
   }
