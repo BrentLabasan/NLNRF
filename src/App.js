@@ -68,8 +68,17 @@ export class MapContainer extends Component {
 
     areaMenuActive: 'landmarks',
 
-    multiActive: 'location'
+    multiActive: 'location',
+
+    isPulseVisible: false
   };
+
+  setIsPulseVisible = (bool) => {
+    debugger;
+    this.setState({
+      isPulseVisible: bool
+    })
+  }
 
   handleAreaMenuChange = (selection) => {
     this.setState({
@@ -266,7 +275,7 @@ export class MapContainer extends Component {
   multiGenerator = () => {
     switch (this.state.multiActive) {
       case 'latest':
-        return <LatestSubmissions locations={this.state.locations} />
+        return <LatestSubmissions setIsPulseVisible={this.setIsPulseVisible} locations={this.state.locations} />
         break;
       case 'popular':
         return <PopularSubmissions locations={this.state.locations} />
@@ -289,6 +298,10 @@ export class MapContainer extends Component {
     // if (!this.state.selectedLocation) {
     //   return <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>;
     // }
+  }
+
+  setPulseVisibility = () => {
+
   }
 
 
@@ -504,6 +517,7 @@ export class MapContainer extends Component {
                 handlePendingLatLongChange={this.handlePendingLatLongChange}
                 handleMapMarkerClick={this.handleMapMarkerClick}
                 currentMapCenter={{ lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong }}
+                isPulseVisible={this.state.isPulseVisible}
               />
 
             </div>

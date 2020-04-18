@@ -91,10 +91,10 @@ export class GoogleMap extends Component {
           }}
           onClick={this.mapClicked}
         >
-
+           
           {locations}
 
-          <Marker
+          { this.props.isPulseVisible && <Marker
             name={'Your position'}
             position={{ lat: 47.63567070919163, lng: -122.33610194881635 }}
             icon={{
@@ -104,7 +104,7 @@ export class GoogleMap extends Component {
               anchor: new this.props.google.maps.Point(32, 32),
               scaledSize: new this.props.google.maps.Size(128, 128)
             }}
-          />
+          /> }
 
           {/* <Polygon
             paths={constants.TEST_COORDS}

@@ -32,7 +32,9 @@ export default function LatestSubmissions(props) {
     let sorted = props.locations.slice(0, 7).sort(compare);
     const latestSubmissions = sorted.map((loc) => {
         // debugger;
-        return <li style={style} onMouseOver={liHover}>
+        return <li style={style}
+         onMouseEnter={handleOnMouseEnter}
+         onMouseLeave={handleOnMouseLeave}>
             {loc.nameDescr}
             <br />
             {moment(loc.dateTime).fromNow()}
@@ -40,8 +42,15 @@ export default function LatestSubmissions(props) {
         </li>
     });
 
-    function liHover() {
+    function handleOnMouseEnter() {
         console.log('a');
+        props.setIsPulseVisible(true);
+    }
+
+    function handleOnMouseLeave() {
+        console.log('a');
+        props.setIsPulseVisible(false);
+
     }
 
 
