@@ -96,12 +96,12 @@ export class GoogleMap extends Component {
 
           { this.props.isPulseVisible && <Marker
             name={'Your position'}
-            position={{ lat: 47.63567070919163, lng: -122.33610194881635 }}
+            position={{ lat: this.props.pulseGeopoint.latitude, lng: this.props.pulseGeopoint.longitude }}
             icon={{
               // url: 'https://loading.io/icon/i3ca9h',
               url: pulsing, // works
               // url: wut, // works
-              anchor: new this.props.google.maps.Point(32, 32),
+              anchor: new this.props.google.maps.Point(64, 64),
               scaledSize: new this.props.google.maps.Size(128, 128)
             }}
           /> }

@@ -70,15 +70,29 @@ export class MapContainer extends Component {
 
     multiActive: 'location',
 
-    isPulseVisible: false
+    isPulseVisible: false,
+
+    pulseLat: null,
+    pulseLong: null,
+
+    pulseGeopoint: null
   };
 
-  setIsPulseVisible = (bool) => {
+  setIsPulseVisible = (bool, geopoint) => {
     debugger;
     this.setState({
-      isPulseVisible: bool
+      isPulseVisible: bool,
+      pulseGeopoint: geopoint
     })
   }
+
+  // setPulseLagLong = (geopoint) => {
+  //   debugger;
+  //   this.setState({
+  //     pulseGeopoint: geopoint
+  //   })
+  // }
+
 
   handleAreaMenuChange = (selection) => {
     this.setState({
@@ -272,10 +286,11 @@ export class MapContainer extends Component {
 
   }
 
+
   multiGenerator = () => {
     switch (this.state.multiActive) {
       case 'latest':
-        return <LatestSubmissions setIsPulseVisible={this.setIsPulseVisible} locations={this.state.locations} />
+        return <LatestSubmissions setPulseLangLong={this.setPulseLangLong} setIsPulseVisible={this.setIsPulseVisible} locations={this.state.locations} />
         break;
       case 'popular':
         return <PopularSubmissions locations={this.state.locations} />
@@ -518,6 +533,7 @@ export class MapContainer extends Component {
                 handleMapMarkerClick={this.handleMapMarkerClick}
                 currentMapCenter={{ lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong }}
                 isPulseVisible={this.state.isPulseVisible}
+                pulseGeopoint={this.state.pulseGeopoint}
               />
 
             </div>

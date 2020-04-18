@@ -33,7 +33,7 @@ export default function LatestSubmissions(props) {
     const latestSubmissions = sorted.map((loc) => {
         // debugger;
         return <li style={style}
-         onMouseEnter={handleOnMouseEnter}
+         onMouseEnter={() => handleOnMouseEnter(loc.geopoint)}
          onMouseLeave={handleOnMouseLeave}>
             {loc.nameDescr}
             <br />
@@ -42,9 +42,10 @@ export default function LatestSubmissions(props) {
         </li>
     });
 
-    function handleOnMouseEnter() {
+    function handleOnMouseEnter(geopoint) {
         console.log('a');
-        props.setIsPulseVisible(true);
+        props.setIsPulseVisible(true, geopoint);
+        // props.setPulseLagLong(geopoint);
     }
 
     function handleOnMouseLeave() {
