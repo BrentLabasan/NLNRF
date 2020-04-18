@@ -8,6 +8,7 @@ import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
 import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
 import { AddLocation, Favorite, AccountCircle, Photo } from '@material-ui/icons';
+import * as constants from './constants';
 
 import GoogleMap from './GoogleMap';
 
@@ -19,18 +20,6 @@ let db, storage, storageRef;
 const hrWidth = '25%';
 
 const apiKey = 'AIzaSyCWIg0OhhYc1_DEXwPOXcBypSNgumuB5t4';
-
-// Your web app's Firebase configuration
-var firebaseConfig = {
-  apiKey: "AIzaSyCNuNDmyFCh76Wtznx7Wvp2O6WlSCZ_gYE",
-  authDomain: "nlnrf-dev.firebaseapp.com",
-  databaseURL: "https://nlnrf-dev.firebaseio.com",
-  projectId: "nlnrf-dev",
-  storageBucket: "nlnrf-dev.appspot.com",
-  messagingSenderId: "697157600851",
-  appId: "1:697157600851:web:dbc0422025a65c40c868a6",
-  measurementId: "G-PT563E34CP"
-};
 
 const containerStyle = {
   position: 'relative',
@@ -80,7 +69,7 @@ export class MapContainer extends Component {
     let targetX = document.getElementById("demo");
 
     // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+    firebase.initializeApp(constants.FIREBASE_CONFIG);
     firebase.analytics();
 
     db = firebase.firestore();
@@ -263,13 +252,6 @@ export class MapContainer extends Component {
   render() {
     console.log("App.js render()");
 
-    const triangleCoords = [
-      { lat: 47.61542405962572, lng: -122.32002042939143 },
-      { lat: 47.618692978147344, lng: -122.32002042939143 },
-      { lat: 47.61875083327175, lng: -122.31817506958919 },
-      { lat: 47.61527941249176, lng: -122.3183038156219 }
-    ];
-
     let locations = this.state.locations.map((loc) => {
 
       const animationStyle = loc.id === this.state.featuredLocationId ? this.props.google.maps.Animation.DROP : false;
@@ -299,7 +281,7 @@ export class MapContainer extends Component {
           <span className='slogan'>NOT LEFT. NOT RIGHT. FORWARD &gt;</span>
         </h1>
 
-        <GoogleMap />
+        
 
         <br />
 
@@ -480,7 +462,10 @@ export class MapContainer extends Component {
         <Row>
           <Col xs={7}>
             <div style={containerStyle}>
-              <Map
+
+              {/* TODO */}
+
+              {/* <Map
                 google={this.props.google}
                 zoom={13}
                 style={mapStyles}
@@ -496,15 +481,11 @@ export class MapContainer extends Component {
               >
 
                 {locations}
-                <Polygon
-                  paths={triangleCoords}
-                  strokeColor="#0000FF"
-                  strokeOpacity={0.8}
-                  strokeWeight={2}
-                  fillColor="#0000FF"
-                  fillOpacity={0.35} />
 
-              </Map>
+              </Map> */}
+
+<GoogleMap locations={this.state.locations} />
+
             </div>
 
           </Col>
@@ -769,5 +750,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: apiKey
+  apiKey: constants.GMAP_API_KEY
 })(MapContainer);
