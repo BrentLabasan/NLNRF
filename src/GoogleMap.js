@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker, Polygon } from 'google-maps-react';
 import * as constants from './constants';
-import pulsing from './media/pulsing2.gif';
+import pulsing from './media/pulsing3.gif';
 import wut from './media/wut.gif';
 var _ = require('lodash');
 
@@ -99,8 +99,8 @@ export class GoogleMap extends Component {
             position={{ lat: 47.63567070919163, lng: -122.33610194881635 }}
             icon={{
               // url: 'https://loading.io/icon/i3ca9h',
-              // url: pulsing, // works
-              url: wut, // works
+              url: pulsing, // works
+              // url: wut, // works
               anchor: new this.props.google.maps.Point(32, 32),
               scaledSize: new this.props.google.maps.Size(128, 128)
             }}
