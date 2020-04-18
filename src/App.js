@@ -41,7 +41,7 @@ const mapStyles = {
   height: '800px'
 };
 
-export class MapContainer extends Component {
+export class App extends Component {
   state = {
     showingInfoWindow: false,  //Hides or the shows the infoWindow
     activeMarker: {},          //Shows the active marker upon click
@@ -803,4 +803,4 @@ export class MapContainer extends Component {
 
 export default GoogleApiWrapper({
   apiKey: constants.GMAP_API_KEY
-})(MapContainer);
+})(App);
