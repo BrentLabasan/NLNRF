@@ -484,59 +484,6 @@ export class MapContainer extends Component {
 
         </Grid>
 
-        <br />
-
-        <Row>
-          <Col xs={7}>
-            <div style={containerStyle}>
-
-              {/* TODO */}
-
-              {/* <Map
-                google={this.props.google}
-                zoom={13}
-                style={mapStyles}
-                initialCenter={{
-                  lat: this.state.currentMapCenterLat,
-                  lng: this.state.currentMapCenterLong
-                }}
-                center={{
-                  lat: this.state.currentMapCenterLat,
-                  lng: this.state.currentMapCenterLong
-                }}
-                onClick={this.mapClicked}
-              >
-
-                {locations}
-
-              </Map> */}
-
-              <GoogleMap
-                locations={this.state.locations}
-                handlePendingLatLongChange={this.handlePendingLatLongChange}
-                handleMapMarkerClick={this.handleMapMarkerClick}
-                currentMapCenter={{ lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong }}
-              />
-
-            </div>
-
-          </Col>
-
-          <Col xs={5}>
-
-            {/* <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
-              <ToggleButton value={1}>LATEST</ToggleButton>
-              <ToggleButton value={2}>MOST UPVOTED</ToggleButton>
-            </ToggleButtonGroup> */}
-
-            <br /><br />
-
-
-            {!this.state.selectedLocation && <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>}
-            {this.state.selectedLocation && <LocationDetails selectedLocation={this.state.selectedLocation} />}
-
-          </Col>
-        </Row>
 
         <br /> <br />
 
@@ -633,7 +580,7 @@ export class MapContainer extends Component {
 
           </Form>
         */}
-
+  <h2><LocationOn style={{ fontSize: 80 }} />ADD LOCATION</h2>
           <LocationSubmitter
             db={db}
             storageRef={storageRef}

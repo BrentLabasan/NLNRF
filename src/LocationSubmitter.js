@@ -44,10 +44,10 @@ export default function LocationSubmitter(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
+    debugger;
     // Add a new document with a generated id.
     props.db.collection("locations").add({
-      nameDescr: locationNameDescription,
+      nameDescr: props.pendingLocationNameDescription,
       geopoint: new firebase.firestore.GeoPoint(props.pendingLatitude, props.pendingLongitude),
       dateTime: moment().format(),
       mediaUrl: null
