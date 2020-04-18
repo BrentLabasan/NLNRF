@@ -22,8 +22,8 @@ export default function LatestSubmissions(props) {
 
     function compare(a, b) {
         // debugger;
-        console.log('HMMM', moment(a.dateTime).format(), moment(b.dateTime).format());
-        console.log('return value', a.dateTime > b.dateTime ? 1 : -1);
+        // console.log('HMMM', moment(a.dateTime).format(), moment(b.dateTime).format());
+        // console.log('return value', a.dateTime > b.dateTime ? 1 : -1);
         return a.dateTime < b.dateTime ? 1 : -1;
     }
 

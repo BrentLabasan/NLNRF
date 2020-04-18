@@ -95,12 +95,14 @@ export class GoogleMap extends Component {
 
           <Marker
             name={'Your position'}
-            position={{ lat: 37.762391, lng: -122.439192 }}
+            position={{ lat: 47.63567070919163, lng: -122.33610194881635 }}
             icon={{
-              url: {pulsing},
+              // url: '/media/pulsing2.gif',
+              url: 'https://i.pinimg.com/originals/98/b2/7d/98b27d2338f2d1648740c4a5d5cd9254.gif',
               anchor: new this.props.google.maps.Point(32, 32),
-              scaledSize: new this.props.google.maps.Size(64, 64)
-            }} />
+              scaledSize: new this.props.google.maps.Size(128, 128)
+            }}
+          />
 
           <Polygon
             paths={constants.TEST_COORDS}
