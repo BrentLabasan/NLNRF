@@ -10,7 +10,7 @@ import useInput from './hookUseInput';
 export default function LocationSubmitter(props) {
   const { value: locationNameDescription, bind: bindLocationNameDescription, reset: resetlocationNameDescription } = useInput('');
 
-  
+
   const [location, setLocation] = useState({
     latitude: 'a',
     longitude: 'b'
@@ -25,11 +25,11 @@ export default function LocationSubmitter(props) {
 
   function NameForm(props) {
     const { value, bind, reset } = useInput('');
-    
+
     const handleSubmit = (evt) => {
-        evt.preventDefault();
-        alert(`Submitting Name ${value}`);
-        reset();
+      evt.preventDefault();
+      alert(`Submitting Name ${value}`);
+      reset();
     }
     return (
       <form onSubmit={handleSubmit}>
@@ -44,7 +44,7 @@ export default function LocationSubmitter(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-  
+
     // Add a new document with a generated id.
     props.db.collection("locations").add({
       nameDescr: locationNameDescription,
@@ -54,28 +54,32 @@ export default function LocationSubmitter(props) {
     })
       .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
-  
-        this.setState({
-          pendingLocationNameDescription: '',
-          pendingLatitude: '',
-          pendingLongitude: ''
-        });
-  
+
+        // this.setState({
+        //   pendingLocationNameDescription: '',
+        //   pendingLatitude: '',
+        //   pendingLongitude: ''
+        // });
+
+        props.handlePendingLatLongChange('', '');
+        props.handlePendingLocationNameDescription('');
+
+
         if (document.getElementById('fileSelector').files[0]) {
           let file = document.getElementById('fileSelector').files[0];
-  
+
           const guid = uuidv4();
           var pendingMediaRef = props.storageRef.child('locations/' + guid);
-  
+
           pendingMediaRef.put(file).then((snapshot) => {
             console.log(`Media uploaded successfully :) GUID: ${guid}`);
             console.log(snapshot);
-  
+
             document.getElementById('fileSelector').value = null;
-  
+
             props.storageRef.child('locations/' + guid).getDownloadURL().then((url) => {
               // `url` is the download URL for 'images/stars.jpg'
-  
+
               /*
               // This can be downloaded directly:
               var xhr = new XMLHttpRequest();
@@ -86,15 +90,15 @@ export default function LocationSubmitter(props) {
               xhr.open('GET', url);
               xhr.send();
               */
-  
+
               // Or inserted into an <img> element:
               // var img = document.getElementById('myimg');
               // img.src = url;
-  
-  
-  
+
+
+
               var tempRef = props.db.collection("locations").doc(docRef.id);
-  
+
               // Set the "capital" field of the city 'DC'
               return tempRef.update({
                 id: docRef.id,
@@ -107,22 +111,22 @@ export default function LocationSubmitter(props) {
                   // The document probably doesn't exist.
                   console.error("Error updating document: ", error);
                 });
-  
-  
+
+
             }).catch((error) => {
               // Handle any errors
             });
-  
-  
+
+
           });
         }
-  
-  
+
+
       })
       .catch(function (error) {
         console.error("Error adding document: ", error);
       });
-  
+
   }
 
   return (
@@ -174,7 +178,7 @@ export default function LocationSubmitter(props) {
           <Col xs={2}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>LOCATION NAME / DESCRIPTION</Form.Label>
-              <Form.Control type="text" name="pendingLocationNameDescription" {...locationNameDescription} placeholder="location name / description" />
+              <Form.Control type="text" name="pendingLocationNameDescription" {...locationNameDescription} value={props.pendingLocationNameDescription} placeholder="location name / description" />
               <Form.Text className="text-muted">
                 example: Space Needle, Pike Place Market, Fremont Troll
 </Form.Text>

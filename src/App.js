@@ -70,6 +70,13 @@ export class MapContainer extends Component {
     });
   }
 
+  handlePendingLocationNameDescription = (locationNameDescription) => {
+    debugger;
+    this.setState({
+      pendingLocationNameDescription: locationNameDescription
+    });
+  }
+
   handleMobiCurrSectionChange = (event, value) => {
     this.setState({ mobiCurrentSection: value })
   }
@@ -519,7 +526,7 @@ export class MapContainer extends Component {
 
 
           {/* <Form onSubmit={this.handleSubmit} inline={false}> */}
-          
+
           {/*
           <Form inline={false}>
             <Container fluid={true}>
@@ -609,7 +616,16 @@ export class MapContainer extends Component {
           </Form>
         */}
 
-        <LocationSubmitter db={db} storageRef={storageRef} pendingLatitude={this.state.pendingLatitude} pendingLongitude={this.state.pendingLongitude} />
+          <LocationSubmitter
+            db={db}
+            storageRef={storageRef}
+            pendingLatitude={this.state.pendingLatitude}
+            pendingLongitude={this.state.pendingLongitude}
+            pendingLocationNameDescription={this.state.pendingLocationNameDescription}
+            
+            handlePendingLatLongChange={this.handlePendingLatLongChange}
+            handlePendingLocationNameDescription={this.handlePendingLocationNameDescription}
+          />
 
         </section>
 
