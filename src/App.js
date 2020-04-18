@@ -14,6 +14,7 @@ import LocationDetails from './LocationDetails';
 import LatestSubmissions from './LatestSubmissions';
 import PopularSubmissions from './PopularSubmissions';
 import Masonry from './Masonry';
+import SimpleReactLightbox from 'simple-react-lightbox';
 
 import GoogleMap from './GoogleMap';
 
@@ -328,6 +329,7 @@ export class App extends Component {
 
     return (
       <div className="App">
+        <SimpleReactLightbox>
         <header>
           <h1 id="heroLogo">
             NLNRF<span style={{ fontSize: '18px', marginLeft: '-15px' }} >.com</span>
@@ -793,7 +795,7 @@ export class App extends Component {
           <BottomNavigationAction label="Account" value="account" icon={<AccountCircle />} />
         </BottomNavigation>
 
-
+        </SimpleReactLightbox>
       </div >
 
 

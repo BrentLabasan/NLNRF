@@ -1,58 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import { FormControl, InputLabel, Input, OutlinedInput } from '@material-ui/core';
 import moment from 'moment';
+import { SRLWrapper } from "simple-react-lightbox";
 
 
 export default function LocationDetails(props) {
 
 
-function elLocationMedia() {
-    if (props.selectedLocation?.mediaUrl ) {
-        return <img src={props.selectedLocation.mediaUrl} style={{ maxWidth: '300px' }} />;
-     } else {
-        return <span style={{display: 'inline-flex', border: '2px solid #f5f5f5', textAlign: 'center', padding: '20px', borderRadius: '5px', color: '#9a9a9a', fontWeight: 'bold', width: '200px', height: '200px', alignItems: 'center', justifyContent: 'center'}}>
-            NO MEDIA SUBMITTED
+    function elLocationMedia() {
+        if (props.selectedLocation?.mediaUrl) {
+            return (
+                <SRLWrapper>
+                    <img src={props.selectedLocation.mediaUrl} style={{ maxWidth: '300px' }} />
+                </SRLWrapper>
+
+            );
+        } else {
+            return <span style={{ display: 'inline-flex', border: '2px solid #f5f5f5', textAlign: 'center', padding: '20px', borderRadius: '5px', color: '#9a9a9a', fontWeight: 'bold', width: '200px', height: '200px', alignItems: 'center', justifyContent: 'center' }}>
+                NO MEDIA SUBMITTED
             </span>
-     }
-}
+        }
+    }
 
 
     return (
         <div>
             <h3>LOCATION DETAILS</h3>
-            <br/><br/>
+            <br /><br />
             <div>
                 {/* {props.selectedLocation?.mediaUrl && <img src={props.selectedLocation.mediaUrl} style={{ maxWidth: '300px' }} />} */}
                 {elLocationMedia()}
             </div>
 
-            <br/>
-            <br/>
+            <br />
+            <br />
 
-            {props.selectedLocation?.dateTime &&                 <FormControl>
-                    <InputLabel htmlFor="component-outlined">Name / Description</InputLabel>
-                    <Input id="component-outlined" value={props.selectedLocation?.nameDescr} label="Name" />
-                </FormControl>}
+            {props.selectedLocation?.dateTime && <FormControl>
+                <InputLabel htmlFor="component-outlined">Name / Description</InputLabel>
+                <Input id="component-outlined" value={props.selectedLocation?.nameDescr} label="Name" />
+            </FormControl>}
             {/* <h4>DATETIME</h4> */}
-<br/>
-<br/>
-                {/* { moment(new Date()).format() } */}
-                {/* { props.selectedLocation?.dateTime && moment( props.selectedLocation?.dateTime ).format() } */}
+            <br />
+            <br />
+            {/* { moment(new Date()).format() } */}
+            {/* { props.selectedLocation?.dateTime && moment( props.selectedLocation?.dateTime ).format() } */}
 
-                {/* {props.selectedLocation?.dateTime && moment(props.selectedLocation?.dateTime).fromNow()} */}
-                {props.selectedLocation?.dateTime &&                 <FormControl>
-                    <InputLabel htmlFor="component-outlined">Date & Time</InputLabel>
-                    <Input id="component-outlined" value={moment(props.selectedLocation?.dateTime).fromNow()} label="Name" />
-                </FormControl>}
-                <br/>
-                <br/>
-{/* 
+            {/* {props.selectedLocation?.dateTime && moment(props.selectedLocation?.dateTime).fromNow()} */}
+            {props.selectedLocation?.dateTime && <FormControl>
+                <InputLabel htmlFor="component-outlined">Date & Time</InputLabel>
+                <Input id="component-outlined" value={moment(props.selectedLocation?.dateTime).fromNow()} label="Name" />
+            </FormControl>}
+            <br />
+            <br />
+            {/* 
             <h4>VISUAL TYPE</h4> */}
 
-                <FormControl>
-                    <InputLabel htmlFor="component-outlined">Visual Type</InputLabel>
-                    <Input id="component-outlined" value={'VALUE'} label="VisualType" />
-                </FormControl>
+            <FormControl>
+                <InputLabel htmlFor="component-outlined">Visual Type</InputLabel>
+                <Input id="component-outlined" value={'VALUE'} label="VisualType" />
+            </FormControl>
 
 
 
