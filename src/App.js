@@ -63,7 +63,6 @@ export class MapContainer extends Component {
   };
 
   handlePendingLatLongChange = (lat, long) => {
-    debugger;
 
     this.setState({
       pendingLatitude: lat,
