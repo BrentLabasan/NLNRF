@@ -264,9 +264,31 @@ export class MapContainer extends Component {
   }
 
   multiGenerator = () => {
-    if (!this.state.selectedLocation) {
-      return <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>;
+    switch (this.state.multiActive) {
+      case 'latest':
+        return <LatestSubmissions locations={this.state.locations} />
+        break;
+      case 'popular':
+        return <PopularSubmissions locations={this.state.locations} />
+        break;
+      case 'gallery':
+        return <Masonry locations={this.state.locations} />
+        break;
+      case 'location':
+        if (this.state.selectedLocation) {
+          return <LocationDetails selectedLocation={this.state.selectedLocation} />
+        } else {
+          return <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>;
+        }
+        return
+        break;
+      // default:
+      // code block
     }
+
+    // if (!this.state.selectedLocation) {
+    //   return <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>;
+    // }
   }
 
 
@@ -274,7 +296,7 @@ export class MapContainer extends Component {
   render() {
     console.log("App.js render()");
 
-    
+
 
     return (
       <div className="App">
@@ -504,15 +526,15 @@ export class MapContainer extends Component {
               </ButtonGroup>
             </div>
 
-            <br/><br/>
+            <br /><br />
 
             {/* {!this.state.selectedLocation && <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>} */}
             {this.multiGenerator()}
 
-            {this.state.selectedLocation && this.state.multiActive === 'location' && <LocationDetails selectedLocation={this.state.selectedLocation} />}
+            {/* {this.state.selectedLocation && this.state.multiActive === 'location' && <LocationDetails selectedLocation={this.state.selectedLocation} />}
             {this.state.multiActive === 'latest' && <LatestSubmissions locations={this.state.locations} />}
             {this.state.multiActive === 'popular' && <PopularSubmissions locations={this.state.locations} />}
-            {this.state.multiActive === 'gallery' && <Masonry locations={this.state.locations} />}
+            {this.state.multiActive === 'gallery' && <Masonry locations={this.state.locations} />} */}
 
           </Grid>
 
