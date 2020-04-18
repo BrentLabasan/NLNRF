@@ -20,7 +20,7 @@ export class GoogleMap extends Component {
     //   activeMarker: marker,
     //   showingInfoWindow: true
     // });
-debugger;
+// debugger;
     this.props.handleMapMarkerClick(props, marker, e);
   }
 
@@ -40,7 +40,7 @@ debugger;
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return !_.isEqual(this.props.locations, nextProps.locations);
+    return !_.isEqual(this.props.locations, nextProps.locations) || this.props.currentMapCenter.lat === nextProps.currentMapCenter.lat;
     // return nextProps.isFavourite != this.props.isFavourite;
   }
 
@@ -66,7 +66,7 @@ debugger;
         />
       );
     });
-
+    debugger;
     return (
       <div>
 
@@ -84,8 +84,8 @@ debugger;
             lng: constants.DEFAULT_MAP_CENTER.LONG
           }}
           center={{
-            lat: this.state.currentMapCenterLat,
-            lng: this.state.currentMapCenterLong
+            lat: this.props.currentMapCenter.lat,
+            lng: this.props.currentMapCenter.long
           }}
           onClick={this.mapClicked}
         >

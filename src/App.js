@@ -285,7 +285,7 @@ export class MapContainer extends Component {
           </ButtonGroup>
 
           {this.state.areaMenuActive === 'landmarks' && <Col>
-            <Navbar expand="lg" bg="dark" variant="dark">
+            <Navbar expand="lg" bg="" variant="">
 
               {/* <Navbar.Brand>LANDMARKS</Navbar.Brand> */}
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -359,7 +359,7 @@ export class MapContainer extends Component {
 
 
           {this.state.areaMenuActive === 'neighborhoods' && <Col>
-            <Navbar expand="lg" bg="dark" variant="dark">
+            <Navbar expand="lg" bg="" variant="">
 
 
               {/* <Navbar.Brand>NEIGHBORHOODS</Navbar.Brand> */}
@@ -473,7 +473,12 @@ export class MapContainer extends Component {
 
               </Map> */}
 
-              <GoogleMap locations={this.state.locations} handlePendingLatLongChange={this.handlePendingLatLongChange} handleMapMarkerClick={this.handleMapMarkerClick} />
+              <GoogleMap
+                locations={this.state.locations}
+                handlePendingLatLongChange={this.handlePendingLatLongChange}
+                handleMapMarkerClick={this.handleMapMarkerClick}
+                currentMapCenter={{lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong}}
+              />
 
             </div>
 
@@ -494,14 +499,14 @@ export class MapContainer extends Component {
           </Col>
         </Row>
 
-      <br /> <br />
+        <br /> <br />
 
-      <section className="add-item">
+        <section className="add-item">
 
 
-        {/* <Form onSubmit={this.handleSubmit} inline={false}> */}
+          {/* <Form onSubmit={this.handleSubmit} inline={false}> */}
 
-        {/*
+          {/*
           <Form inline={false}>
             <Container fluid={true}>
 
@@ -590,131 +595,131 @@ export class MapContainer extends Component {
           </Form>
         */}
 
-        <LocationSubmitter
-          db={db}
-          storageRef={storageRef}
-          pendingLatitude={this.state.pendingLatitude}
-          pendingLongitude={this.state.pendingLongitude}
-          pendingLocationNameDescription={this.state.pendingLocationNameDescription}
+          <LocationSubmitter
+            db={db}
+            storageRef={storageRef}
+            pendingLatitude={this.state.pendingLatitude}
+            pendingLongitude={this.state.pendingLongitude}
+            pendingLocationNameDescription={this.state.pendingLocationNameDescription}
 
-          handlePendingLatLongChange={this.handlePendingLatLongChange}
-          handlePendingLocationNameDescription={this.handlePendingLocationNameDescription}
-        />
+            handlePendingLatLongChange={this.handlePendingLatLongChange}
+            handlePendingLocationNameDescription={this.handlePendingLocationNameDescription}
+          />
 
-      </section>
+        </section>
 
-      <br /> <br />
+        <br /> <br />
 
-        {/* <p>🗺️ CENTER MAP TO YOUR LOCATION</p> */ }
+        {/* <p>🗺️ CENTER MAP TO YOUR LOCATION</p> */}
 
-    <button onClick={this.getLocation}>🗺️ CENTER MAP TO YOUR LOCATION</button>
+        <button onClick={this.getLocation}>🗺️ CENTER MAP TO YOUR LOCATION</button>
 
-      <p id="demo"></p>
+        <p id="demo"></p>
 
-      <br /> <br />
+        <br /> <br />
 
-      <hr className="style3" style={{ width: hrWidth }} ></hr>
+        <hr className="style3" style={{ width: hrWidth }} ></hr>
 
-      <br /> <br />
+        <br /> <br />
 
-      <footer>
-        <Row>
-          <Col xs={4}>
-            <h3>What is NLNRF?</h3>
-            <p>NLNRF is an acronym for "Not left. Not right. Forward." It's a great slogan for uniting people to tackle the problems Andrew Yang is focused on solving world problems such as mass job displace due to automation, the ever-widening income inequality gap, and climate change.</p>
-          </Col>
-          <Col xs={4}>
-            <h3>How can I help spread the NLNRF message?</h3>
-            <p>
-              <ol>
-                <li>Chalk, sticker, sharpie, graffiti the slogan "Not left. Not right. Forward." on surfaces where as much people will see! Use the map above to figure out where high trafficed or underrepresented locations are.</li>
-                <li>And then post your work to this site!</li>
-                <li>Reach out to new people and encourage them to spread the NLNRF message!</li>
-                <li>If you're a programmer/developer, check out the To-Do List below, communicate an choose a task to work on, pair program with Brent if necessary, and then submit a pull request. <a href="https://github.com/BrentLabasan/NLNRF" target="_blank">GitHub</a></li>
-              </ol>
-            </p>
-          </Col>
-          <Col xs={4}>
-            <h3>Tell me more about Andrew Yang.</h3>
-            <p>Andrew Yang is a former Democratic presidential candidate (2020) and CNN political commentator,  focused on solving world problems such as mass job displace due to automation, the ever-widening income inequality gap, and climate change.</p>
-          </Col>
-        </Row>
+        <footer>
+          <Row>
+            <Col xs={4}>
+              <h3>What is NLNRF?</h3>
+              <p>NLNRF is an acronym for "Not left. Not right. Forward." It's a great slogan for uniting people to tackle the problems Andrew Yang is focused on solving world problems such as mass job displace due to automation, the ever-widening income inequality gap, and climate change.</p>
+            </Col>
+            <Col xs={4}>
+              <h3>How can I help spread the NLNRF message?</h3>
+              <p>
+                <ol>
+                  <li>Chalk, sticker, sharpie, graffiti the slogan "Not left. Not right. Forward." on surfaces where as much people will see! Use the map above to figure out where high trafficed or underrepresented locations are.</li>
+                  <li>And then post your work to this site!</li>
+                  <li>Reach out to new people and encourage them to spread the NLNRF message!</li>
+                  <li>If you're a programmer/developer, check out the To-Do List below, communicate an choose a task to work on, pair program with Brent if necessary, and then submit a pull request. <a href="https://github.com/BrentLabasan/NLNRF" target="_blank">GitHub</a></li>
+                </ol>
+              </p>
+            </Col>
+            <Col xs={4}>
+              <h3>Tell me more about Andrew Yang.</h3>
+              <p>Andrew Yang is a former Democratic presidential candidate (2020) and CNN political commentator,  focused on solving world problems such as mass job displace due to automation, the ever-widening income inequality gap, and climate change.</p>
+            </Col>
+          </Row>
 
-        <Row>
-          <Col>
-            <h4>To-Do List</h4>
-          </Col>
-        </Row>
+          <Row>
+            <Col>
+              <h4>To-Do List</h4>
+            </Col>
+          </Row>
 
-        <Row>
-          <Col xs={3}>
-            <h5>Functional</h5>
-            <ul>
-              <li>create mobile-friendly layout <Badge variant="light">NOT STARTED</Badge> <Badge variant="danger">HIGHEST PRIORITY</Badge> </li>
-              <li>submit imgur, YouTube, Instagram media</li>
-              {/* <li></li> */}
-            </ul>
-          </Col>
+          <Row>
+            <Col xs={3}>
+              <h5>Functional</h5>
+              <ul>
+                <li>create mobile-friendly layout <Badge variant="light">NOT STARTED</Badge> <Badge variant="danger">HIGHEST PRIORITY</Badge> </li>
+                <li>submit imgur, YouTube, Instagram media</li>
+                {/* <li></li> */}
+              </ul>
+            </Col>
 
-          <Col xs={3}>
-            <h5>Social</h5>
-            <ul>
-              <li>implement user account system <Badge variant="light">NOT STARTED</Badge></li>
-              <li>users can favorite their favorite NLNRF locations <Badge variant="light">NOT STARTED</Badge></li>
-              <li>users can upvote an NLNRF location <Badge variant="light">NOT STARTED</Badge></li>
-            </ul>
-          </Col>
+            <Col xs={3}>
+              <h5>Social</h5>
+              <ul>
+                <li>implement user account system <Badge variant="light">NOT STARTED</Badge></li>
+                <li>users can favorite their favorite NLNRF locations <Badge variant="light">NOT STARTED</Badge></li>
+                <li>users can upvote an NLNRF location <Badge variant="light">NOT STARTED</Badge></li>
+              </ul>
+            </Col>
 
-          <Col xs={3}>
-            <h5>Cosmetic</h5>
-            <ul>
-              <li>Is the blue color scheme good? <Badge variant="light">NOT STARTED</Badge></li>
-              {/* <li></li>
+            <Col xs={3}>
+              <h5>Cosmetic</h5>
+              <ul>
+                <li>Is the blue color scheme good? <Badge variant="light">NOT STARTED</Badge></li>
+                {/* <li></li>
                 <li></li> */}
-            </ul>
-          </Col>
+              </ul>
+            </Col>
 
-          <Col xs={3}>
-            <h5>Underneath The Hood</h5>
-            <ul>
-              <li>The app is one big component. Separate the components into separate, especially because even simple actions like clicking on the map or typing one letter for the location description causes map and NLNRF locations to re-render. <Badge variant="light">NOT STARTED</Badge></li>
-              {/* <li></li>
+            <Col xs={3}>
+              <h5>Underneath The Hood</h5>
+              <ul>
+                <li>The app is one big component. Separate the components into separate, especially because even simple actions like clicking on the map or typing one letter for the location description causes map and NLNRF locations to re-render. <Badge variant="light">NOT STARTED</Badge></li>
+                {/* <li></li>
                 <li></li> */}
-            </ul>
-          </Col>
+              </ul>
+            </Col>
 
-        </Row>
+          </Row>
 
-        <section id="byline">
-          <h6>
-            NLNRF was designed and developed by <a href="BrentVLabasan.com" target="_blank">Brent Labasan X&gt;</a>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <section id="byline">
+            <h6>
+              NLNRF was designed and developed by <a href="BrentVLabasan.com" target="_blank">Brent Labasan X&gt;</a>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               If you would like to help Brent work on NLNRF.com, contact him at BrentLabasan@gmail.com or @BrentLabasan <a href="https://github.com/BrentLabasan/NLNRF" target="_blank">GitHub</a>
-          </h6>
-        </section>
+            </h6>
+          </section>
 
-        <br /><br />
+          <br /><br />
 
-        <section id="logos">
-          <img src={CrossUnite} className="" alt="" style={{ maxHeight: '50px' }} />
+          <section id="logos">
+            <img src={CrossUnite} className="" alt="" style={{ maxHeight: '50px' }} />
 
-          <a href="https://FabricatorMusic.com" className="FabricatorMusic" target="_blank">
-            <span className="FabricatorMusic">Fabricator Music</span>
-          </a>
+            <a href="https://FabricatorMusic.com" className="FabricatorMusic" target="_blank">
+              <span className="FabricatorMusic">Fabricator Music</span>
+            </a>
 
-          <img src={PoopAndNeedles} className="" alt="" style={{ maxHeight: '50px' }} />
+            <img src={PoopAndNeedles} className="" alt="" style={{ maxHeight: '50px' }} />
 
 
-        </section>
+          </section>
 
-      </footer>
+        </footer>
 
-      <BottomNavigation value={this.state.mobiCurrentSection} onChange={this.handleMobiCurrSectionChange} className={null}>
-        <BottomNavigationAction label="Add Location" value="add" icon={<AddLocation />} />
-        <BottomNavigationAction label="Latest" value="latest" icon={<Photo />} />
-        <BottomNavigationAction label="Favorites" value="favorites" icon={<Favorite />} />
-        <BottomNavigationAction label="Account" value="account" icon={<AccountCircle />} />
-      </BottomNavigation>
+        <BottomNavigation value={this.state.mobiCurrentSection} onChange={this.handleMobiCurrSectionChange} className={null}>
+          <BottomNavigationAction label="Add Location" value="add" icon={<AddLocation />} />
+          <BottomNavigationAction label="Latest" value="latest" icon={<Photo />} />
+          <BottomNavigationAction label="Favorites" value="favorites" icon={<Favorite />} />
+          <BottomNavigationAction label="Account" value="account" icon={<AccountCircle />} />
+        </BottomNavigation>
 
 
       </div >
