@@ -91,7 +91,7 @@ export class MapContainer extends Component {
   }
 
   handleMapMarkerClick = (props, marker, e) => {
-
+    debugger;
     console.log(props);
     console.log(marker);
     console.log(e);
@@ -489,7 +489,7 @@ export class MapContainer extends Component {
             <br /><br />
 
             <h3>LOCATION DETAILS</h3>
-            <LocationDetails selectedLocation={this.state.selectedLocation} />
+            {this.state.selectedLocation && <LocationDetails selectedLocation={this.state.selectedLocation} />}
 
           </Col>
         </Row>

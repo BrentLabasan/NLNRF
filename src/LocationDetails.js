@@ -4,7 +4,7 @@ import moment from 'moment';
 
 
 export default function LocationDetails(props) {
-
+debugger;
 
     return (
         <div>
@@ -12,13 +12,16 @@ export default function LocationDetails(props) {
                 {props.selectedLocation?.mediaUrl && <img src={props.selectedLocation.mediaUrl} style={{ maxWidth: '300px' }} />}
             </div>
 
-            <h4>LOCATION</h4>
-            <p>
-                {props.selectedLocation?.nameDescr}
-            </p>
+            <br/>
+            <br/>
 
+            {props.selectedLocation?.dateTime &&                 <FormControl>
+                    <InputLabel htmlFor="component-outlined">Name / Description</InputLabel>
+                    <Input id="component-outlined" value={props.selectedLocation?.nameDescr} label="Name" />
+                </FormControl>}
             {/* <h4>DATETIME</h4> */}
-            <p>
+<br/>
+<br/>
                 {/* { moment(new Date()).format() } */}
                 {/* { props.selectedLocation?.dateTime && moment( props.selectedLocation?.dateTime ).format() } */}
 
@@ -27,15 +30,16 @@ export default function LocationDetails(props) {
                     <InputLabel htmlFor="component-outlined">Date & Time</InputLabel>
                     <Input id="component-outlined" value={moment(props.selectedLocation?.dateTime).fromNow()} label="Name" />
                 </FormControl>}
-            </p>
+                <br/>
+                <br/>
 {/* 
             <h4>VISUAL TYPE</h4> */}
-            <p>
+
                 <FormControl>
                     <InputLabel htmlFor="component-outlined">Visual Type</InputLabel>
                     <Input id="component-outlined" value={'VALUE'} label="VisualType" />
                 </FormControl>
-            </p>
+
 
 
             {/* <h4>CHANCE THAT VISUALIZATION IS STILL RUNNING</h4>
