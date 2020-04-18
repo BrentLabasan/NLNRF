@@ -14,12 +14,15 @@ export class GoogleMap extends Component {
     currentMapCenterLong: -122.31657144387441,
   };
 
-  onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
+  onMarkerClick = (props, marker, e) => {
+    // this.setState({
+    //   selectedPlace: props,
+    //   activeMarker: marker,
+    //   showingInfoWindow: true
+    // });
+    debugger;
+    this.props.handleMapMarkerClick(props, marker, e);
+  }
 
   mapClicked = (mapProps, map, clickEvent) => {
     // console.log(mapProps);
@@ -39,7 +42,7 @@ export class GoogleMap extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return !_.isEqual(this.props.locations, nextProps.locations);
     // return nextProps.isFavourite != this.props.isFavourite;
-}
+  }
 
   render() {
     console.log('GoogleMap.js render()');
