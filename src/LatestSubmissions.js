@@ -5,9 +5,19 @@ export default function LatestSubmissions(props) {
     // Declare a new state variable, which we'll call "count"
     const [count, setCount] = useState(0);
 
+    const listStyle = {
+listStyleType: 'none',
+color: 'white',
+fontWeight: 'bold'
+    };
+
     const style = {
         padding: '10px',
-        border: '1px solid grey'
+        border: '1px solid grey',
+        backgroundColor: 'grey',
+        borderRadius: '10px',
+        margin: '0 0 20px 0',
+        cursor: 'pointer'
     };
 
     function compare(a, b) {
@@ -19,7 +29,7 @@ export default function LatestSubmissions(props) {
 
     // debugger;
     // console.table(props.locations.slice(0, 10).sort(compare));
-    let sorted = props.locations.slice(0, 10).sort(compare);
+    let sorted = props.locations.slice(0, 7).sort(compare);
     const latestSubmissions = sorted.map((loc) => {
         // debugger;
         return <li style={style}>
@@ -38,7 +48,7 @@ export default function LatestSubmissions(props) {
         Click me
       </button> */}
 
-            <ul>
+            <ul style={listStyle}>
                 {latestSubmissions}
             </ul>
 
