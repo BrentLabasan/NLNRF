@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker, Polygon } from 'google-maps-react';
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Col, Dropdown, DropdownButton, ToggleButtonGroup, ToggleButton, Badge } from 'react-bootstrap';
-import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
+import { Navbar, Nav, NavDropdown, Form, FormControl, Container, Row, Col, Dropdown, DropdownButton, ToggleButtonGroup, ToggleButton, Badge } from 'react-bootstrap';
+import { BottomNavigation, BottomNavigationAction, ButtonGroup, Button } from '@material-ui/core';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 import moment from 'moment';
@@ -60,8 +60,16 @@ export class MapContainer extends Component {
 
     featuredLocationId: null,
 
-    mobiCurrentSection: 'add'
+    mobiCurrentSection: 'add',
+
+    areaMenuActive: 'landmarks'
   };
+
+  handleAreaMenuChange = (selection) => {
+    this.setState({
+      areaMenuActive: selection
+    });
+  }
 
   handlePendingLatLongChange = (lat, long) => {
 
@@ -267,7 +275,12 @@ export class MapContainer extends Component {
             </Form>
           </Col> */}
 
-          <Col xs={6} xl={12}>
+<ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+  <Button onClick={()=> {this.handleAreaMenuChange('landmarks')}} >LANDMARKS</Button>
+  <Button onClick={()=> {this.handleAreaMenuChange('neighborhoods')}} >NEIGHBORHOODS</Button>
+</ButtonGroup>
+
+          {this.state.areaMenuActive === 'landmarks' && <Col xs={6} xl={12}>
             <Navbar expand="lg" bg="dark" variant="dark">
 
               <Navbar.Brand>LANDMARKS</Navbar.Brand>
@@ -337,11 +350,11 @@ export class MapContainer extends Component {
               <Navbar.Collapse id="basic-navbar-nav"></Navbar.Collapse>
 
             </Navbar>
-          </Col>
+          </Col> }
 
 
 
-          <Col xs={6} xl={12}>
+          {this.state.areaMenuActive === 'neighborhoods' && <Col xs={6} xl={12}>
             <Navbar expand="lg" bg="dark" variant="dark">
 
 
@@ -424,7 +437,7 @@ export class MapContainer extends Component {
 
             </Navbar>
           </Col>
-
+}
 
         </Row>
 
