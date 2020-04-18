@@ -275,9 +275,9 @@ export class MapContainer extends Component {
             </Form>
           </Col> */}
 
-<ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-  <Button onClick={()=> {this.handleAreaMenuChange('landmarks')}} >LANDMARKS</Button>
-  <Button onClick={()=> {this.handleAreaMenuChange('neighborhoods')}} >NEIGHBORHOODS</Button>
+<ButtonGroup variant="contained" aria-label="contained primary button group" disableElevation>
+  <Button onClick={()=> {this.handleAreaMenuChange('landmarks')}} color={this.state.areaMenuActive === 'landmarks' ? 'primary' : 'default'} disableElevation>LANDMARKS</Button>
+  <Button onClick={()=> {this.handleAreaMenuChange('neighborhoods')}} color={this.state.areaMenuActive === 'neighborhoods' ? 'primary' : 'default'} disableElevation>NEIGHBORHOODS</Button>
 </ButtonGroup>
 
           {this.state.areaMenuActive === 'landmarks' && <Col xs={6} xl={12}>
