@@ -11,6 +11,9 @@ import { LocationOn, AddLocation, Favorite, AccountCircle, Photo } from '@materi
 import * as constants from './constants';
 import LocationSubmitter from './LocationSubmitter';
 import LocationDetails from './LocationDetails';
+import LatestSubmissions from './LatestSubmissions';
+import PopularSubmissions from './PopularSubmissions';
+import Masonry from './Masonry';
 
 import GoogleMap from './GoogleMap';
 
@@ -63,12 +66,20 @@ export class MapContainer extends Component {
 
     mobiCurrentSection: 'add',
 
-    areaMenuActive: 'landmarks'
+    areaMenuActive: 'landmarks',
+
+    multiActive: 'location'
   };
 
   handleAreaMenuChange = (selection) => {
     this.setState({
       areaMenuActive: selection
+    });
+  }
+
+  handleMultiChange = (selection) => {
+    this.setState({
+      multiActive: selection
     });
   }
 
@@ -478,17 +489,21 @@ export class MapContainer extends Component {
 
             <div style={{ textAlign: 'center' }}>
               <ButtonGroup variant="contained" aria-label="contained primary button group" disableElevation>
-                <Button onClick={() => { this.handleAreaMenuChange('landmarks') }} color={this.state.areaMenuActive === 'landmarks' ? 'primary' : 'default'} disableElevation><LocationOn style={{ fontSize: null }} /></Button>
-                <Button onClick={() => { this.handleAreaMenuChange('neighborhoods') }} color={this.state.areaMenuActive === 'neighborhoods' ? 'primary' : 'default'} disableElevation>LATEST</Button>
-                <Button onClick={() => { this.handleAreaMenuChange('neighborhoods') }} color={this.state.areaMenuActive === 'neighborhoods' ? 'primary' : 'default'} disableElevation>POPULAR</Button>
-                <Button onClick={() => { this.handleAreaMenuChange('neighborhoods') }} color={this.state.areaMenuActive === 'neighborhoods' ? 'primary' : 'default'} disableElevation>GALLERY</Button>
+                <Button onClick={() => { this.handleMultiChange('location') }} color={this.state.multiActive === 'location' ? 'primary' : 'default'} disableElevation><LocationOn style={{ fontSize: null }} /></Button>
+                <Button onClick={() => { this.handleMultiChange('latest') }} color={this.state.multiActive === 'latest' ? 'primary' : 'default'} disableElevation>LATEST</Button>
+                <Button onClick={() => { this.handleMultiChange('popular') }} color={this.state.multiActive === 'popular' ? 'primary' : 'default'} disableElevation>POPULAR</Button>
+                <Button onClick={() => { this.handleMultiChange('gallery') }} color={this.state.multiActive === 'gallery' ? 'primary' : 'default'} disableElevation>GALLERY</Button>
               </ButtonGroup>
             </div>
-            
+
             <br/><br/>
 
             {!this.state.selectedLocation && <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>}
-            {this.state.selectedLocation && <LocationDetails selectedLocation={this.state.selectedLocation} />}
+            
+            {this.state.selectedLocation && this.state.multiActive === 'location' && <LocationDetails selectedLocation={this.state.selectedLocation} />}
+            {this.state.multiActive === 'latest' && <LatestSubmissions selectedLocation={this.state.selectedLocation} />}
+            {this.state.multiActive === 'popular' && <PopularSubmissions selectedLocation={this.state.selectedLocation} />}
+            {this.state.multiActive === 'gallery' && <Masonry selectedLocation={this.state.selectedLocation} />}
 
           </Grid>
 
