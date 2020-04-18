@@ -198,9 +198,12 @@ export default function LocationSubmitter(props) {
       </Col>
           <Col xs={1}>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>PIC / VIDEO</Form.Label>
+              <Form.Label>IMAGE</Form.Label>
 
               <input type="file" id="fileSelector"></input>
+              <Form.Text className="text-muted">
+                Only images are currently supported. Video, YouTube links, and Instagram links will be added soon!
+</Form.Text>
 
             </Form.Group>
           </Col>

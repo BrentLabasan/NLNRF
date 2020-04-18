@@ -4,12 +4,26 @@ import moment from 'moment';
 
 
 export default function LocationDetails(props) {
-debugger;
+
+
+function elLocationMedia() {
+    if (props.selectedLocation?.mediaUrl ) {
+        return <img src={props.selectedLocation.mediaUrl} style={{ maxWidth: '300px' }} />;
+     } else {
+        return <span style={{display: 'inline-flex', border: '2px solid #f5f5f5', textAlign: 'center', padding: '20px', borderRadius: '5px', color: '#9a9a9a', fontWeight: 'bold', width: '200px', height: '200px', alignItems: 'center', justifyContent: 'center'}}>
+            NO MEDIA SUBMITTED
+            </span>
+     }
+}
+
 
     return (
         <div>
+            <h3>LOCATION DETAILS</h3>
+            <br/><br/>
             <div>
-                {props.selectedLocation?.mediaUrl && <img src={props.selectedLocation.mediaUrl} style={{ maxWidth: '300px' }} />}
+                {/* {props.selectedLocation?.mediaUrl && <img src={props.selectedLocation.mediaUrl} style={{ maxWidth: '300px' }} />} */}
+                {elLocationMedia()}
             </div>
 
             <br/>

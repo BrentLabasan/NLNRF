@@ -66,7 +66,7 @@ export class GoogleMap extends Component {
         />
       );
     });
-    debugger;
+
     return (
       <div>
 

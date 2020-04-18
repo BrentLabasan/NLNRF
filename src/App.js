@@ -91,7 +91,7 @@ export class MapContainer extends Component {
   }
 
   handleMapMarkerClick = (props, marker, e) => {
-    debugger;
+
     console.log(props);
     console.log(marker);
     console.log(e);
@@ -481,7 +481,8 @@ export class MapContainer extends Component {
 
             <br /><br />
 
-            <h3>LOCATION DETAILS</h3>
+
+            {!this.state.selectedLocation && <h3>Click on a marker to show its details.</h3>}
             {this.state.selectedLocation && <LocationDetails selectedLocation={this.state.selectedLocation} />}
 
           </Col>
