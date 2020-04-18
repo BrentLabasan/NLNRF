@@ -279,21 +279,19 @@ export class MapContainer extends Component {
             </Form>
           </Col> */}
 
-          <ButtonGroup variant="contained" aria-label="contained primary button group" disableElevation>
+          {/* <ButtonGroup variant="contained" aria-label="contained primary button group" disableElevation>
             <Button onClick={() => { this.handleAreaMenuChange('landmarks') }} color={this.state.areaMenuActive === 'landmarks' ? 'primary' : 'default'} disableElevation>LANDMARKS</Button>
             <Button onClick={() => { this.handleAreaMenuChange('neighborhoods') }} color={this.state.areaMenuActive === 'neighborhoods' ? 'primary' : 'default'} disableElevation>NEIGHBORHOODS</Button>
-          </ButtonGroup>
+          </ButtonGroup> */}
 
+{/* 
           {this.state.areaMenuActive === 'landmarks' && <Col>
             <Navbar expand="lg" bg="" variant="">
 
-              {/* <Navbar.Brand>LANDMARKS</Navbar.Brand> */}
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
 
                 <Nav className="mr-auto">
-                  {/* <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#link">Link</Nav.Link> */}
 
                   <NavDropdown title="Amazon SLU Campus" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -345,30 +343,22 @@ export class MapContainer extends Component {
                   </NavDropdown>
 
                 </Nav>
-                {/* <Form inline>
-      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button variant="outline-success">Search</Button>
-    </Form> */}
               </Navbar.Collapse>
 
               <Navbar.Collapse id="basic-navbar-nav"></Navbar.Collapse>
 
             </Navbar>
           </Col>}
+ */}
 
-
-
+{/* 
           {this.state.areaMenuActive === 'neighborhoods' && <Col>
             <Navbar expand="lg" bg="" variant="">
 
-
-              {/* <Navbar.Brand>NEIGHBORHOODS</Navbar.Brand> */}
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
 
                 <Nav className="mr-auto">
-                  {/* <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#link">Link</Nav.Link> */}
 
                   <NavDropdown title="Downtown" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -431,10 +421,7 @@ export class MapContainer extends Component {
                   </NavDropdown>
 
                 </Nav>
-                {/* <Form inline>
-      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button variant="outline-success">Search</Button>
-    </Form> */}
+
               </Navbar.Collapse>
 
               <Navbar.Collapse id="basic-navbar-nav"></Navbar.Collapse>
@@ -442,6 +429,7 @@ export class MapContainer extends Component {
             </Navbar>
           </Col>
           }
+ */}
 
         </Row>
 
