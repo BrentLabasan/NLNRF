@@ -244,27 +244,6 @@ export class MapContainer extends Component {
   render() {
     console.log("App.js render()");
 
-    let locations = this.state.locations.map((loc) => {
-
-      const animationStyle = loc.id === this.state.featuredLocationId ? this.props.google.maps.Animation.DROP : false;
-
-      return (
-        <Marker
-          key={loc.geopoint.latitude + "_" + loc.geopoint.longitude}
-          title={loc.nameDescr}
-          name={'SOMA'}
-          position={{ lat: loc.geopoint.latitude, lng: loc.geopoint.longitude }}
-          onClick={this.onMarkerClick}
-
-          locationInfo={loc}
-
-          // animation={false}
-          // animation={this.props.google.maps.Animation.DROP}
-          animatioin={animationStyle}
-        />
-      );
-    });
-
     return (
       <div className="App">
         <h1 id="heroLogo">
