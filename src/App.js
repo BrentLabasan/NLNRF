@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker, Polygon } from 'google-maps-react';
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Col, Dropdown, DropdownButton, ToggleButtonGroup, ToggleButton, Badge } from 'react-bootstrap';
-import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
+import { Navbar, Nav, NavDropdown, Form, FormControl, Container, Row, Col, Dropdown, DropdownButton, ToggleButtonGroup, ToggleButton, Badge } from 'react-bootstrap';
+import { BottomNavigation, BottomNavigationAction, ButtonGroup, Button } from '@material-ui/core';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 import moment from 'moment';
@@ -10,6 +10,7 @@ import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detec
 import { AddLocation, Favorite, AccountCircle, Photo } from '@material-ui/icons';
 import * as constants from './constants';
 import LocationSubmitter from './LocationSubmitter';
+import LocationDetails from './LocationDetails';
 
 import GoogleMap from './GoogleMap';
 
@@ -60,8 +61,16 @@ export class MapContainer extends Component {
 
     featuredLocationId: null,
 
-    mobiCurrentSection: 'add'
+    mobiCurrentSection: 'add',
+
+    areaMenuActive: 'landmarks'
   };
+
+  handleAreaMenuChange = (selection) => {
+    this.setState({
+      areaMenuActive: selection
+    });
+  }
 
   handlePendingLatLongChange = (lat, long) => {
 
@@ -79,6 +88,19 @@ export class MapContainer extends Component {
 
   handleMobiCurrSectionChange = (event, value) => {
     this.setState({ mobiCurrentSection: value })
+  }
+
+  handleMapMarkerClick = (props, marker, e) => {
+    debugger;
+    console.log(props);
+    console.log(marker);
+    console.log(e);
+
+    console.log(props.locationInfo);
+
+    this.setState({
+      selectedLocation: props.locationInfo
+    });
   }
 
   componentDidMount() {
@@ -230,17 +252,7 @@ export class MapContainer extends Component {
 
   }
 
-  onMarkerClick = (props, marker, e) => {
-    console.log(props);
-    console.log(marker);
-    console.log(e);
 
-    console.log(props.locationInfo);
-
-    this.setState({
-      selectedLocation: props.locationInfo
-    });
-  }
 
   render() {
     console.log("App.js render()");
@@ -267,10 +279,15 @@ export class MapContainer extends Component {
             </Form>
           </Col> */}
 
-          <Col xs={6} xl={12}>
-            <Navbar expand="lg" bg="dark" variant="dark">
+          <ButtonGroup variant="contained" aria-label="contained primary button group" disableElevation>
+            <Button onClick={() => { this.handleAreaMenuChange('landmarks') }} color={this.state.areaMenuActive === 'landmarks' ? 'primary' : 'default'} disableElevation>LANDMARKS</Button>
+            <Button onClick={() => { this.handleAreaMenuChange('neighborhoods') }} color={this.state.areaMenuActive === 'neighborhoods' ? 'primary' : 'default'} disableElevation>NEIGHBORHOODS</Button>
+          </ButtonGroup>
 
-              <Navbar.Brand>LANDMARKS</Navbar.Brand>
+          {this.state.areaMenuActive === 'landmarks' && <Col>
+            <Navbar expand="lg" bg="" variant="">
+
+              {/* <Navbar.Brand>LANDMARKS</Navbar.Brand> */}
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
 
@@ -337,15 +354,15 @@ export class MapContainer extends Component {
               <Navbar.Collapse id="basic-navbar-nav"></Navbar.Collapse>
 
             </Navbar>
-          </Col>
+          </Col>}
 
 
 
-          <Col xs={6} xl={12}>
-            <Navbar expand="lg" bg="dark" variant="dark">
+          {this.state.areaMenuActive === 'neighborhoods' && <Col>
+            <Navbar expand="lg" bg="" variant="">
 
 
-              <Navbar.Brand>NEIGHBORHOODS</Navbar.Brand>
+              {/* <Navbar.Brand>NEIGHBORHOODS</Navbar.Brand> */}
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
 
@@ -424,7 +441,7 @@ export class MapContainer extends Component {
 
             </Navbar>
           </Col>
-
+          }
 
         </Row>
 
@@ -456,50 +473,33 @@ export class MapContainer extends Component {
 
               </Map> */}
 
-              <GoogleMap locations={this.state.locations} handlePendingLatLongChange={this.handlePendingLatLongChange} />
+              <GoogleMap
+                locations={this.state.locations}
+                handlePendingLatLongChange={this.handlePendingLatLongChange}
+                handleMapMarkerClick={this.handleMapMarkerClick}
+                currentMapCenter={{lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong}}
+              />
 
             </div>
 
           </Col>
 
           <Col xs={5}>
-            <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
+
+            {/* <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
               <ToggleButton value={1}>LATEST</ToggleButton>
               <ToggleButton value={2}>MOST UPVOTED</ToggleButton>
-            </ToggleButtonGroup>
+            </ToggleButtonGroup> */}
 
             <br /><br />
 
-            <div>
-              {this.state.selectedLocation?.mediaUrl && <img src={this.state.selectedLocation.mediaUrl} style={{ maxWidth: '300px' }} />}
-            </div>
+            <h3>LOCATION DETAILS</h3>
+            {this.state.selectedLocation && <LocationDetails selectedLocation={this.state.selectedLocation} />}
 
-            <h4>LOCATION</h4>
-            <p>
-              {this.state.selectedLocation?.nameDescr}
-            </p>
-
-            <h4>DATETIME</h4>
-            <p>
-              {/* { moment(new Date()).format() } */}
-              {/* { this.state.selectedLocation?.dateTime && moment( this.state.selectedLocation?.dateTime ).format() } */}
-              {this.state.selectedLocation?.dateTime && moment(this.state.selectedLocation?.dateTime).fromNow()}
-            </p>
-
-            <h4>VISUAL TYPE</h4>
-            <p>
-              TODO chalk, bumper sticker, sharpie, mural, etc...
-            </p>
-
-
-            <h4>CHANCE THAT VISUALIZATION IS STILL RUNNING</h4>
-            <p>
-              TODO scale from 0% - 100%
-            </p>
           </Col>
         </Row>
 
-        <br /><br />
+        <br /> <br />
 
         <section className="add-item">
 
@@ -608,7 +608,7 @@ export class MapContainer extends Component {
 
         </section>
 
-        <br /><br />
+        <br /> <br />
 
         {/* <p>🗺️ CENTER MAP TO YOUR LOCATION</p> */}
 
@@ -616,11 +616,11 @@ export class MapContainer extends Component {
 
         <p id="demo"></p>
 
-        <br /><br />
+        <br /> <br />
 
         <hr className="style3" style={{ width: hrWidth }} ></hr>
 
-        <br /><br />
+        <br /> <br />
 
         <footer>
           <Row>
@@ -722,7 +722,7 @@ export class MapContainer extends Component {
         </BottomNavigation>
 
 
-      </div>
+      </div >
 
 
     );
