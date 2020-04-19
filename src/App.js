@@ -69,7 +69,7 @@ export class App extends Component {
 
     areaMenuActive: 'landmarks',
 
-    multiActive: 'location',
+    multiActive: 'location', // latest, popular, gallery, location
 
     isPulseVisible: false,
 
@@ -127,14 +127,15 @@ export class App extends Component {
 
   handleMapMarkerClick = (props, marker, e) => {
 
-    console.log(props);
-    console.log(marker);
-    console.log(e);
+    // console.log(props);
+    // console.log(marker);
+    // console.log(e);
 
     console.log(props.locationInfo);
 
     this.setState({
-      selectedLocation: props.locationInfo
+      selectedLocation: props.locationInfo,
+      multiActive: 'location'
     });
   }
 
@@ -289,6 +290,7 @@ export class App extends Component {
 
 
   multiGenerator = () => {
+    debugger;
     switch (this.state.multiActive) {
       case 'latest':
         return <LatestSubmissions setPulseLangLong={this.setPulseLangLong} setIsPulseVisible={this.setIsPulseVisible} locations={this.state.locations} />
