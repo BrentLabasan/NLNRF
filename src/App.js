@@ -20,6 +20,7 @@ import LatestSubmissionsMobile from './LatestSubmissionsMobile';
 import GalleryMobile from './GalleryMobile';
 
 import GoogleMap from './GoogleMap';
+import GoogleMapMobile from './GoogleMapMobile';
 
 import CrossUnite from './media/xu.png';
 import PoopAndNeedles from './media/poopandneedles.png';
@@ -817,18 +818,19 @@ export class App extends Component {
             </header>
 
             {this.state.mobileCurrentView === 'addLocation' && <div style={{ height: '400px' }}>
-              <GoogleMap
+              <GoogleMapMobile
                 locations={this.state.locations}
                 handlePendingLatLongChange={this.handlePendingLatLongChange}
                 handleMapMarkerClick={this.handleMapMarkerClick}
                 currentMapCenter={{ lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong }}
                 isPulseVisible={this.state.isPulseVisible}
                 pulseGeopoint={this.state.pulseGeopoint}
-                height={'250px'}
+                height={'90%'}
 
-                containerStyle={{ height: '250px' }}
+                containerStyle={{ height: '90%' }}
               />
-              <LocationDetailsMobile selectedLocation={this.state.selectedLocation} />
+
+              {/* <LocationDetailsMobile selectedLocation={this.state.selectedLocation} /> */}
             </div>}
 
             {this.state.mobileCurrentView === 'latest' && <LatestSubmissionsMobile
