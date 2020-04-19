@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker, Polygon } from 'google-maps-react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 import { Paper } from '@material-ui/core';
 import LocationDetailsMobile from './LocationDetailsMobile';
@@ -8,7 +8,7 @@ import * as constants from './constants';
 import pulsing from './media/pulsing3.gif';
 import wut from './media/wut.gif';
 import { makeStyles } from '@material-ui/core/styles';
-// import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
 
 var _ = require('lodash');
 
@@ -105,12 +105,12 @@ export class GoogleMap extends Component {
         </Modal.Header>
         <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={this.handleClose}>
+          <Button variant="contained" color="primary" onClick={this.handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={this.handleClose}>
+          {/* <Button variant="contained" onClick={this.handleClose}>
             Save Changes
-          </Button>
+          </Button> */}
         </Modal.Footer>
       </Modal>
 
