@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker, Polygon } from 'google-maps-react';
+import { Paper } from '@material-ui/core';
+
 import * as constants from './constants';
 import pulsing from './media/pulsing3.gif';
 import wut from './media/wut.gif';
@@ -96,7 +98,9 @@ export class GoogleMap extends Component {
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
         >
-          <div>akh</div>
+          <Paper elevation={0} style={{height: '90%', margin: '20px', padding: '10px'}}>
+          sdfafd
+          </Paper>
         </Modal>
 
         <Map
