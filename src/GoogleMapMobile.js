@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker, Polygon } from 'google-maps-react';
 import { Paper } from '@material-ui/core';
-
+import LocationDetailsMobile from './LocationDetailsMobile';
 import * as constants from './constants';
 import pulsing from './media/pulsing3.gif';
 import wut from './media/wut.gif';
@@ -42,6 +42,7 @@ export class GoogleMap extends Component {
   }
 
   handleClose = () => {
+    // debugger;
     this.setState({
       open: false
     });
@@ -98,9 +99,16 @@ export class GoogleMap extends Component {
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
         >
-          <Paper elevation={0} style={{height: '90%', margin: '20px', padding: '10px'}}>
-          sdfafd
-          </Paper>
+          <div>
+            {/* <div style={{ backgroundColor: 'yellow', position: 'fixed', width: '100%', height: '100%' }} onClick={this.handleClose}>
+              &nbsp;
+            </div> */}
+
+            <Paper elevation={0} style={{ height: '90%', margin: '20px', padding: '10px' }}>
+              <LocationDetailsMobile selectedLocation={this.state.selectedLocation} />
+            </Paper>
+          </div>
+
         </Modal>
 
         <Map
