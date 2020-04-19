@@ -171,7 +171,7 @@ export default function LocationSubmitter(props) {
 
         <Row>
           <Col xs="auto">
-          
+
             <span>
               STEP<br />
               1
@@ -181,15 +181,16 @@ export default function LocationSubmitter(props) {
           </Col>
           <Col xs={2}>
             <Form.Group controlId="formBasicEmail">
-              
-                <Form.Label>LATITUDE / LONGITUDE</Form.Label> <Badge variant="danger">REQUIRED</Badge>
-              
+
+              <Form.Label>LATITUDE / LONGITUDE</Form.Label> <Badge variant="danger">REQUIRED</Badge>
+
               <Form.Control type="text" name="pendingLatitude" placeholder="latitude" value={inputLatLongVal()} />
               <Form.Text className="text-muted">
                 Click on the map to automatically fill in the lat/long coordinates.
 </Form.Text>
             </Form.Group>
           </Col>
+{/* 
           <Col xs="auto">
             STEP<br />
             2
@@ -211,10 +212,11 @@ export default function LocationSubmitter(props) {
                 Select which category best describes your medium.
 </Form.Text>
             </Form.Group>
-          </Col>
+          </Col> */}
+
           <Col xs="auto">
             STEP<br />
-            3
+            2
       </Col>
 
           <Col xs={2}>
@@ -230,7 +232,7 @@ export default function LocationSubmitter(props) {
 
           <Col xs="auto">
             STEP<br />
-            4
+            3
       </Col>
           <Col xs={1}>
             <Form.Group controlId="formBasicEmail">
@@ -246,7 +248,7 @@ export default function LocationSubmitter(props) {
 
           <Col xs="auto">
             STEP<br />
-            5
+            4
       </Col>
           <Col xs={1}>
             <Form.Group controlId="formBasicEmail">
