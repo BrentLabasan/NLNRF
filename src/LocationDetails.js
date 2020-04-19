@@ -16,7 +16,7 @@ export default function LocationDetails(props) {
 
             return (
                 <SRLWrapper>
-                    <Tooltip title="click to expand">
+                    <Tooltip title="click to expand" arrow>
                     <img src={props.selectedLocation.mediaUrl} style={style} />
                     </Tooltip>
                     
