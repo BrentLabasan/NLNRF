@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker, Polygon } from 'google-maps-react';
+import { Modal, Button } from 'react-bootstrap';
+
 import { Paper } from '@material-ui/core';
 import LocationDetailsMobile from './LocationDetailsMobile';
 import * as constants from './constants';
 import pulsing from './media/pulsing3.gif';
 import wut from './media/wut.gif';
 import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
+// import Modal from '@material-ui/core/Modal';
 
 var _ = require('lodash');
 
@@ -20,7 +22,7 @@ export class GoogleMap extends Component {
     currentMapCenterLat: 47.61785407164923,
     currentMapCenterLong: -122.31657144387441,
 
-    open: false
+    show: false
   };
 
   // const [modalStyle] = React.useState(getModalStyle);
@@ -37,14 +39,14 @@ export class GoogleMap extends Component {
     // this.props.handleMapMarkerClick(props, marker, e);
 
     this.setState({
-      open: true
+      show: true
     });
   }
 
   handleClose = () => {
     // debugger;
     this.setState({
-      open: false
+      show: false
     });
   };
 
@@ -88,28 +90,29 @@ export class GoogleMap extends Component {
           // animation={this.props.google.maps.Animation.DROP}
           animation={false}
         />
+
+        
       );
     });
 
     return (
       <div>
-        <Modal
-          open={this.state.open}
-          onClose={this.state.handleClose}
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-        >
-          <div>
-            {/* <div style={{ backgroundColor: 'yellow', position: 'fixed', width: '100%', height: '100%' }} onClick={this.handleClose}>
-              &nbsp;
-            </div> */}
 
-            <Paper elevation={0} style={{ height: '90%', margin: '20px', padding: '10px' }}>
-              <LocationDetailsMobile selectedLocation={this.state.selectedLocation} />
-            </Paper>
-          </div>
 
-        </Modal>
+        <Modal show={this.state.show} onHide={this.handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={this.handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={this.handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
         <Map
           google={this.props.google}
