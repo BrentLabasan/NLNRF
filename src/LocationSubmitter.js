@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Col, Dropdown, DropdownButton, ToggleButtonGroup, ToggleButton, Badge } from 'react-bootstrap';
-import { Backdrop, } from '@material-ui/core';
+import { Backdrop, Button as ButtonM } from '@material-ui/core';
+import { LocationOn, AddLocation, Favorite, AccountCircle, Photo  } from '@material-ui/icons';
+
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import * as firebase from 'firebase';
@@ -190,7 +192,7 @@ export default function LocationSubmitter(props) {
 </Form.Text>
             </Form.Group>
           </Col>
-{/* 
+          {/* 
           <Col xs="auto">
             STEP<br />
             2
@@ -256,8 +258,17 @@ export default function LocationSubmitter(props) {
               <br />
               {/* <button>Submit Location</button> */}
 
-              {/* why doesn't this work? */}
-              <Button onClick={handleSubmit} variant="success" size="lg">SUBMIT LOCATION</Button>
+              {/* <Button onClick={handleSubmit} variant="success" size="lg">SUBMIT LOCATION</Button> */}
+
+              <ButtonM
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                // endIcon={<Icon>send</Icon>}
+                onClick={handleSubmit}
+              >
+                SUBMIT LOCATION <AddLocation />
+      </ButtonM>
             </Form.Group>
           </Col>
 
