@@ -32,15 +32,24 @@ export default function LatestSubmissions(props) {
     let sorted = props.locations.sort(compare).slice(0, 7);
     const latestSubmissions = sorted.map((loc) => {
         // debugger;
-        return <li style={style}
-         onMouseEnter={() => handleOnMouseEnter(loc.geopoint)}
-         onMouseLeave={handleOnMouseLeave}>
-            {loc.nameDescr}
-            <br />
-            {moment(loc.dateTime).fromNow()}
+        return (
+            <li
+                style={style}
 
-        </li>
+                onClick={handleClick}
+                onMouseEnter={() => handleOnMouseEnter(loc.geopoint)}
+                onMouseLeave={handleOnMouseLeave}>
+                    {loc.nameDescr}
+                    <br />
+                    {moment(loc.dateTime).fromNow()}
+
+            </li>
+        );
     });
+
+    function handleClick() {
+        props.clickLatestSubmissionLi();
+    }
 
     function handleOnMouseEnter(geopoint) {
         console.log('a');

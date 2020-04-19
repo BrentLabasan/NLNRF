@@ -288,12 +288,19 @@ export class App extends Component {
 
   }
 
+  clickLatestSubmissionLi = () => {
+    this.setState({
+      multiActive: 'location',
+      isPulseVisible: false
+    });
+  }
+
 
   multiGenerator = () => {
     debugger;
     switch (this.state.multiActive) {
       case 'latest':
-        return <LatestSubmissions setPulseLangLong={this.setPulseLangLong} setIsPulseVisible={this.setIsPulseVisible} locations={this.state.locations} />
+        return <LatestSubmissions clickLatestSubmissionLi={this.clickLatestSubmissionLi} setPulseLangLong={this.setPulseLangLong} setIsPulseVisible={this.setIsPulseVisible} locations={this.state.locations} />
         break;
       case 'popular':
         return <PopularSubmissions locations={this.state.locations} />
