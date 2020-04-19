@@ -803,18 +803,38 @@ export class App extends Component {
           </BrowserView>
 
           <MobileView>
-            <div style={{position: 'absolute', bottom: 0, left: 0, width: '100%'}}>
+
+            <header>
+              <h1 id="heroLogo" style={{ fontSize: '20px' }}>
+
+                NLNRF<span style={{ fontSize: '15px', marginLeft: '0px' }} >.com</span>
+
+                &nbsp;
+          <span className='slogan' style={{ fontSize: '10px', fontWeight: 'bold' }}>NOT LEFT. NOT RIGHT. FORWARD &gt;</span>
+              </h1>
+            </header>
+
+            <GoogleMap
+              locations={this.state.locations}
+              handlePendingLatLongChange={this.handlePendingLatLongChange}
+              handleMapMarkerClick={this.handleMapMarkerClick}
+              currentMapCenter={{ lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong }}
+              isPulseVisible={this.state.isPulseVisible}
+              pulseGeopoint={this.state.pulseGeopoint}
+            />
+
+            <div style={{ position: 'fixed', bottom: 0, left: 0, width: '100%' }}>
               {/* <Grid container spacing={3}>
                 <Grid item xs={12}> */}
-                  <BottomNavigation value={this.state.mobiCurrentSection} onChange={this.handleMobiCurrSectionChange} className={null}>
-                    <BottomNavigationAction label="Add Location" value="add" icon={<AddLocation />} />
-                    <BottomNavigationAction label="Latest" value="latest" icon={<Photo />} />
-                    <BottomNavigationAction label="Gallery" value="gallery" icon={<ViewComfy />} />
+              <BottomNavigation value={this.state.mobiCurrentSection} onChange={this.handleMobiCurrSectionChange} className={null}>
+                <BottomNavigationAction label="Add Location" value="add" icon={<AddLocation />} />
+                <BottomNavigationAction label="Latest" value="latest" icon={<Photo />} />
+                <BottomNavigationAction label="Gallery" value="gallery" icon={<ViewComfy />} />
 
-                    {/* <BottomNavigationAction label="Favorites" value="favorites" icon={<Favorite />} /> */}
-                    {/* <BottomNavigationAction label="Account" value="account" icon={<AccountCircle />} /> */}
-                  </BottomNavigation>
-                {/* </Grid>
+                {/* <BottomNavigationAction label="Favorites" value="favorites" icon={<Favorite />} /> */}
+                {/* <BottomNavigationAction label="Account" value="account" icon={<AccountCircle />} /> */}
+              </BottomNavigation>
+              {/* </Grid>
               </Grid> */}
             </div>
 
