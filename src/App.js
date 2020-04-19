@@ -80,7 +80,7 @@ export class App extends Component {
   };
 
   setIsPulseVisible = (bool, geopoint) => {
-    debugger;
+    // debugger;
     this.setState({
       isPulseVisible: bool,
       pulseGeopoint: geopoint
@@ -288,16 +288,18 @@ export class App extends Component {
 
   }
 
-  clickLatestSubmissionLi = () => {
+  clickLatestSubmissionLi = (loc) => {
+    // debugger;
     this.setState({
       multiActive: 'location',
-      isPulseVisible: false
+      isPulseVisible: false,
+      selectedLocation: loc
     });
   }
 
 
   multiGenerator = () => {
-    debugger;
+    // debugger;
     switch (this.state.multiActive) {
       case 'latest':
         return <LatestSubmissions clickLatestSubmissionLi={this.clickLatestSubmissionLi} setPulseLangLong={this.setPulseLangLong} setIsPulseVisible={this.setIsPulseVisible} locations={this.state.locations} />

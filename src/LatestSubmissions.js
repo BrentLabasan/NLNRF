@@ -36,7 +36,7 @@ export default function LatestSubmissions(props) {
             <li
                 style={style}
 
-                onClick={handleClick}
+                onClick={() => handleClick(loc)}
                 onMouseEnter={() => handleOnMouseEnter(loc.geopoint)}
                 onMouseLeave={handleOnMouseLeave}>
                     {loc.nameDescr}
@@ -47,8 +47,8 @@ export default function LatestSubmissions(props) {
         );
     });
 
-    function handleClick() {
-        props.clickLatestSubmissionLi();
+    function handleClick(loc) {
+        props.clickLatestSubmissionLi(loc);
     }
 
     function handleOnMouseEnter(geopoint) {
