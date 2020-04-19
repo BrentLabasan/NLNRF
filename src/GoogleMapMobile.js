@@ -10,7 +10,7 @@ import wut from './media/wut.gif';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-import {  LocationOn, AddLocation, Favorite, AccountCircle, Photo, Backdrop, ViewComfy } from '@material-ui/icons';
+import { LocationOn, AddLocation, Favorite, AccountCircle, Photo, Backdrop, ViewComfy } from '@material-ui/icons';
 
 var _ = require('lodash');
 
@@ -125,42 +125,44 @@ export class GoogleMapMobile extends Component {
           </Modal.Footer>
         </Modal>
 
-        <Map
-          google={this.props.google}
-          zoom={13}
-          style={
-            {
-              width: '90%',
-              height: this.props.height || '800px'
+        {/* container div around GMap to force Add Location button to be below map didn't work */}
+        <div>
+          <Map
+            google={this.props.google}
+            zoom={13}
+            style={
+              {
+                width: '90%',
+                height: this.props.height || '800px'
+              }
             }
-          }
-          initialCenter={{
-            lat: constants.DEFAULT_MAP_CENTER.LAT,
-            lng: constants.DEFAULT_MAP_CENTER.LONG
-          }}
-          center={{
-            lat: this.props.currentMapCenter.lat,
-            lng: this.props.currentMapCenter.long
-          }}
-          onClick={this.mapClicked}
-          containerStyle={this.props.containerStyle || null}
-        >
-
-          {locations}
-
-          {this.props.isPulseVisible && <Marker
-            name={'Your position'}
-            position={{ lat: this.props.pulseGeopoint.latitude, lng: this.props.pulseGeopoint.longitude }}
-            icon={{
-              // url: 'https://loading.io/icon/i3ca9h',
-              url: pulsing, // works
-              // url: wut, // works
-              anchor: new this.props.google.maps.Point(64, 64),
-              scaledSize: new this.props.google.maps.Size(128, 128)
+            initialCenter={{
+              lat: constants.DEFAULT_MAP_CENTER.LAT,
+              lng: constants.DEFAULT_MAP_CENTER.LONG
             }}
-          />}
+            center={{
+              lat: this.props.currentMapCenter.lat,
+              lng: this.props.currentMapCenter.long
+            }}
+            onClick={this.mapClicked}
+            containerStyle={this.props.containerStyle || null}
+          >
 
-          {/* <Polygon
+            {locations}
+
+            {this.props.isPulseVisible && <Marker
+              name={'Your position'}
+              position={{ lat: this.props.pulseGeopoint.latitude, lng: this.props.pulseGeopoint.longitude }}
+              icon={{
+                // url: 'https://loading.io/icon/i3ca9h',
+                url: pulsing, // works
+                // url: wut, // works
+                anchor: new this.props.google.maps.Point(64, 64),
+                scaledSize: new this.props.google.maps.Size(128, 128)
+              }}
+            />}
+
+            {/* <Polygon
             paths={constants.TEST_COORDS}
             strokeColor="#0000FF"
             strokeOpacity={0.8}
@@ -168,12 +170,18 @@ export class GoogleMapMobile extends Component {
             fillColor="#0000FF"
             fillOpacity={0.35} /> */}
 
-        </Map>
+          </Map>
+        </div>
+
+
 
         {/* displays LocationSubmitterMobile in a modal */}
-        <Button variant="contained" color="primary" onClick={this.handleClose}>
-          <AddLocation /> Add Location
+        <div style={{ textAlign: 'center', position: 'absolute', bottom: '50px', width: '100%'}}>
+          <Button variant="contained" color="primary" onClick={this.handleClose}>
+            <AddLocation /> Add Location
           </Button>
+        </div>
+
 
       </div>
     );
