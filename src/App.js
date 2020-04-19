@@ -825,9 +825,9 @@ export class App extends Component {
                 currentMapCenter={{ lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong }}
                 isPulseVisible={this.state.isPulseVisible}
                 pulseGeopoint={this.state.pulseGeopoint}
-                height={'90%'}
+                height={'85%'}
 
-                containerStyle={{ height: '90%' }}
+                containerStyle={{ height: '85%' }}
 
                 selectedLocation={this.state.selectedLocation}
               />

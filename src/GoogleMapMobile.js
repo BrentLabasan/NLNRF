@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker, Polygon } from 'google-maps-react';
 import { Modal } from 'react-bootstrap';
 
-import { Paper } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import LocationDetailsMobile from './LocationDetailsMobile';
+import LocationSubmitterMobile from './LocationSubmitterMobile';
 import * as constants from './constants';
 import pulsing from './media/pulsing3.gif';
 import wut from './media/wut.gif';
@@ -77,6 +78,15 @@ export class GoogleMapMobile extends Component {
     // return nextProps.isFavourite != this.props.isFavourite;
   }
 
+  // this is the Add Location button underneath the map. It is not the Submit Location button.
+  handleAddLocationButtonClick = () => {
+    this.setState({
+      show: true,
+      modalMode: 'addLocation'
+    });
+
+  }
+
   render() {
     console.log('GoogleMap.js render()');
     let locations = this.props.locations.map((loc) => {
@@ -113,6 +123,7 @@ export class GoogleMapMobile extends Component {
           <Modal.Body>
 
             {this.state.modalMode === 'locationDetails' && <LocationDetailsMobile selectedLocation={this.props.selectedLocation} />}
+            {this.state.modalMode === 'addLocation' && <LocationSubmitterMobile selectedLocation={this.props.selectedLocation} />}
 
           </Modal.Body>
           <Modal.Footer>
@@ -176,10 +187,23 @@ export class GoogleMapMobile extends Component {
 
 
         {/* displays LocationSubmitterMobile in a modal */}
-        <div style={{ textAlign: 'center', position: 'absolute', bottom: '50px', width: '100%'}}>
-          <Button variant="contained" color="primary" onClick={this.handleClose}>
-            <AddLocation /> Add Location
+        <div style={{ textAlign: '', position: 'absolute', bottom: '50px', width: '100%' }}>
+
+          <Grid container spacing={3}>
+
+            <Grid item xs={6}>
+
+              <Button variant="contained" color="primary" onClick={this.handleAddLocationButtonClick}>
+                <AddLocation /> Add Location
           </Button>
+            </Grid>
+            <Grid item xs={6}>
+              <span style={{ fontSize: '12px', fontWeight: 'bold' }}>Position the map so that <br/>the center is on the location<br/> you want to add.</span>
+            </Grid>
+
+          </Grid>
+
+
         </div>
 
 
