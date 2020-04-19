@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FormControl, InputLabel, Input, OutlinedInput } from '@material-ui/core';
+import { FormControl, InputLabel, Input, OutlinedInput, Tooltip } from '@material-ui/core';
 import moment from 'moment';
 import { SRLWrapper } from "simple-react-lightbox";
 
@@ -9,9 +9,17 @@ export default function LocationDetails(props) {
 
     function elLocationMedia() {
         if (props.selectedLocation?.mediaUrl) {
+            const style = { 
+                maxWidth: '300px',
+                cursor: 'pointer'
+            };
+
             return (
                 <SRLWrapper>
-                    <img src={props.selectedLocation.mediaUrl} style={{ maxWidth: '300px' }} />
+                    <Tooltip title="click to expand">
+                    <img src={props.selectedLocation.mediaUrl} style={style} />
+                    </Tooltip>
+                    
                 </SRLWrapper>
 
             );
