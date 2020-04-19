@@ -87,6 +87,14 @@ export class GoogleMapMobile extends Component {
 
   }
 
+  centerMoved(mapProps, map) {
+    // console.log("mapProps, map", mapProps, map);
+    // console.log(mapProps.center.lat, mapProps.center.lng);
+
+    console.log(map.getCenter().lat(), map.getCenter().lng());
+  }
+  
+
   render() {
     console.log('GoogleMap.js render()');
     let locations = this.props.locations.map((loc) => {
@@ -140,6 +148,7 @@ export class GoogleMapMobile extends Component {
         <div>
           <Map
             google={this.props.google}
+            onDragend={this.centerMoved}
             zoom={13}
             style={
               {
