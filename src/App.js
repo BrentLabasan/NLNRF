@@ -308,7 +308,7 @@ export class App extends Component {
         return <PopularSubmissions locations={this.state.locations} />
         break;
       case 'gallery':
-        return <MasonryForLocations locations={this.state.locations} />
+        return <MasonryForLocations clickLatestSubmissionLi={this.clickLatestSubmissionLi} setPulseLangLong={this.setPulseLangLong} setIsPulseVisible={this.setIsPulseVisible} locations={this.state.locations} />
         break;
       case 'location':
         if (this.state.selectedLocation) {
