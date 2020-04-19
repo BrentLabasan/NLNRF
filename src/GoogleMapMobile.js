@@ -110,7 +110,7 @@ export class GoogleMapMobile extends Component {
         </Modal.Header>
         <Modal.Body>
 
-          <LocationDetailsMobile selectedLocation={this.props.selectedLocation} />
+          { this.state.modalMode === 'locationDetails' && <LocationDetailsMobile selectedLocation={this.props.selectedLocation} />}
 
         </Modal.Body>
         <Modal.Footer>
