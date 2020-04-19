@@ -828,6 +828,8 @@ export class App extends Component {
                 height={'90%'}
 
                 containerStyle={{ height: '90%' }}
+
+                selectedLocation={this.state.selectedLocation}
               />
 
               {/* <LocationDetailsMobile selectedLocation={this.state.selectedLocation} /> */}

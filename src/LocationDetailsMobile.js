@@ -30,6 +30,7 @@ export default function LocationDetails(props) {
         }
     }
 
+    console.log("LocationDetailsMobile.js render");
 
     return (
         <div>

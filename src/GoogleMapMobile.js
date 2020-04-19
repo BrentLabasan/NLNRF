@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button';
 
 var _ = require('lodash');
 
-export class GoogleMap extends Component {
+export class GoogleMapMobile extends Component {
 
   state = {
     locations: [],
@@ -37,6 +37,8 @@ export class GoogleMap extends Component {
     // debugger;
 
     // this.props.handleMapMarkerClick(props, marker, e);
+
+    this.props.handleMapMarkerClick(props, marker, e);
 
     this.setState({
       show: true
@@ -103,7 +105,11 @@ export class GoogleMap extends Component {
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+
+          <LocationDetailsMobile selectedLocation={this.props.selectedLocation} />
+
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="contained" color="primary" onClick={this.handleClose}>
             Close
@@ -168,4 +174,4 @@ export class GoogleMap extends Component {
 
 export default GoogleApiWrapper({
   apiKey: constants.GMAP_API_KEY
-})(GoogleMap);
+})(GoogleMapMobile);
