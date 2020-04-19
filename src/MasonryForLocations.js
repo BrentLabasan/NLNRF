@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Masonry from 'react-masonry-css'
+// import Masonry from 'react-masonry-css'
+import Masonry from 'react-masonry-component';
 
 export default function MasonryForLocations(props) {
   // Declare a new state variable, which we'll call "count"
@@ -10,11 +11,24 @@ export default function MasonryForLocations(props) {
     // console.log('HMMM', moment(a.dateTime).format(), moment(b.dateTime).format());
     // console.log('return value', a.dateTime > b.dateTime ? 1 : -1);
     return a.dateTime < b.dateTime ? 1 : -1;
-}
-  
-  let array =  props.locations.sort(compare).slice(0, 7);
-  let elements = array.map((loc) => {
-    return <img src={loc.mediaUrl} />
+  }
+
+  const masonryOptions = {
+    transitionDuration: 0
+  };
+
+  const imagesLoadedOptions = { background: '.my-bg-image-el' }
+
+  const style= {maxWidth: '250px', maxheight:'250px', margin: '0 20px 20px 0', border: '1px solid #333333', padding: '10px', borderRadius: '5px'};
+
+  let array = props.locations.filter(loc => loc.mediaUrl !== null).sort(compare).slice(0, 6);
+  let childElements = array.map((loc) => {
+    return (
+      // <li className="image-element-class">
+        <img src={loc.mediaUrl} style={style} />
+      // </li>
+
+    );
   });
 
   return (
@@ -24,15 +38,9 @@ export default function MasonryForLocations(props) {
         Click me
       </button> */}
 
-      <Masonry
-        breakpointCols={3}
-        className="my-masonry-grid"
-        columnClassName="my-masonry-grid_column">
 
-        {/* array of JSX items */}
-        {elements}
+        {childElements}
 
-      </Masonry>
     </div>
   );
 }
