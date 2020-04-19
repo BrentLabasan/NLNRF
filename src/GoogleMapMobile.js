@@ -3,6 +3,9 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker, Polygon } from 'google-maps-
 import * as constants from './constants';
 import pulsing from './media/pulsing3.gif';
 import wut from './media/wut.gif';
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+
 var _ = require('lodash');
 
 export class GoogleMap extends Component {
@@ -14,7 +17,12 @@ export class GoogleMap extends Component {
 
     currentMapCenterLat: 47.61785407164923,
     currentMapCenterLong: -122.31657144387441,
+
+    open: false
   };
+
+  // const [modalStyle] = React.useState(getModalStyle);
+  // const [open, setOpen] = React.useState(false);
 
   onMarkerClick = (props, marker, e) => {
     // this.setState({
@@ -23,8 +31,19 @@ export class GoogleMap extends Component {
     //   showingInfoWindow: true
     // });
     // debugger;
-    this.props.handleMapMarkerClick(props, marker, e);
+
+    // this.props.handleMapMarkerClick(props, marker, e);
+
+    this.setState({
+      open: true
+    });
   }
+
+  handleClose = () => {
+    this.setState({
+      open: false
+    });
+  };
 
   mapClicked = (mapProps, map, clickEvent) => {
     // console.log(mapProps);
@@ -71,6 +90,14 @@ export class GoogleMap extends Component {
 
     return (
       <div>
+        <Modal
+          open={this.state.open}
+          onClose={this.state.handleClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+        >
+          <div>akh</div>
+        </Modal>
 
         <Map
           google={this.props.google}
@@ -92,10 +119,10 @@ export class GoogleMap extends Component {
           onClick={this.mapClicked}
           containerStyle={this.props.containerStyle || null}
         >
-           
+
           {locations}
 
-          { this.props.isPulseVisible && <Marker
+          {this.props.isPulseVisible && <Marker
             name={'Your position'}
             position={{ lat: this.props.pulseGeopoint.latitude, lng: this.props.pulseGeopoint.longitude }}
             icon={{
@@ -105,7 +132,7 @@ export class GoogleMap extends Component {
               anchor: new this.props.google.maps.Point(64, 64),
               scaledSize: new this.props.google.maps.Size(128, 128)
             }}
-          /> }
+          />}
 
           {/* <Polygon
             paths={constants.TEST_COORDS}
