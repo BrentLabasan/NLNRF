@@ -69,7 +69,7 @@ export class App extends Component {
 
     areaMenuActive: 'landmarks',
 
-    multiActive: 'location', // latest, popular, gallery, location
+    multiActive: 'gallery', // latest, popular, gallery, location
 
     isPulseVisible: false,
 
