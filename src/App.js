@@ -15,6 +15,8 @@ import LatestSubmissions from './LatestSubmissions';
 import PopularSubmissions from './PopularSubmissions';
 import MasonryForLocations from './MasonryForLocations';
 import SimpleReactLightbox from 'simple-react-lightbox';
+import LatestSubmissionsMobile from './LatestSubmissionsMobile';
+import GalleryMobile from './GalleryMobile';
 
 import GoogleMap from './GoogleMap';
 
@@ -76,7 +78,9 @@ export class App extends Component {
     pulseLat: null,
     pulseLong: null,
 
-    pulseGeopoint: null
+    pulseGeopoint: null,
+
+    mobileCurrentView: 'addLocation', // addLocation, latest, gallery
   };
 
   setIsPulseVisible = (bool, geopoint) => {
@@ -122,7 +126,7 @@ export class App extends Component {
   }
 
   handleMobiCurrSectionChange = (event, value) => {
-    this.setState({ mobiCurrentSection: value })
+    this.setState({ mobileCurrentView: value })
   }
 
   handleMapMarkerClick = (props, marker, e) => {
@@ -200,9 +204,6 @@ export class App extends Component {
       currentMapCenterLong: position.coords.longitude
     });
   }
-
-
-
 
 
   handleSubmit = (e) => {
@@ -814,21 +815,32 @@ export class App extends Component {
               </h1>
             </header>
 
-            <GoogleMap
+            {this.state.mobileCurrentView === 'addLocation' && <div style={{height: '40%'}}><GoogleMap
               locations={this.state.locations}
               handlePendingLatLongChange={this.handlePendingLatLongChange}
               handleMapMarkerClick={this.handleMapMarkerClick}
               currentMapCenter={{ lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong }}
               isPulseVisible={this.state.isPulseVisible}
               pulseGeopoint={this.state.pulseGeopoint}
-              height={'50%'}
-            />
+              height={'400px'}
 
-            <div style={{ position: 'fixed', bottom: 0, left: 0, width: '100%' }}>
+              containerStyle = {{height: '250px'}}
+            /></div>}
+
+            {this.state.mobileCurrentView === 'latest' && <LatestSubmissionsMobile
+              clickLatestSubmissionLi={this.clickLatestSubmissionLi} setPulseLangLong={this.setPulseLangLong} setIsPulseVisible={this.setIsPulseVisible} locations={this.state.locations}
+            />}
+
+            {this.state.mobileCurrentView === 'gallery' && <GalleryMobile
+              clickLatestSubmissionLi={this.clickLatestSubmissionLi} setPulseLangLong={this.setPulseLangLong} setIsPulseVisible={this.setIsPulseVisible} locations={this.state.locations}
+            />}
+
+            {/* <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%' }}> */}
+            <div>
               {/* <Grid container spacing={3}>
                 <Grid item xs={12}> */}
-              <BottomNavigation value={this.state.mobiCurrentSection} onChange={this.handleMobiCurrSectionChange} className={null}>
-                <BottomNavigationAction label="Add Location" value="add" icon={<AddLocation />} />
+              <BottomNavigation value={this.state.mobiCurrentSection} onChange={this.handleMobiCurrSectionChange} className={null} style={{ position: 'fixed', bottom: this.state.mobileCurrentView === 'addLocation' ?  '35px' : 0, left: 0, width: '100%' }}>
+                <BottomNavigationAction label="Add Location" value="addLocation" icon={<AddLocation />} />
                 <BottomNavigationAction label="Latest" value="latest" icon={<Photo />} />
                 <BottomNavigationAction label="Gallery" value="gallery" icon={<ViewComfy />} />
 

@@ -90,6 +90,7 @@ export class GoogleMap extends Component {
             lng: this.props.currentMapCenter.long
           }}
           onClick={this.mapClicked}
+          containerStyle={this.props.containerStyle || null}
         >
            
           {locations}
