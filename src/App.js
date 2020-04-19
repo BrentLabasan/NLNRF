@@ -707,10 +707,6 @@ export class App extends Component {
 
         <br /> <br />
 
-        <div>
-        <MasonryForLocations locations={this.state.locations} />
-        </div>
-
         <footer>
           <Row>
             <Col xs={4}>
