@@ -318,3 +318,11 @@ form .col-auto {
   background: grey;
   margin-bottom: 30px;
 }
+
+.latestLi {
+  background-color: grey;
+}
+
+.latestLi:hover {
+  background-color: black;
+}

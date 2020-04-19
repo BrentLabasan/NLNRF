@@ -14,7 +14,7 @@ export default function LatestSubmissions(props) {
     const style = {
         padding: '10px 20px 10px 20px',
         border: '1px solid grey',
-        backgroundColor: 'grey',
+        // backgroundColor: 'grey',
         borderRadius: '10px',
         margin: '0 0 20px 0',
         cursor: 'pointer'
@@ -35,7 +35,7 @@ export default function LatestSubmissions(props) {
         return (
             <li
                 style={style}
-
+                className='latestLi'
                 onClick={() => handleClick(loc)}
                 onMouseEnter={() => handleOnMouseEnter(loc.geopoint)}
                 onMouseLeave={handleOnMouseLeave}>

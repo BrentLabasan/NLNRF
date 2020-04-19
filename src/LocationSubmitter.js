@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Col, Dropdown, DropdownButton, ToggleButtonGroup, ToggleButton, Badge } from 'react-bootstrap';
+import { Backdrop, Button as ButtonM } from '@material-ui/core';
+import { LocationOn, AddLocation, Favorite, AccountCircle, Photo  } from '@material-ui/icons';
+
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 import moment from 'moment';
@@ -10,6 +15,8 @@ import useInput from './hookUseInput';
 export default function LocationSubmitter(props) {
   const { value: locationNameDescription, bind: bindLocationNameDescription, reset: resetlocationNameDescription } = useInput('');
 
+
+  const [open, setOpen] = useState(false);
 
   const [location, setLocation] = useState({
     latitude: 'a',
@@ -43,6 +50,7 @@ export default function LocationSubmitter(props) {
   }
 
   function handleSubmit(e) {
+    setOpen(true);
     e.preventDefault();
     debugger;
     // Add a new document with a generated id.
@@ -121,7 +129,7 @@ export default function LocationSubmitter(props) {
           });
         }
 
-
+        setOpen(false);
       })
       .catch(function (error) {
         console.error("Error adding document: ", error);
@@ -136,28 +144,55 @@ export default function LocationSubmitter(props) {
   }
 
   function inputLatLongVal() {
-    return props.pendingLatitude ? ( props.pendingLatitude + ', ' + props.pendingLongitude ) : '*';
+    return props.pendingLatitude ? (props.pendingLatitude + ', ' + props.pendingLongitude) : '*';
   }
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+      '& > * + *': {
+        marginLeft: theme.spacing(2),
+      },
+    },
+  }));
+
+  const classes = useStyles();
+
+  const handleClose = () => {
+    // setOpen(isSubmitting);
+  };
 
   return (
 
     <Form inline={false}>
+      <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+
       <Container fluid={true}>
 
         <Row>
           <Col xs="auto">
-            STEP<br />
-            1
-      </Col>
+
+            <span>
+              STEP<br />
+              1
+</span>
+
+
+          </Col>
           <Col xs={2}>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>LATITUDE / LONGITUDE</Form.Label>
+
+              <Form.Label>LATITUDE / LONGITUDE</Form.Label> <Badge variant="danger">REQUIRED</Badge>
+
               <Form.Control type="text" name="pendingLatitude" placeholder="latitude" value={inputLatLongVal()} />
               <Form.Text className="text-muted">
                 Click on the map to automatically fill in the lat/long coordinates.
 </Form.Text>
             </Form.Group>
           </Col>
+          {/* 
           <Col xs="auto">
             STEP<br />
             2
@@ -179,15 +214,16 @@ export default function LocationSubmitter(props) {
                 Select which category best describes your medium.
 </Form.Text>
             </Form.Group>
-          </Col>
+          </Col> */}
+
           <Col xs="auto">
             STEP<br />
-            3
+            2
       </Col>
 
           <Col xs={2}>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>LOCATION NAME / DESCRIPTION</Form.Label>
+              <Form.Label>LOCATION NAME / DESCRIPTION</Form.Label> <Badge variant="danger">REQUIRED</Badge>
               <Form.Control type="text" name="pendingLocationNameDescription" onChange={changePendingLocationNameDescription} value={props.pendingLocationNameDescription} placeholder="location name / description" />
               <Form.Text className="text-muted">
                 example: Space Needle, Pike Place Market, Fremont Troll
@@ -198,11 +234,11 @@ export default function LocationSubmitter(props) {
 
           <Col xs="auto">
             STEP<br />
-            4
+            3
       </Col>
           <Col xs={1}>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>IMAGE</Form.Label>
+              <Form.Label>IMAGE</Form.Label>  <Badge variant="info">OPTIONAL</Badge>
 
               <input type="file" id="fileSelector"></input>
               <Form.Text className="text-muted">
@@ -214,7 +250,7 @@ export default function LocationSubmitter(props) {
 
           <Col xs="auto">
             STEP<br />
-            5
+            4
       </Col>
           <Col xs={1}>
             <Form.Group controlId="formBasicEmail">
@@ -222,8 +258,17 @@ export default function LocationSubmitter(props) {
               <br />
               {/* <button>Submit Location</button> */}
 
-              {/* why doesn't this work? */}
-              <Button onClick={handleSubmit} variant="success" size="lg">SUBMIT LOCATION</Button>
+              {/* <Button onClick={handleSubmit} variant="success" size="lg">SUBMIT LOCATION</Button> */}
+
+              <ButtonM
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                // endIcon={<Icon>send</Icon>}
+                onClick={handleSubmit}
+              >
+                SUBMIT LOCATION <AddLocation />
+      </ButtonM>
             </Form.Group>
           </Col>
 
