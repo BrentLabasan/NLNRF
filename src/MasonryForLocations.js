@@ -19,9 +19,11 @@ export default function MasonryForLocations(props) {
 
   const imagesLoadedOptions = { background: '.my-bg-image-el' }
 
-  const style= {maxWidth: '250px', maxheight:'250px', margin: '0 20px 20px 0', border: '1px solid #333333', padding: '10px', borderRadius: '5px'};
+  const style= {
+    cursor: 'pointer',
+    maxWidth: '250px', maxheight:'250px', margin: '0 20px 20px 0', border: '1px solid #333333', padding: '10px', borderRadius: '5px'};
 
-  let array = props.locations.filter(loc => loc.mediaUrl !== null).sort(compare).slice(0, 6);
+  let array = props.locations.filter(loc => loc.mediaUrl !== null).sort(compare).slice(0, 99);
   let childElements = array.map((loc) => {
     return (
       // <li className="image-element-class">
@@ -32,7 +34,8 @@ export default function MasonryForLocations(props) {
   });
 
   return (
-    <div>
+    // <div style={{width: '50%', display: 'inline-flex', justifyContent: 'space-between' }}>
+    <div style={{overflow: 'scroll', height: '700px', overflowX: 'hidden'}} >
       {/* <p>You clicked {count} times</p>
       <button onClick={() => setCount(count + 1)}>
         Click me
