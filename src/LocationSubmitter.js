@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Col, Dropdown, DropdownButton, ToggleButtonGroup, ToggleButton, Badge } from 'react-bootstrap';
-import { Backdrop } from '@material-ui/core';
+import { Backdrop, } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import * as firebase from 'firebase';
@@ -171,12 +171,19 @@ export default function LocationSubmitter(props) {
 
         <Row>
           <Col xs="auto">
-            STEP<br />
-            1
-      </Col>
+          
+            <span>
+              STEP<br />
+              1
+</span>
+
+
+          </Col>
           <Col xs={2}>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>LATITUDE / LONGITUDE</Form.Label>
+              
+                <Form.Label>LATITUDE / LONGITUDE</Form.Label> <Badge variant="danger">REQUIRED</Badge>
+              
               <Form.Control type="text" name="pendingLatitude" placeholder="latitude" value={inputLatLongVal()} />
               <Form.Text className="text-muted">
                 Click on the map to automatically fill in the lat/long coordinates.
@@ -212,7 +219,7 @@ export default function LocationSubmitter(props) {
 
           <Col xs={2}>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>LOCATION NAME / DESCRIPTION</Form.Label>
+              <Form.Label>LOCATION NAME / DESCRIPTION</Form.Label> <Badge variant="danger">REQUIRED</Badge>
               <Form.Control type="text" name="pendingLocationNameDescription" onChange={changePendingLocationNameDescription} value={props.pendingLocationNameDescription} placeholder="location name / description" />
               <Form.Text className="text-muted">
                 example: Space Needle, Pike Place Market, Fremont Troll
@@ -227,7 +234,7 @@ export default function LocationSubmitter(props) {
       </Col>
           <Col xs={1}>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>IMAGE</Form.Label>
+              <Form.Label>IMAGE</Form.Label>  <Badge variant="info">OPTIONAL</Badge>
 
               <input type="file" id="fileSelector"></input>
               <Form.Text className="text-muted">
