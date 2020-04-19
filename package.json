@@ -19,6 +19,7 @@
     "react-bootstrap": "^1.0.0",
     "react-device-detect": "^1.11.14",
     "react-dom": "^16.13.1",
+    "react-masonry-css": "^1.0.14",
     "react-scripts": "3.4.1",
     "simple-react-lightbox": "^2.6.8",
     "uuid": "^7.0.3"

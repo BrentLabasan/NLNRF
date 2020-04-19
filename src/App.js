@@ -13,7 +13,7 @@ import LocationSubmitter from './LocationSubmitter';
 import LocationDetails from './LocationDetails';
 import LatestSubmissions from './LatestSubmissions';
 import PopularSubmissions from './PopularSubmissions';
-import Masonry from './Masonry';
+import Masonry from './MasonryForLocationsForLocations';
 import SimpleReactLightbox from 'simple-react-lightbox';
 
 import GoogleMap from './GoogleMap';
