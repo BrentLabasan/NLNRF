@@ -803,14 +803,22 @@ export class App extends Component {
           </BrowserView>
 
           <MobileView>
-            <BottomNavigation value={this.state.mobiCurrentSection} onChange={this.handleMobiCurrSectionChange} className={null}>
-              <BottomNavigationAction label="Add Location" value="add" icon={<AddLocation />} />
-              <BottomNavigationAction label="Latest" value="latest" icon={<Photo />} />
-              <BottomNavigationAction label="Gallery" value="gallery" icon={<ViewComfy />} />
+            <div style={{position: 'absolute', bottom: 0, left: 0, width: '100%'}}>
+              {/* <Grid container spacing={3}>
+                <Grid item xs={12}> */}
+                  <BottomNavigation value={this.state.mobiCurrentSection} onChange={this.handleMobiCurrSectionChange} className={null}>
+                    <BottomNavigationAction label="Add Location" value="add" icon={<AddLocation />} />
+                    <BottomNavigationAction label="Latest" value="latest" icon={<Photo />} />
+                    <BottomNavigationAction label="Gallery" value="gallery" icon={<ViewComfy />} />
 
-              {/* <BottomNavigationAction label="Favorites" value="favorites" icon={<Favorite />} /> */}
-              {/* <BottomNavigationAction label="Account" value="account" icon={<AccountCircle />} /> */}
-            </BottomNavigation>
+                    {/* <BottomNavigationAction label="Favorites" value="favorites" icon={<Favorite />} /> */}
+                    {/* <BottomNavigationAction label="Account" value="account" icon={<AccountCircle />} /> */}
+                  </BottomNavigation>
+                {/* </Grid>
+              </Grid> */}
+            </div>
+
+
           </MobileView>
 
         </SimpleReactLightbox>
