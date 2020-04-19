@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Col, Dropdown, DropdownButton, ToggleButtonGroup, ToggleButton, Badge } from 'react-bootstrap';
+import { Backdrop } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 import moment from 'moment';
@@ -10,6 +13,8 @@ import useInput from './hookUseInput';
 export default function LocationSubmitter(props) {
   const { value: locationNameDescription, bind: bindLocationNameDescription, reset: resetlocationNameDescription } = useInput('');
 
+
+  const [open, setOpen] = useState(false);
 
   const [location, setLocation] = useState({
     latitude: 'a',
@@ -43,6 +48,7 @@ export default function LocationSubmitter(props) {
   }
 
   function handleSubmit(e) {
+    setOpen(true);
     e.preventDefault();
     debugger;
     // Add a new document with a generated id.
@@ -121,7 +127,7 @@ export default function LocationSubmitter(props) {
           });
         }
 
-
+        setOpen(false);
       })
       .catch(function (error) {
         console.error("Error adding document: ", error);
@@ -136,12 +142,31 @@ export default function LocationSubmitter(props) {
   }
 
   function inputLatLongVal() {
-    return props.pendingLatitude ? ( props.pendingLatitude + ', ' + props.pendingLongitude ) : '*';
+    return props.pendingLatitude ? (props.pendingLatitude + ', ' + props.pendingLongitude) : '*';
   }
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+      '& > * + *': {
+        marginLeft: theme.spacing(2),
+      },
+    },
+  }));
+
+  const classes = useStyles();
+
+  const handleClose = () => {
+    // setOpen(isSubmitting);
+  };
 
   return (
 
     <Form inline={false}>
+      <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+
       <Container fluid={true}>
 
         <Row>

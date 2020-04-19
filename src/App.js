@@ -7,7 +7,7 @@ import 'firebase/firestore';
 import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
 import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
-import { LocationOn, AddLocation, Favorite, AccountCircle, Photo } from '@material-ui/icons';
+import { LocationOn, AddLocation, Favorite, AccountCircle, Photo, Backdrop  } from '@material-ui/icons';
 import * as constants from './constants';
 import LocationSubmitter from './LocationSubmitter';
 import LocationDetails from './LocationDetails';
