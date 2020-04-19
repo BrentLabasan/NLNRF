@@ -22,7 +22,9 @@ export class GoogleMapMobile extends Component {
     currentMapCenterLat: 47.61785407164923,
     currentMapCenterLong: -122.31657144387441,
 
-    show: false
+    show: false,
+
+    modalMode: 'locationDetails' // locationDetails | addLocation
   };
 
   // const [modalStyle] = React.useState(getModalStyle);
@@ -41,7 +43,8 @@ export class GoogleMapMobile extends Component {
     this.props.handleMapMarkerClick(props, marker, e);
 
     this.setState({
-      show: true
+      show: true,
+      modalMode: 'locationDetails'
     });
   }
 
