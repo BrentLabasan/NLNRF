@@ -13,7 +13,7 @@ import LocationSubmitter from './LocationSubmitter';
 import LocationDetails from './LocationDetails';
 import LatestSubmissions from './LatestSubmissions';
 import PopularSubmissions from './PopularSubmissions';
-import Masonry from './MasonryForLocationsForLocations';
+import MasonryForLocations from './MasonryForLocations';
 import SimpleReactLightbox from 'simple-react-lightbox';
 
 import GoogleMap from './GoogleMap';
@@ -308,7 +308,7 @@ export class App extends Component {
         return <PopularSubmissions locations={this.state.locations} />
         break;
       case 'gallery':
-        return <Masonry locations={this.state.locations} />
+        return <MasonryForLocations locations={this.state.locations} />
         break;
       case 'location':
         if (this.state.selectedLocation) {
