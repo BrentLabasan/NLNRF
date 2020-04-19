@@ -34,8 +34,6 @@ export default function LocationDetails(props) {
 
     return (
         <div>
-            <h3>LOCATION DETAILS</h3>
-            <br /><br />
             <div>
                 {/* {props.selectedLocation?.mediaUrl && <img src={props.selectedLocation.mediaUrl} style={{ maxWidth: '300px' }} />} */}
                 {elLocationMedia()}
@@ -46,7 +44,7 @@ export default function LocationDetails(props) {
 
             {props.selectedLocation?.dateTime && <FormControl>
                 <InputLabel htmlFor="component-outlined">Name / Description</InputLabel>
-                <Input id="component-outlined" value={props.selectedLocation?.nameDescr} label="Name" />
+                <Input id="component-outlined" value={props.selectedLocation?.nameDescr} label="Name" defaultValue="no name or description provided" />
             </FormControl>}
             {/* <h4>DATETIME</h4> */}
             <br />
@@ -59,15 +57,15 @@ export default function LocationDetails(props) {
                 <InputLabel htmlFor="component-outlined">Date & Time</InputLabel>
                 <Input id="component-outlined" value={moment(props.selectedLocation?.dateTime).fromNow()} label="Name" />
             </FormControl>}
+
+            {/* <br />
             <br />
-            <br />
-            {/* 
-            <h4>VISUAL TYPE</h4> */}
+
 
             <FormControl>
                 <InputLabel htmlFor="component-outlined">Visual Type</InputLabel>
                 <Input id="component-outlined" value={'VALUE'} label="VisualType" />
-            </FormControl>
+            </FormControl> */}
 
 
 
