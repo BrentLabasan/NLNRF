@@ -10,6 +10,8 @@ import wut from './media/wut.gif';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
+import {  LocationOn, AddLocation, Favorite, AccountCircle, Photo, Backdrop, ViewComfy } from '@material-ui/icons';
+
 var _ = require('lodash');
 
 export class GoogleMapMobile extends Component {
@@ -96,7 +98,7 @@ export class GoogleMapMobile extends Component {
           animation={false}
         />
 
-        
+
       );
     });
 
@@ -105,23 +107,23 @@ export class GoogleMapMobile extends Component {
 
 
         <Modal show={this.state.show} onHide={this.handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>LOCATION DETAILS</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+          <Modal.Header closeButton>
+            <Modal.Title>LOCATION DETAILS</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
 
-          { this.state.modalMode === 'locationDetails' && <LocationDetailsMobile selectedLocation={this.props.selectedLocation} />}
+            {this.state.modalMode === 'locationDetails' && <LocationDetailsMobile selectedLocation={this.props.selectedLocation} />}
 
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="contained" color="primary" onClick={this.handleClose}>
-            Close
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="contained" color="primary" onClick={this.handleClose}>
+              Close
           </Button>
-          {/* <Button variant="contained" onClick={this.handleClose}>
+            {/* <Button variant="contained" onClick={this.handleClose}>
             Save Changes
           </Button> */}
-        </Modal.Footer>
-      </Modal>
+          </Modal.Footer>
+        </Modal>
 
         <Map
           google={this.props.google}
@@ -167,6 +169,11 @@ export class GoogleMapMobile extends Component {
             fillOpacity={0.35} /> */}
 
         </Map>
+
+        {/* displays LocationSubmitterMobile in a modal */}
+        <Button variant="contained" color="primary" onClick={this.handleClose}>
+          <AddLocation /> Add Location
+          </Button>
 
       </div>
     );

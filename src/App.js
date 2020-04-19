@@ -7,7 +7,7 @@ import 'firebase/firestore';
 import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
 import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
-import { LocationOn, AddLocation, Favorite, AccountCircle, Photo, Backdrop, ViewComfy } from '@material-ui/icons';
+import { Map as MapIcon, LocationOn, AddLocation, Favorite, AccountCircle, Photo, Backdrop, ViewComfy } from '@material-ui/icons';
 import * as constants from './constants';
 import LocationSubmitter from './LocationSubmitter';
 import LocationDetails from './LocationDetails';
@@ -848,7 +848,7 @@ export class App extends Component {
               {/* <Grid container spacing={3}>
                 <Grid item xs={12}> */}
               <BottomNavigation value={this.state.mobiCurrentSection} onChange={this.handleMobiCurrSectionChange} className={null} style={{ position: 'fixed', bottom: this.state.mobileCurrentView === 'addLocation' ? '35px' : 0, left: 0, width: '100%' }}>
-                <BottomNavigationAction label="Add Location" value="addLocation" icon={<AddLocation />} />
+                <BottomNavigationAction label="Add Location" value="addLocation" icon={<MapIcon />} />
                 <BottomNavigationAction label="Latest" value="latest" icon={<Photo />} />
                 <BottomNavigationAction label="Gallery" value="gallery" icon={<ViewComfy />} />
 
