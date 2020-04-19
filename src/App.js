@@ -821,6 +821,7 @@ export class App extends Component {
               currentMapCenter={{ lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong }}
               isPulseVisible={this.state.isPulseVisible}
               pulseGeopoint={this.state.pulseGeopoint}
+              height={'50%'}
             />
 
             <div style={{ position: 'fixed', bottom: 0, left: 0, width: '100%' }}>

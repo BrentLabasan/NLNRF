@@ -78,7 +78,7 @@ export class GoogleMap extends Component {
           style={
             {
               width: '90%',
-              height: '800px'
+              height: this.props.height || '800px'
             }
           }
           initialCenter={{
