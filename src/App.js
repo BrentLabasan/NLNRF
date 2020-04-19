@@ -7,7 +7,7 @@ import 'firebase/firestore';
 import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
 import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
-import { LocationOn, AddLocation, Favorite, AccountCircle, Photo, Backdrop  } from '@material-ui/icons';
+import { LocationOn, AddLocation, Favorite, AccountCircle, Photo, Backdrop, ViewComfy  } from '@material-ui/icons';
 import * as constants from './constants';
 import LocationSubmitter from './LocationSubmitter';
 import LocationDetails from './LocationDetails';
@@ -802,8 +802,10 @@ export class App extends Component {
         <BottomNavigation value={this.state.mobiCurrentSection} onChange={this.handleMobiCurrSectionChange} className={null}>
           <BottomNavigationAction label="Add Location" value="add" icon={<AddLocation />} />
           <BottomNavigationAction label="Latest" value="latest" icon={<Photo />} />
-          <BottomNavigationAction label="Favorites" value="favorites" icon={<Favorite />} />
-          <BottomNavigationAction label="Account" value="account" icon={<AccountCircle />} />
+          <BottomNavigationAction label="Gallery" value="gallery" icon={<ViewComfy />} />
+
+          {/* <BottomNavigationAction label="Favorites" value="favorites" icon={<Favorite />} /> */}
+          {/* <BottomNavigationAction label="Account" value="account" icon={<AccountCircle />} /> */}
         </BottomNavigation>
 
         </SimpleReactLightbox>
