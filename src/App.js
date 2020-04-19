@@ -7,7 +7,7 @@ import 'firebase/firestore';
 import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
 import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
-import { LocationOn, AddLocation, Favorite, AccountCircle, Photo, Backdrop, ViewComfy  } from '@material-ui/icons';
+import { LocationOn, AddLocation, Favorite, AccountCircle, Photo, Backdrop, ViewComfy } from '@material-ui/icons';
 import * as constants from './constants';
 import LocationSubmitter from './LocationSubmitter';
 import LocationDetails from './LocationDetails';
@@ -15,6 +15,8 @@ import LatestSubmissions from './LatestSubmissions';
 import PopularSubmissions from './PopularSubmissions';
 import MasonryForLocations from './MasonryForLocations';
 import SimpleReactLightbox from 'simple-react-lightbox';
+import LatestSubmissionsMobile from './LatestSubmissionsMobile';
+import GalleryMobile from './GalleryMobile';
 
 import GoogleMap from './GoogleMap';
 
@@ -76,7 +78,9 @@ export class App extends Component {
     pulseLat: null,
     pulseLong: null,
 
-    pulseGeopoint: null
+    pulseGeopoint: null,
+
+    mobileCurrentView: 'addLocation', // addLocation, latest, gallery
   };
 
   setIsPulseVisible = (bool, geopoint) => {
@@ -122,7 +126,7 @@ export class App extends Component {
   }
 
   handleMobiCurrSectionChange = (event, value) => {
-    this.setState({ mobiCurrentSection: value })
+    this.setState({ mobileCurrentView: value })
   }
 
   handleMapMarkerClick = (props, marker, e) => {
@@ -200,9 +204,6 @@ export class App extends Component {
       currentMapCenterLong: position.coords.longitude
     });
   }
-
-
-
 
 
   handleSubmit = (e) => {
@@ -341,30 +342,32 @@ export class App extends Component {
     return (
       <div className="App">
         <SimpleReactLightbox>
-        <header>
-          <h1 id="heroLogo">
-            NLNRF<span style={{ fontSize: '18px', marginLeft: '-15px' }} >.com</span>
-            &nbsp;
+
+          <BrowserView>
+            <header>
+              <h1 id="heroLogo">
+                NLNRF<span style={{ fontSize: '18px', marginLeft: '-15px' }} >.com</span>
+                &nbsp;
           <span className='slogan'>NOT LEFT. NOT RIGHT. FORWARD &gt;</span>
-          </h1>
-        </header>
+              </h1>
+            </header>
 
 
 
 
-        <br />
+            <br />
 
-        {/* <hr class="style3" style={{width: hrWidth }} ></hr> */}
+            {/* <hr class="style3" style={{width: hrWidth }} ></hr> */}
 
 
-        <Row>
+            <Row>
 
-          {/* <ButtonGroup variant="contained" aria-label="contained primary button group" disableElevation>
+              {/* <ButtonGroup variant="contained" aria-label="contained primary button group" disableElevation>
             <Button onClick={() => { this.handleAreaMenuChange('landmarks') }} color={this.state.areaMenuActive === 'landmarks' ? 'primary' : 'default'} disableElevation>LANDMARKS</Button>
             <Button onClick={() => { this.handleAreaMenuChange('neighborhoods') }} color={this.state.areaMenuActive === 'neighborhoods' ? 'primary' : 'default'} disableElevation>NEIGHBORHOODS</Button>
           </ButtonGroup> */}
 
-          {/* 
+              {/* 
           {this.state.areaMenuActive === 'landmarks' && <Col>
             <Navbar expand="lg" bg="" variant="">
 
@@ -431,7 +434,7 @@ export class App extends Component {
           </Col>}
  */}
 
-          {/* 
+              {/* 
           {this.state.areaMenuActive === 'neighborhoods' && <Col>
             <Navbar expand="lg" bg="" variant="">
 
@@ -511,17 +514,17 @@ export class App extends Component {
           }
  */}
 
-        </Row>
+            </Row>
 
 
-        <Grid container spacing={3}>
+            <Grid container spacing={3}>
 
-          <Grid item xs={6}>
-            <div style={containerStyle}>
+              <Grid item xs={6}>
+                <div style={containerStyle}>
 
-              {/* TODO */}
+                  {/* TODO */}
 
-              {/* <Map
+                  {/* <Map
   google={this.props.google}
   zoom={13}
   style={mapStyles}
@@ -540,58 +543,58 @@ export class App extends Component {
 
 </Map> */}
 
-              <GoogleMap
-                locations={this.state.locations}
-                handlePendingLatLongChange={this.handlePendingLatLongChange}
-                handleMapMarkerClick={this.handleMapMarkerClick}
-                currentMapCenter={{ lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong }}
-                isPulseVisible={this.state.isPulseVisible}
-                pulseGeopoint={this.state.pulseGeopoint}
-              />
+                  <GoogleMap
+                    locations={this.state.locations}
+                    handlePendingLatLongChange={this.handlePendingLatLongChange}
+                    handleMapMarkerClick={this.handleMapMarkerClick}
+                    currentMapCenter={{ lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong }}
+                    isPulseVisible={this.state.isPulseVisible}
+                    pulseGeopoint={this.state.pulseGeopoint}
+                  />
 
-            </div>
+                </div>
 
-          </Grid>
-          <Grid item xs={6}>
-            {/* <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
+              </Grid>
+              <Grid item xs={6}>
+                {/* <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
               <ToggleButton value={1}>LATEST</ToggleButton>
               <ToggleButton value={2}>MOST UPVOTED</ToggleButton>
             </ToggleButtonGroup> */}
 
-            <br /><br />
+                <br /><br />
 
-            <div style={{ textAlign: 'center' }}>
-              <ButtonGroup variant="contained" aria-label="contained primary button group" disableElevation>
-                <Button onClick={() => { this.handleMultiChange('location') }} color={this.state.multiActive === 'location' ? 'primary' : 'default'} disableElevation><LocationOn style={{ fontSize: null }} /></Button>
-                <Button onClick={() => { this.handleMultiChange('latest') }} color={this.state.multiActive === 'latest' ? 'primary' : 'default'} disableElevation>LATEST</Button>
-                <Button onClick={() => { this.handleMultiChange('popular') }} color={this.state.multiActive === 'popular' ? 'primary' : 'default'} disableElevation>POPULAR</Button>
-                <Button onClick={() => { this.handleMultiChange('gallery') }} color={this.state.multiActive === 'gallery' ? 'primary' : 'default'} disableElevation>GALLERY</Button>
-              </ButtonGroup>
-            </div>
+                <div style={{ textAlign: 'center' }}>
+                  <ButtonGroup variant="contained" aria-label="contained primary button group" disableElevation>
+                    <Button onClick={() => { this.handleMultiChange('location') }} color={this.state.multiActive === 'location' ? 'primary' : 'default'} disableElevation><LocationOn style={{ fontSize: null }} /></Button>
+                    <Button onClick={() => { this.handleMultiChange('latest') }} color={this.state.multiActive === 'latest' ? 'primary' : 'default'} disableElevation>LATEST</Button>
+                    <Button onClick={() => { this.handleMultiChange('popular') }} color={this.state.multiActive === 'popular' ? 'primary' : 'default'} disableElevation>POPULAR</Button>
+                    <Button onClick={() => { this.handleMultiChange('gallery') }} color={this.state.multiActive === 'gallery' ? 'primary' : 'default'} disableElevation>GALLERY</Button>
+                  </ButtonGroup>
+                </div>
 
-            <br /><br />
+                <br /><br />
 
-            {/* {!this.state.selectedLocation && <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>} */}
-            {this.multiGenerator()}
+                {/* {!this.state.selectedLocation && <div style={{ display: 'inline-flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}><h3><LocationOn style={{ fontSize: 80 }} />Click on a marker to show its details.</h3></div>} */}
+                {this.multiGenerator()}
 
-            {/* {this.state.selectedLocation && this.state.multiActive === 'location' && <LocationDetails selectedLocation={this.state.selectedLocation} />}
+                {/* {this.state.selectedLocation && this.state.multiActive === 'location' && <LocationDetails selectedLocation={this.state.selectedLocation} />}
             {this.state.multiActive === 'latest' && <LatestSubmissions locations={this.state.locations} />}
             {this.state.multiActive === 'popular' && <PopularSubmissions locations={this.state.locations} />}
             {this.state.multiActive === 'gallery' && <Masonry locations={this.state.locations} />} */}
 
-          </Grid>
+              </Grid>
 
-        </Grid>
-
-
-        <br /> <br />
-
-        <section className="add-item">
+            </Grid>
 
 
-          {/* <Form onSubmit={this.handleSubmit} inline={false}> */}
+            <br /> <br />
 
-          {/*
+            <section className="add-item">
+
+
+              {/* <Form onSubmit={this.handleSubmit} inline={false}> */}
+
+              {/*
           <Form inline={false}>
             <Container fluid={true}>
 
@@ -679,134 +682,177 @@ export class App extends Component {
 
           </Form>
         */}
-          <h2><LocationOn style={{ fontSize: 80 }} />ADD LOCATION</h2>
-          <LocationSubmitter
-            db={db}
-            storageRef={storageRef}
-            pendingLatitude={this.state.pendingLatitude}
-            pendingLongitude={this.state.pendingLongitude}
-            pendingLocationNameDescription={this.state.pendingLocationNameDescription}
+              <h2><LocationOn style={{ fontSize: 80 }} />ADD LOCATION</h2>
+              <LocationSubmitter
+                db={db}
+                storageRef={storageRef}
+                pendingLatitude={this.state.pendingLatitude}
+                pendingLongitude={this.state.pendingLongitude}
+                pendingLocationNameDescription={this.state.pendingLocationNameDescription}
 
-            handlePendingLatLongChange={this.handlePendingLatLongChange}
-            handlePendingLocationNameDescription={this.handlePendingLocationNameDescription}
-          />
+                handlePendingLatLongChange={this.handlePendingLatLongChange}
+                handlePendingLocationNameDescription={this.handlePendingLocationNameDescription}
+              />
 
-        </section>
+            </section>
 
-        <br /> <br />
+            <br /> <br />
 
-        {/* <p>🗺️ CENTER MAP TO YOUR LOCATION</p> */}
+            {/* <p>🗺️ CENTER MAP TO YOUR LOCATION</p> */}
 
-        <button onClick={this.getLocation}>🗺️ CENTER MAP TO YOUR LOCATION</button>
+            <button onClick={this.getLocation}>🗺️ CENTER MAP TO YOUR LOCATION</button>
 
-        <p id="demo"></p>
+            <p id="demo"></p>
 
-        <br /> <br />
+            <br /> <br />
 
-        <hr className="style3" style={{ width: hrWidth }} ></hr>
+            <hr className="style3" style={{ width: hrWidth }} ></hr>
 
-        <br /> <br />
+            <br /> <br />
 
-        <footer>
-          <Row>
-            <Col xs={4}>
-              <h3>What is NLNRF?</h3>
-              <p>NLNRF is an acronym for "Not left. Not right. Forward." It's a great slogan for uniting people to tackle the problems Andrew Yang is focused on solving world problems such as mass job displace due to automation, the ever-widening income inequality gap, and climate change.</p>
-            </Col>
-            <Col xs={4}>
-              <h3>How can I help spread the NLNRF message?</h3>
-              <p>
-                <ol>
-                  <li>Chalk, sticker, sharpie, graffiti the slogan "Not left. Not right. Forward." on surfaces where as much people will see! Use the map above to figure out where high trafficed or underrepresented locations are.</li>
-                  <li>And then post your work to this site!</li>
-                  <li>Reach out to new people and encourage them to spread the NLNRF message!</li>
-                  <li>If you're a programmer/developer, check out the To-Do List below, communicate an choose a task to work on, pair program with Brent if necessary, and then submit a pull request. <a href="https://github.com/BrentLabasan/NLNRF" target="_blank">GitHub</a></li>
-                </ol>
-              </p>
-            </Col>
-            <Col xs={4}>
-              <h3>Tell me more about Andrew Yang.</h3>
-              <p>Andrew Yang is a former Democratic presidential candidate (2020) and CNN political commentator,  focused on solving world problems such as mass job displace due to automation, the ever-widening income inequality gap, and climate change.</p>
-            </Col>
-          </Row>
+            <footer>
+              <Row>
+                <Col xs={4}>
+                  <h3>What is NLNRF?</h3>
+                  <p>NLNRF is an acronym for "Not left. Not right. Forward." It's a great slogan for uniting people to tackle the problems Andrew Yang is focused on solving world problems such as mass job displace due to automation, the ever-widening income inequality gap, and climate change.</p>
+                </Col>
+                <Col xs={4}>
+                  <h3>How can I help spread the NLNRF message?</h3>
+                  <p>
+                    <ol>
+                      <li>Chalk, sticker, sharpie, graffiti the slogan "Not left. Not right. Forward." on surfaces where as much people will see! Use the map above to figure out where high trafficed or underrepresented locations are.</li>
+                      <li>And then post your work to this site!</li>
+                      <li>Reach out to new people and encourage them to spread the NLNRF message!</li>
+                      <li>If you're a programmer/developer, check out the To-Do List below, communicate an choose a task to work on, pair program with Brent if necessary, and then submit a pull request. <a href="https://github.com/BrentLabasan/NLNRF" target="_blank">GitHub</a></li>
+                    </ol>
+                  </p>
+                </Col>
+                <Col xs={4}>
+                  <h3>Tell me more about Andrew Yang.</h3>
+                  <p>Andrew Yang is a former Democratic presidential candidate (2020) and CNN political commentator,  focused on solving world problems such as mass job displace due to automation, the ever-widening income inequality gap, and climate change.</p>
+                </Col>
+              </Row>
 
-          <Row>
-            <Col>
-              <h4>To-Do List</h4>
-            </Col>
-          </Row>
+              <Row>
+                <Col>
+                  <h4>To-Do List</h4>
+                </Col>
+              </Row>
 
-          <Row>
-            <Col xs={3}>
-              <h5>Functional</h5>
-              <ul>
-                <li>create mobile-friendly layout <Badge variant="light">NOT STARTED</Badge> <Badge variant="danger">HIGHEST PRIORITY</Badge> </li>
-                <li>submit imgur, YouTube, Instagram media</li>
-                {/* <li></li> */}
-              </ul>
-            </Col>
+              <Row>
+                <Col xs={3}>
+                  <h5>Functional</h5>
+                  <ul>
+                    <li>create mobile-friendly layout <Badge variant="light">NOT STARTED</Badge> <Badge variant="danger">HIGHEST PRIORITY</Badge> </li>
+                    <li>submit imgur, YouTube, Instagram media</li>
+                    {/* <li></li> */}
+                  </ul>
+                </Col>
 
-            <Col xs={3}>
-              <h5>Social</h5>
-              <ul>
-                <li>implement user account system <Badge variant="light">NOT STARTED</Badge></li>
-                <li>users can favorite their favorite NLNRF locations <Badge variant="light">NOT STARTED</Badge></li>
-                <li>users can upvote an NLNRF location <Badge variant="light">NOT STARTED</Badge></li>
-              </ul>
-            </Col>
+                <Col xs={3}>
+                  <h5>Social</h5>
+                  <ul>
+                    <li>implement user account system <Badge variant="light">NOT STARTED</Badge></li>
+                    <li>users can favorite their favorite NLNRF locations <Badge variant="light">NOT STARTED</Badge></li>
+                    <li>users can upvote an NLNRF location <Badge variant="light">NOT STARTED</Badge></li>
+                  </ul>
+                </Col>
 
-            <Col xs={3}>
-              <h5>Cosmetic</h5>
-              <ul>
-                <li>Is the blue color scheme good? <Badge variant="light">NOT STARTED</Badge></li>
-                {/* <li></li>
+                <Col xs={3}>
+                  <h5>Cosmetic</h5>
+                  <ul>
+                    <li>Is the blue color scheme good? <Badge variant="light">NOT STARTED</Badge></li>
+                    {/* <li></li>
                 <li></li> */}
-              </ul>
-            </Col>
+                  </ul>
+                </Col>
 
-            <Col xs={3}>
-              <h5>Underneath The Hood</h5>
-              <ul>
-                <li>The app is one big component. Separate the components into separate, especially because even simple actions like clicking on the map or typing one letter for the location description causes map and NLNRF locations to re-render. <Badge variant="light">NOT STARTED</Badge></li>
-                {/* <li></li>
+                <Col xs={3}>
+                  <h5>Underneath The Hood</h5>
+                  <ul>
+                    <li>The app is one big component. Separate the components into separate, especially because even simple actions like clicking on the map or typing one letter for the location description causes map and NLNRF locations to re-render. <Badge variant="light">NOT STARTED</Badge></li>
+                    {/* <li></li>
                 <li></li> */}
-              </ul>
-            </Col>
+                  </ul>
+                </Col>
 
-          </Row>
+              </Row>
 
-          <section id="byline">
-            <h6>
-              NLNRF was designed and developed by <a href="BrentVLabasan.com" target="_blank">Brent Labasan X&gt;</a>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <section id="byline">
+                <h6>
+                  NLNRF was designed and developed by <a href="BrentVLabasan.com" target="_blank">Brent Labasan X&gt;</a>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               If you would like to help Brent work on NLNRF.com, contact him at BrentLabasan@gmail.com or @BrentLabasan <a href="https://github.com/BrentLabasan/NLNRF" target="_blank">GitHub</a>
-            </h6>
-          </section>
+                </h6>
+              </section>
 
-          <br /><br />
+              <br /><br />
 
-          <section id="logos">
-            <img src={CrossUnite} className="" alt="" style={{ maxHeight: '50px' }} />
+              <section id="logos">
+                <img src={CrossUnite} className="" alt="" style={{ maxHeight: '50px' }} />
 
-            <a href="https://FabricatorMusic.com" className="FabricatorMusic" target="_blank">
-              <span className="FabricatorMusic">Fabricator Music</span>
-            </a>
+                <a href="https://FabricatorMusic.com" className="FabricatorMusic" target="_blank">
+                  <span className="FabricatorMusic">Fabricator Music</span>
+                </a>
 
-            <img src={PoopAndNeedles} className="" alt="" style={{ maxHeight: '50px' }} />
+                <img src={PoopAndNeedles} className="" alt="" style={{ maxHeight: '50px' }} />
 
 
-          </section>
+              </section>
 
-        </footer>
+            </footer>!
+          </BrowserView>
 
-        <BottomNavigation value={this.state.mobiCurrentSection} onChange={this.handleMobiCurrSectionChange} className={null}>
-          <BottomNavigationAction label="Add Location" value="add" icon={<AddLocation />} />
-          <BottomNavigationAction label="Latest" value="latest" icon={<Photo />} />
-          <BottomNavigationAction label="Gallery" value="gallery" icon={<ViewComfy />} />
+          <MobileView>
 
-          {/* <BottomNavigationAction label="Favorites" value="favorites" icon={<Favorite />} /> */}
-          {/* <BottomNavigationAction label="Account" value="account" icon={<AccountCircle />} /> */}
-        </BottomNavigation>
+            <header>
+              <h1 id="heroLogo" style={{ fontSize: '20px' }}>
+
+                NLNRF<span style={{ fontSize: '15px', marginLeft: '0px' }} >.com</span>
+
+                &nbsp;
+          <span className='slogan' style={{ fontSize: '10px', fontWeight: 'bold' }}>NOT LEFT. NOT RIGHT. FORWARD &gt;</span>
+              </h1>
+            </header>
+
+            {this.state.mobileCurrentView === 'addLocation' && <div style={{height: '40%'}}><GoogleMap
+              locations={this.state.locations}
+              handlePendingLatLongChange={this.handlePendingLatLongChange}
+              handleMapMarkerClick={this.handleMapMarkerClick}
+              currentMapCenter={{ lat: this.state.currentMapCenterLat, long: this.state.currentMapCenterLong }}
+              isPulseVisible={this.state.isPulseVisible}
+              pulseGeopoint={this.state.pulseGeopoint}
+              height={'400px'}
+
+              containerStyle = {{height: '250px'}}
+            /></div>}
+
+            {this.state.mobileCurrentView === 'latest' && <LatestSubmissionsMobile
+              clickLatestSubmissionLi={this.clickLatestSubmissionLi} setPulseLangLong={this.setPulseLangLong} setIsPulseVisible={this.setIsPulseVisible} locations={this.state.locations}
+            />}
+
+            {this.state.mobileCurrentView === 'gallery' && <GalleryMobile
+              clickLatestSubmissionLi={this.clickLatestSubmissionLi} setPulseLangLong={this.setPulseLangLong} setIsPulseVisible={this.setIsPulseVisible} locations={this.state.locations}
+            />}
+
+            {/* <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%' }}> */}
+            <div>
+              {/* <Grid container spacing={3}>
+                <Grid item xs={12}> */}
+              <BottomNavigation value={this.state.mobiCurrentSection} onChange={this.handleMobiCurrSectionChange} className={null} style={{ position: 'fixed', bottom: this.state.mobileCurrentView === 'addLocation' ?  '35px' : 0, left: 0, width: '100%' }}>
+                <BottomNavigationAction label="Add Location" value="addLocation" icon={<AddLocation />} />
+                <BottomNavigationAction label="Latest" value="latest" icon={<Photo />} />
+                <BottomNavigationAction label="Gallery" value="gallery" icon={<ViewComfy />} />
+
+                {/* <BottomNavigationAction label="Favorites" value="favorites" icon={<Favorite />} /> */}
+                {/* <BottomNavigationAction label="Account" value="account" icon={<AccountCircle />} /> */}
+              </BottomNavigation>
+              {/* </Grid>
+              </Grid> */}
+            </div>
+
+
+          </MobileView>
 
         </SimpleReactLightbox>
       </div >

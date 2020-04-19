@@ -78,7 +78,7 @@ export class GoogleMap extends Component {
           style={
             {
               width: '90%',
-              height: '800px'
+              height: this.props.height || '800px'
             }
           }
           initialCenter={{
@@ -90,6 +90,7 @@ export class GoogleMap extends Component {
             lng: this.props.currentMapCenter.long
           }}
           onClick={this.mapClicked}
+          containerStyle={this.props.containerStyle || null}
         >
            
           {locations}
