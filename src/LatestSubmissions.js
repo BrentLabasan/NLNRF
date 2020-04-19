@@ -29,7 +29,7 @@ export default function LatestSubmissions(props) {
 
     // debugger;
     // console.table(props.locations.slice(0, 10).sort(compare));
-    let sorted = props.locations.slice(0, 7).sort(compare);
+    let sorted = props.locations.sort(compare).slice(0, 7);
     const latestSubmissions = sorted.map((loc) => {
         // debugger;
         return <li style={style}
