@@ -1,18 +1,17 @@
 {
   "files": {
     "main.css": "/NLNRF/static/css/main.023d9366.chunk.css",
-    "main.js": "/NLNRF/static/js/main.02d42a52.chunk.js",
-    "main.js.map": "/NLNRF/static/js/main.02d42a52.chunk.js.map",
+    "main.js": "/NLNRF/static/js/main.d9befeb5.chunk.js",
+    "main.js.map": "/NLNRF/static/js/main.d9befeb5.chunk.js.map",
     "runtime-main.js": "/NLNRF/static/js/runtime-main.7217e6c9.js",
     "runtime-main.js.map": "/NLNRF/static/js/runtime-main.7217e6c9.js.map",
     "static/js/2.2b26eed4.chunk.js": "/NLNRF/static/js/2.2b26eed4.chunk.js",
     "static/js/2.2b26eed4.chunk.js.map": "/NLNRF/static/js/2.2b26eed4.chunk.js.map",
     "index.html": "/NLNRF/index.html",
-    "precache-manifest.910618c1a7998c2a9f4e3f11f0903a6a.js": "/NLNRF/precache-manifest.910618c1a7998c2a9f4e3f11f0903a6a.js",
+    "precache-manifest.7598dd45d56696f1d4f0b32118f9e3a7.js": "/NLNRF/precache-manifest.7598dd45d56696f1d4f0b32118f9e3a7.js",
     "service-worker.js": "/NLNRF/service-worker.js",
     "static/css/main.023d9366.chunk.css.map": "/NLNRF/static/css/main.023d9366.chunk.css.map",
     "static/js/2.2b26eed4.chunk.js.LICENSE.txt": "/NLNRF/static/js/2.2b26eed4.chunk.js.LICENSE.txt",
-    "static/media/crosshair1.png": "/NLNRF/static/media/crosshair1.f9e08ffb.png",
     "static/media/poopandneedles.png": "/NLNRF/static/media/poopandneedles.da690e49.png",
     "static/media/pulsing3.gif": "/NLNRF/static/media/pulsing3.ffd5e84b.gif",
     "static/media/wut.gif": "/NLNRF/static/media/wut.9b488c89.gif",
@@ -22,6 +21,6 @@
     "static/js/runtime-main.7217e6c9.js",
     "static/js/2.2b26eed4.chunk.js",
     "static/css/main.023d9366.chunk.css",
-    "static/js/main.02d42a52.chunk.js"
+    "static/js/main.d9befeb5.chunk.js"
   ]
 }
