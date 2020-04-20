@@ -139,7 +139,7 @@ debugger;
           <Modal.Body>
 
             {this.state.modalMode === 'locationDetails' && <LocationDetailsMobile selectedLocation={this.props.selectedLocation} />}
-            {this.state.modalMode === 'addLocation' && <LocationSubmitterMobile selectedLocation={this.props.selectedLocation} latLong={{ latitude: this.state.dragLatitude, longitude: this.state.dragLongitude }} />}
+            {this.state.modalMode === 'addLocation' && <LocationSubmitterMobile selectedLocation={this.props.selectedLocation} latLong={{ latitude: this.state.dragLatitude, longitude: this.state.dragLongitude }} db={this.props.db} storageRef={this.props.storageRef} />}
 
           </Modal.Body>
           <Modal.Footer>

@@ -830,6 +830,9 @@ export class App extends Component {
                 containerStyle={{ height: '85%' }}
 
                 selectedLocation={this.state.selectedLocation}
+
+                db={db}
+                storageRef={storageRef}
               />
 
               {/* <LocationDetailsMobile selectedLocation={this.state.selectedLocation} /> */}

@@ -17,6 +17,7 @@ export default function LocationSubmitterMobile(props) {
 
 
   const [open, setOpen] = useState(false);
+  const [nameDescr, setNameDescr] = useState('');
 
   const [location, setLocation] = useState({
     latitude: 'a',
@@ -140,7 +141,7 @@ export default function LocationSubmitterMobile(props) {
   function changePendingLocationNameDescription(e) {
     e.preventDefault();
 
-    props.handlePendingLocationNameDescription(e.target.value);
+    setNameDescr(e.target.value);
   }
 
   function inputLatLongVal() {
@@ -206,7 +207,7 @@ export default function LocationSubmitterMobile(props) {
           <Col>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>LOCATION NAME / DESCRIPTION</Form.Label> <Badge variant="danger">REQUIRED</Badge>
-              <Form.Control type="text" name="pendingLocationNameDescription" onChange={changePendingLocationNameDescription} value={props.pendingLocationNameDescription} placeholder="location name / description" />
+              <Form.Control type="text" name="pendingLocationNameDescription" onChange={changePendingLocationNameDescription} value={nameDescr} placeholder="location name / description" />
               <Form.Text className="text-muted">
                 example: Space Needle, Pike Place Market, Fremont Troll
 </Form.Text>
