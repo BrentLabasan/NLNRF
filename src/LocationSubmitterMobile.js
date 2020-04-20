@@ -85,7 +85,11 @@ export default function LocationSubmitterMobile(props) {
             console.log(`Media uploaded successfully :) GUID: ${guid}`);
             console.log(snapshot);
 
-            document.getElementById('fileSelector').value = null;
+            // ERROR after a successful mobile location submit, after a few secs I got the error TypeError: Cannot set property 'value' of null
+            if (document.getElementById('fileSelector')) {
+              document.getElementById('fileSelector').value = null;
+            }
+            
 
             props.storageRef.child('locations/' + guid).getDownloadURL().then((url) => {
               // `url` is the download URL for 'images/stars.jpg'
@@ -131,7 +135,9 @@ export default function LocationSubmitterMobile(props) {
           });
         }
 
-        setOpen(false);
+        // setOpen(false);
+        alert("Location submitted successfully!");
+        props.handleClose();
       })
       .catch(function (error) {
         console.error("Error adding document: ", error);
@@ -187,11 +193,12 @@ export default function LocationSubmitterMobile(props) {
           <Col>
             <Form.Group controlId="formBasicEmail">
 
-              <Form.Label>LATITUDE / LONGITUDE</Form.Label> <Badge variant="danger">REQUIRED</Badge>
+              <Form.Label>LATITUDE / LONGITUDE</Form.Label> 
+              {/* <Badge variant="danger">REQUIRED</Badge> */}
 
               <Form.Control type="text" name="pendingLatitude" placeholder="latitude" value={inputLatLongVal()} />
               <Form.Text className="text-muted">
-                Click on the map to automatically fill in the lat/long coordinates.
+                These coordinates are automatically filled out.
 </Form.Text>
             </Form.Group>
           </Col>
