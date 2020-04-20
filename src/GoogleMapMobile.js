@@ -27,7 +27,10 @@ export class GoogleMapMobile extends Component {
 
     show: false,
 
-    modalMode: 'locationDetails' // locationDetails | addLocation
+    modalMode: 'locationDetails', // locationDetails | addLocation
+
+    dragLatitude: constants.DEFAULT_MAP_CENTER.LAT,
+    dragLongitude: constants.DEFAULT_MAP_CENTER.LONG
   };
 
   // const [modalStyle] = React.useState(getModalStyle);
@@ -87,11 +90,16 @@ export class GoogleMapMobile extends Component {
 
   }
 
-  centerMoved(mapProps, map) {
+  centerMoved = (mapProps, map) => {
     // console.log("mapProps, map", mapProps, map);
     // console.log(mapProps.center.lat, mapProps.center.lng);
 
     console.log(map.getCenter().lat(), map.getCenter().lng());
+
+    this.setState({
+      dragLatitude: map.getCenter().lat(),
+      dragLongitude: map.getCenter().lng()
+    })
   }
   
 
@@ -161,8 +169,11 @@ export class GoogleMapMobile extends Component {
               lng: constants.DEFAULT_MAP_CENTER.LONG
             }}
             center={{
-              lat: this.props.currentMapCenter.lat,
-              lng: this.props.currentMapCenter.long
+              // lat: constants.DEFAULT_MAP_CENTER.LAT,
+              // lng: constants.DEFAULT_MAP_CENTER.LONG
+
+              lat: this.state.dragLatitude,
+              lng: this.state.dragLongitude
             }}
             onClick={this.mapClicked}
             containerStyle={this.props.containerStyle || null}
