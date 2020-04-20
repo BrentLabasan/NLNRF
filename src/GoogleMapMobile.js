@@ -13,7 +13,7 @@ import Button from '@material-ui/core/Button';
 
 import { LocationOn, AddLocation, Favorite, AccountCircle, Photo, Backdrop, ViewComfy } from '@material-ui/icons';
 
-import IconCrosshair from './media/redCrosshair.jpg';
+import IconCrosshair from './media/crosshair1.png';
 
 var _ = require('lodash');
 
@@ -199,8 +199,8 @@ debugger;
                 lng: this.state.dragLongitude || constants.DEFAULT_MAP_CENTER.LONG }}
               icon={{
                 // url: 'https://loading.io/icon/i3ca9h',
-                url: pulsing, // works
-                // url: wut, // works
+                // url: pulsing, // works
+                url: IconCrosshair, // works
                 anchor: new this.props.google.maps.Point(64, 64),
                 scaledSize: new this.props.google.maps.Size(128, 128)
               }}
