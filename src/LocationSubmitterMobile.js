@@ -144,7 +144,8 @@ export default function LocationSubmitterMobile(props) {
   }
 
   function inputLatLongVal() {
-    return props.pendingLatitude ? (props.pendingLatitude + ', ' + props.pendingLongitude) : '*';
+    debugger;
+    return props.latLong ? (props.latLong.latitude + ', ' + props.latLong.longitude) : '*';
   }
 
   const useStyles = makeStyles((theme) => ({
@@ -181,7 +182,7 @@ export default function LocationSubmitterMobile(props) {
 
 
           </Col>
-          <Col xs={2}>
+          <Col>
             <Form.Group controlId="formBasicEmail">
 
               <Form.Label>LATITUDE / LONGITUDE</Form.Label> <Badge variant="danger">REQUIRED</Badge>
@@ -221,7 +222,7 @@ export default function LocationSubmitterMobile(props) {
             2
       </Col>
 
-          <Col xs={2}>
+          <Col>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>LOCATION NAME / DESCRIPTION</Form.Label> <Badge variant="danger">REQUIRED</Badge>
               <Form.Control type="text" name="pendingLocationNameDescription" onChange={changePendingLocationNameDescription} value={props.pendingLocationNameDescription} placeholder="location name / description" />
@@ -236,7 +237,7 @@ export default function LocationSubmitterMobile(props) {
             STEP<br />
             3
       </Col>
-          <Col xs={1}>
+          <Col>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>IMAGE</Form.Label>  <Badge variant="info">OPTIONAL</Badge>
 
@@ -252,7 +253,7 @@ export default function LocationSubmitterMobile(props) {
             STEP<br />
             4
       </Col>
-          <Col xs={1}>
+          <Col >
             <Form.Group controlId="formBasicEmail">
               <Form.Label>&nbsp;</Form.Label>
               <br />

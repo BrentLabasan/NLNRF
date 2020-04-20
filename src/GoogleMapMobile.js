@@ -127,7 +127,7 @@ export class GoogleMapMobile extends Component {
 
       );
     });
-
+debugger;
     return (
       <div>
 
@@ -139,7 +139,7 @@ export class GoogleMapMobile extends Component {
           <Modal.Body>
 
             {this.state.modalMode === 'locationDetails' && <LocationDetailsMobile selectedLocation={this.props.selectedLocation} />}
-            {this.state.modalMode === 'addLocation' && <LocationSubmitterMobile selectedLocation={this.props.selectedLocation} />}
+            {this.state.modalMode === 'addLocation' && <LocationSubmitterMobile selectedLocation={this.props.selectedLocation} latLong={{ latitude: this.state.dragLatitude, longitude: this.state.dragLongitude }} />}
 
           </Modal.Body>
           <Modal.Footer>
