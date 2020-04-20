@@ -13,6 +13,8 @@ import Button from '@material-ui/core/Button';
 
 import { LocationOn, AddLocation, Favorite, AccountCircle, Photo, Backdrop, ViewComfy } from '@material-ui/icons';
 
+import IconCrosshair from './media/redCrosshair.jpg';
+
 var _ = require('lodash');
 
 export class GoogleMapMobile extends Component {
@@ -162,6 +164,7 @@ debugger;
 
         {/* container div around GMap to force Add Location button to be below map didn't work */}
         <div>
+          {/* <img src={IconCrosshair} style={{posiiton: 'fixed', top: '50%', left: '50%', maxWidth: '20px'}} /> */}
           <Map
             google={this.props.google}
             onDragend={this.centerMoved}
@@ -189,9 +192,11 @@ debugger;
 
             {locations}
 
-            {this.props.isPulseVisible && <Marker
-              name={'Your position'}
-              position={{ lat: this.props.pulseGeopoint.latitude, lng: this.props.pulseGeopoint.longitude }}
+            {<Marker
+              // name={'Your position'}
+              position={{ 
+                lat: this.state.dragLatitude || constants.DEFAULT_MAP_CENTER.LAT, 
+                lng: this.state.dragLongitude || constants.DEFAULT_MAP_CENTER.LONG }}
               icon={{
                 // url: 'https://loading.io/icon/i3ca9h',
                 url: pulsing, // works
