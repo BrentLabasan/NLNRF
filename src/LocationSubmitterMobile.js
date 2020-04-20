@@ -193,11 +193,12 @@ export default function LocationSubmitterMobile(props) {
           <Col>
             <Form.Group controlId="formBasicEmail">
 
-              <Form.Label>LATITUDE / LONGITUDE</Form.Label> <Badge variant="danger">REQUIRED</Badge>
+              <Form.Label>LATITUDE / LONGITUDE</Form.Label> 
+              {/* <Badge variant="danger">REQUIRED</Badge> */}
 
               <Form.Control type="text" name="pendingLatitude" placeholder="latitude" value={inputLatLongVal()} />
               <Form.Text className="text-muted">
-                Click on the map to automatically fill in the lat/long coordinates.
+                These coordinates are automatically filled out.
 </Form.Text>
             </Form.Group>
           </Col>
