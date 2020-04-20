@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Row, Col, Dropdown, DropdownButton, ToggleButtonGroup, ToggleButton, Badge } from 'react-bootstrap';
 import { Backdrop, Button as ButtonM } from '@material-ui/core';
-import { LocationOn, AddLocation, Favorite, AccountCircle, Photo  } from '@material-ui/icons';
+import { LocationOn, AddLocation, Favorite, AccountCircle, Photo } from '@material-ui/icons';
 
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -175,13 +175,13 @@ export default function LocationSubmitterMobile(props) {
         <Row>
           <Col xs="auto">
 
-            <span>
-              STEP<br />
-              1
-</span>
+
+            STEP 1
 
 
           </Col>
+        </Row>
+        <Row>
           <Col>
             <Form.Group controlId="formBasicEmail">
 
@@ -193,34 +193,15 @@ export default function LocationSubmitterMobile(props) {
 </Form.Text>
             </Form.Group>
           </Col>
-          {/* 
-          <Col xs="auto">
-            STEP<br />
-            2
-      </Col>
-          <Col xs={2}>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>VISUAL TYPE</Form.Label>
-              <DropdownButton id="dropdown-basic-button" title="Visual Type" variant="primary">
-                <Dropdown.Item href="#/action-1">business card</Dropdown.Item>
-                <Dropdown.Item href="#/action-1">chalk</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">sharpie</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">paint / permanent marker</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">sticker</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">poster</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">mural</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">other</Dropdown.Item>
-              </DropdownButton>
-              <Form.Text className="text-muted">
-                Select which category best describes your medium.
-</Form.Text>
-            </Form.Group>
-          </Col> */}
+          </Row>
+          <Row>
 
           <Col xs="auto">
-            STEP<br />
+            STEP
             2
       </Col>
+      </Row>
+      <Row>
 
           <Col>
             <Form.Group controlId="formBasicEmail">
@@ -232,11 +213,15 @@ export default function LocationSubmitterMobile(props) {
             </Form.Group>
 
           </Col>
+          </Row>
+          <Row>
 
           <Col xs="auto">
-            STEP<br />
+            STEP
             3
       </Col>
+      </Row>
+      <Row>
           <Col>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>IMAGE</Form.Label>  <Badge variant="info">OPTIONAL</Badge>
@@ -248,11 +233,15 @@ export default function LocationSubmitterMobile(props) {
 
             </Form.Group>
           </Col>
+          </Row>
+          <Row>
 
           <Col xs="auto">
-            STEP<br />
+            STEP
             4
       </Col>
+      </Row>
+      <Row>
           <Col >
             <Form.Group controlId="formBasicEmail">
               <Form.Label>&nbsp;</Form.Label>
@@ -269,7 +258,7 @@ export default function LocationSubmitterMobile(props) {
                 onClick={handleSubmit}
               >
                 SUBMIT LOCATION <AddLocation />
-      </ButtonM>
+              </ButtonM>
             </Form.Group>
           </Col>
 
