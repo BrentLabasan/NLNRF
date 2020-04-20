@@ -56,8 +56,8 @@ export default function LocationSubmitterMobile(props) {
     debugger;
     // Add a new document with a generated id.
     props.db.collection("locations").add({
-      nameDescr: props.pendingLocationNameDescription,
-      geopoint: new firebase.firestore.GeoPoint(props.pendingLatitude, props.pendingLongitude),
+      nameDescr: nameDescr,
+      geopoint: new firebase.firestore.GeoPoint(props.latLong.latitude, props.latLong.longitude),
       dateTime: moment().format(),
       mediaUrl: null
     })
@@ -70,8 +70,9 @@ export default function LocationSubmitterMobile(props) {
         //   pendingLongitude: ''
         // });
 
-        props.handlePendingLatLongChange('', '');
-        props.handlePendingLocationNameDescription('');
+        // TO UPDATE
+        // props.handlePendingLatLongChange('', '');
+        // props.handlePendingLocationNameDescription('');
 
 
         if (document.getElementById('fileSelector').files[0]) {
