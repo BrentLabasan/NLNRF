@@ -851,7 +851,7 @@ export class App extends Component {
             <div>
               {/* <Grid container spacing={3}>
                 <Grid item xs={12}> */}
-              <BottomNavigation value={this.state.mobiCurrentSection} onChange={this.handleMobiCurrSectionChange} className={null} style={{ position: 'fixed', bottom: this.state.mobileCurrentView === 'addLocation' ? '35px' : 0, left: 0, width: '100%' }}>
+              <BottomNavigation value={this.state.mobiCurrentSection} onChange={this.handleMobiCurrSectionChange} className={null} style={{ position: 'fixed', bottom: this.state.mobileCurrentView === 'addLocation' ? '75px' : 0, left: 0, width: '100%' }}>
                 <BottomNavigationAction label="Add Location" value="addLocation" icon={<MapIcon />} />
                 <BottomNavigationAction label="Latest" value="latest" icon={<Photo />} />
                 <BottomNavigationAction label="Gallery" value="gallery" icon={<ViewComfy />} />
