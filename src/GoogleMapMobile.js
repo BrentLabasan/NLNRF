@@ -11,7 +11,7 @@ import wut from './media/wut.gif';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-import { LocationOn, AddLocation, Favorite, AccountCircle, Photo, Backdrop, ViewComfy } from '@material-ui/icons';
+import { MyLocation, AddLocation, Favorite, AccountCircle, Photo, Backdrop, ViewComfy } from '@material-ui/icons';
 
 import IconCrosshair from './media/crosshair1.png';
 
@@ -103,7 +103,29 @@ export class GoogleMapMobile extends Component {
       dragLongitude: map.getCenter().lng()
     })
   }
-  
+
+  getLocation = () => {
+    // var x = document.getElementById("demo");
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.showPosition);
+
+    } else {
+      // x.innerHTML = "Geolocation is not supported by this browser.";
+      alert("Geolocation is not supported by this browser.");
+    }
+  }
+
+  showPosition = (position) => {
+    // var x = document.getElementById("demo");
+    // x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+
+    this.setState({
+      dragLatitude: position.coords.latitude,
+      dragLongitude: position.coords.longitude
+    });
+  }
+
 
   render() {
     console.log('GoogleMap.js render()');
@@ -129,7 +151,7 @@ export class GoogleMapMobile extends Component {
 
       );
     });
-debugger;
+    debugger;
     return (
       <div>
 
@@ -142,13 +164,13 @@ debugger;
 
             {this.state.modalMode === 'locationDetails' && <LocationDetailsMobile selectedLocation={this.props.selectedLocation} />}
 
-            {this.state.modalMode === 'addLocation' && 
-            <LocationSubmitterMobile 
-            selectedLocation={this.props.selectedLocation}
-             latLong={{ latitude: this.state.dragLatitude, longitude: this.state.dragLongitude }}
-              db={this.props.db} 
-              storageRef={this.props.storageRef} 
-              handleClose={this.handleClose}
+            {this.state.modalMode === 'addLocation' &&
+              <LocationSubmitterMobile
+                selectedLocation={this.props.selectedLocation}
+                latLong={{ latitude: this.state.dragLatitude, longitude: this.state.dragLongitude }}
+                db={this.props.db}
+                storageRef={this.props.storageRef}
+                handleClose={this.handleClose}
               />}
 
           </Modal.Body>
@@ -194,9 +216,10 @@ debugger;
 
             {<Marker
               // name={'Your position'}
-              position={{ 
-                lat: this.state.dragLatitude || constants.DEFAULT_MAP_CENTER.LAT, 
-                lng: this.state.dragLongitude || constants.DEFAULT_MAP_CENTER.LONG }}
+              position={{
+                lat: this.state.dragLatitude || constants.DEFAULT_MAP_CENTER.LAT,
+                lng: this.state.dragLongitude || constants.DEFAULT_MAP_CENTER.LONG
+              }}
               icon={{
                 // url: 'https://loading.io/icon/i3ca9h',
                 // url: pulsing, // works
@@ -228,10 +251,14 @@ debugger;
 
               <Button variant="contained" color="primary" onClick={this.handleAddLocationButtonClick}>
                 <AddLocation /> Add Location
-          </Button>
+              </Button>
+<br/><br/>
+              <Button size="small" variant="contained" color="primary" onClick={this.getLocation}>
+                <MyLocation /> 
+              </Button>
             </Grid>
             <Grid item xs={6}>
-              <span style={{ fontSize: '12px', fontWeight: 'bold' }}>Position the map so that <br/>the center is on the location<br/> you want to add.</span>
+              <span style={{ fontSize: '12px', fontWeight: 'bold' }}>Position the map so that <br />the center is on the location<br /> you want to add.</span>
             </Grid>
 
           </Grid>
