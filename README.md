@@ -2,9 +2,11 @@
 
 ### I’m a big fan of Andrew Yang. His slogan “Not Left, Not Right, Forward” really captures how effectively his campaigning is able to bring together people of different political and economical backgrounds to unite against current and upcoming humanitarian problems like income inequality, mass layoffs due to automation, and climate change.
 
-### To help promote Andrew Yang, I created the web app NLNRF.com, in which people can view and submit locations to a Google Map of where people have promoted Andrew Yang on the streets and public, whether it be through chalking, graffiti, stickers, posters, murals, and more.
+### To help promote Andrew Yang, I created the web app [NLNRF.com](http://nlnrf.com/), in which people can view and submit locations to a Google Map of where people have promoted Andrew Yang on the streets and public, whether it be through chalking, graffiti, stickers, posters, murals, and more.
 
-## **NLNRF.com is in open beta right now, and we’d love for anyone to help continue building out new features of the site by checking out the code at https://github.com/BrentLabasan/NLNRF The site is built with JavaScript, React, and Firebase!**
+## **[NLNRF.com](http://nlnrf.com/) is in open beta right now! Help us build new and exciting features for the site by checking out the code at [https://github.com/BrentLabasan/NLNRF](https://github.com/BrentLabasan/NLNRF)**
+
+The site is built with HTML, CSS, JavaScript, React, and Firebase.
 
 DESKTOP / BROWSER
 
