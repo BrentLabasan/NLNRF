@@ -6,6 +6,15 @@
 
 ## **NLNRF.com is in open beta right now, and we’d love for anyone to help continue building out new features of the site by checking out the code at https://github.com/BrentLabasan/NLNRF The site is built with JavaScript, React, and Firebase!**
 
+DESKTOP / BROWSER
+
+![alt text](src\media\media-kit\pic-desktop.png "Logo Title Text 1")
+
+MOBILE / BROWSER
+
+![alt text](src\media\media-kit\pic-mobile.png "Logo Title Text 1")
+
+
 ---
 
 
