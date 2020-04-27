@@ -8,11 +8,11 @@
 
 DESKTOP / BROWSER
 
-![alt text](src\media\media-kit\pic-desktop.png "Logo Title Text 1")
+![](https://github.com/BrentLabasan/NLNRF/blob/master/src/media/press-kit/pic-desktop.png "Logo Title Text 1")
 
 MOBILE / BROWSER
 
-![alt text](src\media\media-kit\pic-mobile.png "Logo Title Text 1")
+![](https://github.com/BrentLabasan/NLNRF/blob/master/src/media/press-kit/pic-mobile.png "Logo Title Text 1")
 
 
 ---
