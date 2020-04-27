@@ -14,7 +14,6 @@ MOBILE / BROWSER
 
 ![](https://github.com/BrentLabasan/NLNRF/blob/master/src/media/press-kit/pic-mobile.png "Logo Title Text 1")
 
-
 ---
 
 
