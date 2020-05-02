@@ -29,7 +29,7 @@ export class GoogleMap extends Component {
   mapClicked = (mapProps, map, clickEvent) => {
     // console.log(mapProps);
     // console.log(map);
-    console.log(clickEvent);
+    // console.log(clickEvent);
     // console.log(clickEvent.Za.x, clickEvent.Za.y);
     console.log(clickEvent.latLng.lat(), clickEvent.latLng.lng());
 
@@ -47,7 +47,7 @@ export class GoogleMap extends Component {
   }
 
   render() {
-    console.log('GoogleMap.js render()');
+    // console.log('GoogleMap.js render()');
     let locations = this.props.locations.map((loc) => {
 
       // const animationStyle = loc.id === this.state.featuredLocationId ? this.props.google.maps.Animation.DROP : false;
@@ -107,13 +107,13 @@ export class GoogleMap extends Component {
             }}
           /> }
 
-          {/* <Polygon
+          <Polygon
             paths={constants.TEST_COORDS}
-            strokeColor="#0000FF"
-            strokeOpacity={0.8}
+            strokeColor="#ff0000"
+            strokeOpacity={0.5}
             strokeWeight={2}
-            fillColor="#0000FF"
-            fillOpacity={0.35} /> */}
+            fillColor="#FFFFFF"
+            fillOpacity={0.35} />
 
         </Map>
 

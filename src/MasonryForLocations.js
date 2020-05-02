@@ -29,13 +29,13 @@ export default function MasonryForLocations(props) {
 }
 
 function handleOnMouseEnter(geopoint) {
-    console.log('a');
+    // console.log('a');
     props.setIsPulseVisible(true, geopoint);
     // props.setPulseLagLong(geopoint);
 }
 
 function handleOnMouseLeave() {
-    console.log('a');
+    // console.log('a');
     props.setIsPulseVisible(false);
 
 }
